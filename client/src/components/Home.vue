@@ -1,10 +1,12 @@
 <template>
-    <h1>home page</h1>
+    <Navbar/>
 </template>
 
 <script>
+    import Navbar from "./Navbar";
     export default {
-        name: "Home"
+        name: "Home",
+        components: {Navbar}
     }
 </script>
 
