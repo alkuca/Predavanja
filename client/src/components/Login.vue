@@ -18,7 +18,7 @@
                     <div class="form-input">
                         <input id="password" type="password" name="password" v-model="input.password" placeholder="Password" />
                     </div>
-                    <button class="login-button" type="submit"><router-link to="/">Login</router-link></button>
+                    <router-link to="/"><button class="login-button" type="submit">Login</button></router-link>
                 </form>
             </div>
         </div>
@@ -94,6 +94,7 @@
         width:100%;
         border:0;
         border-radius: 3px;
+        cursor: pointer;
     }
     .login-button a{
         text-decoration: none;

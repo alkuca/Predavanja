@@ -1,10 +1,12 @@
 <template>
     <header>
-        <img class="nav-logo" src="../assets/logoWhite.svg" alt="navbar logo"/>
+        <router-link to="/" class="nav-logo">
+            <img src="../assets/logoWhite.svg" alt="navbar logo"/>
+        </router-link>
         <nav>
             <ul class="navbar-links">
-                <li><a>Home</a></li>
-                <li><a>My Lectures</a></li>
+                <li><router-link to="/" class="nav-logo">Home</router-link></li>
+                <li><router-link to="/account" class="nav-logo">My Lectures</router-link></li>
             </ul>
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
                 <div class="profile-menu-image-container">
@@ -24,12 +26,12 @@
                 <div class="dropdown-section-two">
                     <div class="dropdown-link">
                         <img src="../assets/settings.svg" alt="settings icon"/>
-                        <p>Account</p>
+                        <router-link to="/account" class="nav-logo">Account</router-link>
                     </div>
                     <div class="line"/>
                     <div class="dropdown-link">
                         <img src="../assets/logout.svg" alt="logout icon"/>
-                        <p>Log out</p>
+                        <router-link to="/login" class="nav-logo">Log Out</router-link>
                     </div>
                 </div>
             </div>
@@ -78,10 +80,12 @@
         background:#2F35B5;
     }
     .nav-logo{
-        width:150px;
         cursor: pointer;
         margin-right:auto;
     }
+     .nav-logo img{
+         width:150px;
+     }
     .navbar-links{
         list-style: none;
     }
@@ -161,7 +165,7 @@
      .dropdown-link img{
          width:24px;
      }
-    .dropdown-link p{
+    .dropdown-link a{
         color:white;
         font-weight: bold;
         margin-left: 15px;
