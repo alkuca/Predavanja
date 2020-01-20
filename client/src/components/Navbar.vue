@@ -34,6 +34,7 @@
                 </div>
             </div>
         </nav>
+        <div class="dark" v-if="isOpen" v-on:click="isOpen = false"/>
     </header>
 </template>
 
@@ -53,7 +54,6 @@
          box-sizing: border-box;
          margin:0;
          padding:0;
-         background:#2F35B5;
      }
     li, a {
         font-weight: bold;
@@ -67,11 +67,15 @@
         align-items: center;
         padding: 0 50px;
         height: 60px;
+        background:#2F35B5;
+        position: relative;
+        z-index: 3;
     }
     nav{
         display: flex;
         align-items: center;
         position: relative;
+        background:#2F35B5;
     }
     .nav-logo{
         width:150px;
@@ -85,9 +89,6 @@
        display: inline-block;
        padding:0 20px;
     }
-    .navbar-links li a{
-
-    }
     .profile-menu{
         height: 60px;
         margin-left:30px;
@@ -95,30 +96,33 @@
         cursor: pointer;
     }
     .profile-menu-image-container{
-        width: 60px;
+        width: 55px;
         position: relative;
         height: 100%;
         display: flex;
         align-items: center;
+        background:#2F35B5;
     }
      .profile-menu-image-container img{
          position: absolute;
-         height:70%;
+         height:65%;
          border-radius: 50%;
      }
     .profile-menu-dropdown{
-        width:330px;
-        background: blue;
+        width:314px;
+        background:#2F35B5;
         height:250px;
         position: absolute;
-        top:-270px;
+        top:-60px;
         z-index: -1;
-        transition: 0.2s ease-in;
+        transition: 0.1s ease-in;
         opacity: 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.30);
     }
      .dropdown-section-one{
         padding:25px 30px;
          display: flex;
+         background: #262899;
      }
      .dropdown-section-one img{
          width:130px;
@@ -147,6 +151,7 @@
     }
     .dropdown-section-two{
         padding:15px 30px;
+        background:#2F35B5;
     }
      .dropdown-link{
          display: flex;
@@ -169,16 +174,25 @@
     }
     .toggled{
         top:60px !important;
-        transition: 0.2s ease-out;
+        transition: 0.1s ease-out;
         opacity: 1 !important;
     }
     .dropdown-arrow{
         transform: rotate(0);
-        transition: 0.2s ease-in;
+        transition: 0.1s ease-in;
         background: none;
     }
     .rotate{
         transform: rotate(90deg) !important;
-        transition: 0.2s ease-out;
+        transition: 0.1s ease-out;
+    }
+    .dark{
+        height: calc(100vh - 60px);
+        width: 100%;
+        background: #00000061;
+        position: absolute;
+        top: 60px;
+        z-index: -5;
+        left: 0;
     }
 </style>
