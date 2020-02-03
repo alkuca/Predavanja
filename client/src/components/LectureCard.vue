@@ -126,6 +126,7 @@
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.22);
         font-weight: bold;
         color:#4A50D9;
+        cursor:pointer;
     }
     .date p{
         color:white;
