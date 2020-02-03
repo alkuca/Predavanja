@@ -28,6 +28,9 @@
                     </div>
                 </div>
             </nav>
+            <div class="content">
+
+            </div>
         </div>
     </div>
 </template>
@@ -165,5 +168,8 @@
     .disabled{
         color: #c4c4c4 !important;
         cursor: default !important;
+    }
+    .content{
+        padding: 20px 55px;
     }
 </style>
