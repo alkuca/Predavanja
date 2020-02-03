@@ -24,7 +24,9 @@
                     <p>Date: 18.02.2020</p>
                     <p>People interested: 24</p>
                 </div>
-                <button>View Details</button>
+                <router-link to="/lecture">
+                    <button>View Details</button>
+                </router-link>
             </div>
         </div>
     </div>
@@ -112,9 +114,11 @@
         margin: 10px 25px 33px 25px;
         align-items: center;
     }
+    .date-section a{
+        align-self: flex-end;
+    }
     .date-section button{
         height:32px;
-        align-self: flex-end;
         border:none;
         background: white;
         width:100px;
