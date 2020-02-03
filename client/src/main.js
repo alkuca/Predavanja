@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Account from "./components/Account";
 import Lecture from "./components/Lecture";
+import Register from "./components/Register";
 
 Vue.use(VueRouter);
 
@@ -15,7 +16,8 @@ const router = new VueRouter({
     {path: "/", component: Home},
     {path: "/login", component: Login},
     {path: "/account", component: Account},
-    {path: "/lecture", component: Lecture}
+    {path: "/lecture", component: Lecture},
+    {path: "/register", component: Register}
   ],
   mode: "history"
 });

@@ -4,7 +4,9 @@
             <h1>Predavanja</h1>
         </div>
         <div class="top-right-button">
-            <button>Sign Up</button>
+            <router-link to="/register">
+                <button>Register</button>
+            </router-link>
         </div>
         <div class="login-form-container">
             <div class="logo-container">
@@ -123,9 +125,6 @@
         font-weight: bold;
     }
     .top-right-button button{
-        position: absolute;
-        top:5px;
-        right:35px;
         border:3px solid white;
         background:transparent;
         color:white;
@@ -135,5 +134,11 @@
         border-radius:2px;
         font-weight: bold;
         font-size:15px;
+        cursor: pointer;
+    }
+    .top-right-button{
+        position: absolute;
+        top:5px;
+        right:35px;
     }
 </style>
