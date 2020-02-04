@@ -21,15 +21,23 @@
             <nav>
                 <div class="nav-container">
                     <div class="account-links">
-                        <a>Upcoming Lectures</a>
-                        <a>Attended Lectures</a>
+                        <a class="upcoming-lectures" v-on:click="attendedLecturesToggle = false" v-bind:class="{linkActive: !attendedLecturesToggle}">Upcoming Lectures</a>
+                        <a class="attended-lectures" v-on:click="attendedLecturesToggle = true" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
                         <a class="disabled">My Lectures</a>
-                        <div class="underline"/>
+                        <div class="underline"  v-bind:class="{attendedLectures: attendedLecturesToggle}" />
                     </div>
                 </div>
             </nav>
             <div class="content">
-
+                <div class="upcoming-lectures-container" v-if="!attendedLecturesToggle">
+                    <UpcomingLecture/>
+                    <UpcomingLecture/>
+                    <UpcomingLecture/>
+                    <UpcomingLecture/>
+                </div>
+                <div class="attended-lectures-container" v-if="attendedLecturesToggle">
+                    <AttendedLecture/>
+                </div>
             </div>
         </div>
     </div>
@@ -37,9 +45,16 @@
 
 <script>
     import Navbar from "./Navbar";
+    import UpcomingLecture from "./UpcomingLecture";
+    import AttendedLecture from "./AttendedLecture";
     export default {
         name: "Account",
-        components: {Navbar}
+        components: {AttendedLecture, UpcomingLecture, Navbar},
+        data(){
+            return{
+                attendedLecturesToggle: false
+            }
+        }
     }
 </script>
 
@@ -170,6 +185,23 @@
         cursor: default !important;
     }
     .content{
-        padding: 20px 55px;
+        padding: 10px 55px;
+    }
+    .attended-lectures:hover ~ .underline{
+        left:246px;
+        width:161px;
+        transition: 0.2s;
+    }
+    .upcoming-lectures:hover ~ .underline{
+        width:161px;
+        left:30px;
+        transition: 0.2s;
+    }
+    .attendedLectures{
+        left:246px;
+        width:161px;
+    }
+    .linkActive{
+        color:#46497E !important;
     }
 </style>
