@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-container">
+    <div class="nav-container" v-on:click="emitToParent">
         <nav>
             <div class="lectures-links">
                 <a class="following-lectures" v-on:click="allLecturesToggle = false" v-bind:class="{linkActive: !allLecturesToggle}">Following Lectures</a>
@@ -33,6 +33,11 @@
             return{
                 isOpen:false,
                 allLecturesToggle: false
+            }
+        },
+        methods: {
+            emitToParent () {
+                this.$emit('childToParent', this.allLecturesToggle)
             }
         }
     }

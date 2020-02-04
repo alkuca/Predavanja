@@ -1,11 +1,21 @@
 <template>
     <div>
         <Navbar/>
-        <LecturesNavbar/>
+        <LecturesNavbar v-on:childToParent="onChildClick"/>
         <div class="lectures-container">
-            <LectureCard/>
-            <LectureCard/>
-            <LectureCard/>
+            <div class="lectures followingLectures"  v-if="!lectureNavToggle">
+                <LectureCard/>
+                <LectureCard/>
+                <LectureCard/>
+            </div>
+            <div class="lectures allLectures" v-if="lectureNavToggle">
+                <LectureCard/>
+                <LectureCard/>
+                <LectureCard/>
+                <LectureCard/>
+                <LectureCard/>
+                <LectureCard/>
+            </div>
         </div>
     </div>
 </template>
@@ -16,12 +26,22 @@
     import LectureCard from "./LectureCard";
     export default {
         name: "Home",
-        components: {LectureCard, Navbar, LecturesNavbar}
+        components: {LectureCard, Navbar, LecturesNavbar},
+        data(){
+            return{
+                lectureNavToggle:""
+            }
+        },
+        methods: {
+            onChildClick (value) {
+                this.lectureNavToggle = value
+            }
+        }
     }
 </script>
 
 <style scoped>
-    .lectures-container{
+    .lectures{
         margin-top:5px;
         display: flex;
         flex-wrap: wrap;
