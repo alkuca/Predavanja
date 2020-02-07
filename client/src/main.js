@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Account from "./components/Account";
 import Lecture from "./components/Lecture";
 import Register from "./components/Register";
+import TopicSelect from "./components/TopicSelect";
 
 Vue.use(VueRouter);
 
@@ -17,7 +18,8 @@ const router = new VueRouter({
     {path: "/login", component: Login},
     {path: "/account", component: Account},
     {path: "/lecture", component: Lecture},
-    {path: "/register", component: Register}
+    {path: "/register", component: Register},
+    {path: "/topics", component: TopicSelect}
   ],
   mode: "history"
 });

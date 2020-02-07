@@ -13,7 +13,9 @@
         <div class="section-bottom">
             <nav>
                 <a>Lectures</a>
-                <a>Groups</a>
+                <router-link to="/topics">
+                    Following Topics
+                </router-link>
             </nav>
             <button>Settings</button>
         </div>
@@ -120,6 +122,8 @@
         padding: 18px 18px;
         font-weight: bold;
         border-bottom:1px solid rgba(0, 0, 0, 0.10);
+        text-decoration: none;
+        color:#676767;
     }
     .section-bottom button{
         align-self: flex-end;

@@ -122,6 +122,7 @@
         transition: 0.1s ease-in;
         opacity: 0;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.30);
+        visibility: hidden;
     }
      .dropdown-section-one{
         padding:25px 30px;
@@ -180,6 +181,7 @@
         top:60px !important;
         transition: 0.1s ease-out;
         opacity: 1 !important;
+        visibility: visible !important;
     }
     .dropdown-arrow{
         transform: rotate(0);
