@@ -24,12 +24,18 @@
                     </div>
                 </div>
                 <div class="dropdown-section-two">
+                    <div class="dropdown-link only-mobile">
+                        <router-link to="/account" class="nav-logo">Home</router-link>
+                    </div>
+                    <div class="dropdown-link only-mobile">
+                        <router-link to="/account" class="nav-logo">My Lectures</router-link>
+                    </div>
                     <div class="dropdown-link">
-                        <img src="../assets/settings.svg" alt="settings icon"/>
+                        <img class="dropdown-link-image" src="../assets/settings.svg" alt="settings icon"/>
                         <router-link to="/account" class="nav-logo">Account</router-link>
                     </div>
                     <div class="line"/>
-                    <div class="dropdown-link">
+                    <div class="dropdown-link logout">
                         <img src="../assets/logout.svg" alt="logout icon"/>
                         <router-link to="/login" class="nav-logo">Log Out</router-link>
                     </div>
@@ -59,9 +65,9 @@
      }
     li, a {
         font-weight: bold;
-        font-size:16px;
         color:white;
         text-decoration: none;
+        outline: none;
     }
     header{
         display: flex;
@@ -76,7 +82,6 @@
     nav{
         display: flex;
         align-items: center;
-        position: relative;
         background:#2F35B5;
     }
     .nav-logo{
@@ -92,6 +97,7 @@
     .navbar-links li{
        display: inline-block;
        padding:0 20px;
+       font-size: 16px;
     }
     .profile-menu{
         height: 60px;
@@ -187,7 +193,12 @@
         transform: rotate(0);
         transition: 0.1s ease-in;
         background: none;
+        align-self: center;
     }
+     ::selection {
+         background-color: red;
+         color: blue;
+     }
     .rotate{
         transform: rotate(90deg) !important;
         transition: 0.1s ease-out;
@@ -201,4 +212,71 @@
         z-index: -5;
         left: 0;
     }
+     .only-mobile{
+         display: none;
+     }
+
+
+     @media screen and (max-width: 650px) {
+        header{
+            padding: 0 15px;
+        }
+         .nav-logo img{
+             width:130px;
+         }
+         .navbar-links li{
+             padding:0 15px;
+         }
+         .profile-menu-dropdown{
+             width:85%;
+             right:0;
+             height:calc(100vh - 60px);
+         }
+         .dropdown-link a{
+             font-size: 20px;
+         }
+         .dropdown-section-two{
+             padding: 25px 30px;
+         }
+         .dropdown-link{
+             padding: 15px 0;
+         }
+         .logout{
+             margin-left: 15px;
+         }
+         .dropdown-link-image{
+             display: none;
+         }
+         .only-mobile{
+             display: block;
+         }
+
+     }
+     @media screen and (max-width: 540px) {
+         .nav-logo img{
+             width:130px;
+         }
+         .navbar-links li{
+             padding:0 10px;
+             font-size: 14px;
+         }
+     }
+     @media screen and (max-width: 500px) {
+         .profile-menu {
+             margin-left: 10px;
+         }
+     }
+     @media screen and (max-width: 450px) {
+         .navbar-links{
+             display: none;
+         }
+     }
+     @media screen and (max-width: 380px) {
+         .dropdown-section-one img {
+             width: 90px;
+         }
+         .user-details{
+             margin-left: 15px;
+         }
+     }
 </style>
