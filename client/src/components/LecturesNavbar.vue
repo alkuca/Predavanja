@@ -17,10 +17,12 @@
                         <a>Mathematics</a>
                     </div>
                 </div>
+                <!--
                 <div class="search-container">
                     <img class="glass" src="../assets/glass.svg" alt="search icon"/>
                     <input class="search" type="search" autocomplete="off" placeholder="Search...">
                 </div>
+                -->
             </div>
         </nav>
     </div>
@@ -81,6 +83,8 @@
         border-radius: 6px;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.22);
         background: white;
+        white-space: nowrap;
+
     }
     .lectures-links{
         display: flex;
@@ -103,7 +107,7 @@
         flex-direction: column;
         align-items: center;
         position: absolute;
-        width:calc(100% + 100px);
+        width:calc(100% + 87px);
         left:-56px;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.22);
         border-radius: 5px;
@@ -183,5 +187,42 @@
     .allLectures{
         left:246px ;
         width:130px ;
+    }
+
+    @media screen and (max-width: 900px) {
+        nav{
+            width:100%;
+        }
+        .lectures-links{
+            width:100%;
+        }
+        .underline{
+            display: none;
+        }
+
+    }
+    @media screen and (max-width: 650px) {
+        .lectures-links a {
+            font-size:12px;
+            margin: 0 3px;
+        }
+        .lectures-links p {
+            font-size:12px;
+        }
+        .category-menu{
+            margin: 0 3px;
+        }
+        .lectures-links{
+            justify-content: space-evenly;
+        }
+        .nav-container{
+            padding: 0 15px;
+        }
+    }
+    @media screen and (max-width: 425px) {
+        .category-menu-dropdown{
+            width:calc(100% + 60px);
+            left:-46px;
+        }
     }
 </style>
