@@ -73,8 +73,9 @@
         align-items: center;
         flex-direction: column;
     }
-    .lecturer-image-name img{
+    .lecturer-image{
         margin-bottom:10px;
+        width: 90%;
     }
     .lecturer-image-name h1{
         font-size:17px;
@@ -90,6 +91,7 @@
         font-weight: bold;
         font-size: 15px;
         text-align: center;
+        padding: 0 10px;
     }
     .section-right{
         width:68%;
@@ -136,5 +138,139 @@
         position: absolute;
         top:10px;
         right:10px;
+    }
+
+    @media screen and (max-width: 1450px) {
+        .lecturer-details p{
+            font-size:13px;
+        }
+        .lecturer-image-name h1{
+            font-size: 15px;
+        }
+        .lecturer-image {
+            width: 80%;
+        }
+        .lecture-text h1 {
+            font-size: 22px;
+        }
+        .lecture-text p {
+            font-size: 14px;
+        }
+        .date p{
+            font-size: 14px;
+        }
+        .card-container{
+            height: 320px;
+        }
+        .lecturer-info{
+            height: 280px;
+        }
+    }
+
+    @media screen and (max-width: 1250px) {
+        .section-left{
+            width: 40%;
+        }
+        .lecturer-info{
+            margin: 20px 15px;
+        }
+        .lecture-text{
+            margin: 10px 13px 10px 5px;
+        }
+        .date-section{
+            margin: 10px 13px 28px 5px;
+        }
+        .date-section a{
+            margin-right:10px;
+            margin-bottom: 5px;
+        }
+        .card-container{
+            height: 300px;
+        }
+        .lecturer-info{
+            height: 260px;
+        }
+    }
+
+    @media screen and (max-width: 1100px) {
+        .lecturer-details p{
+            font-size:12px;
+        }
+        .lecturer-image-name h1{
+            font-size: 14px;
+        }
+        .lecture-text h1 {
+            font-size: 19px;
+        }
+        .lecture-text p {
+            font-size: 12px;
+        }
+        .date p{
+            font-size: 12px;
+        }
+        .card-container{
+            height: 280px;
+        }
+        .lecturer-info{
+            height: 240px;
+        }
+        .date-section a button{
+            height: 30px;
+            width: 90px;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+        .date-section a{
+            margin-right: 0;
+            margin-bottom: 5px;
+        }
+    }
+    @media screen and (max-width: 900px) {
+        .card-container{
+            flex: 0 100%;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        .card-container{
+            margin: 15px 0;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        .date-section a{
+
+        }
+        .section-left{
+            width:45%;
+        }
+        .lecturer-info{
+            margin: 15px 10px;
+        }
+        .lecture-text{
+            margin: 10px 13px 10px 5px;
+        }
+        .date-section{
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .card-container{
+            height: auto;
+        }
+        .lecturer-info{
+            height: 90%;
+        }
+        .date-section{
+            margin: 10px 13px 25px 5px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .date-section a{
+            align-self: flex-start;
+            width: 100%;
+            margin-bottom: 0;
+            padding-top: 3px;
+        }
+        .date-section a button{
+            width: 100%;
+        }
     }
 </style>
