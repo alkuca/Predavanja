@@ -1,44 +1,49 @@
 <template>
     <div>
         <Navbar/>
-        <div class="section-left-container">
-            <div class="section-left">
-                <div class="lecturer-image-name">
-                    <img class="lecturer-image" src="../assets/profileImage.png" alt="lecturer"/>
-                    <h1>Adam Smith</h1>
-                    <p>Basic User</p>
-                </div>
-            </div>
-        </div>
-        <div class="section-bottom">
-            <nav>
-                <a>Lectures</a>
-                <router-link to="/topics">
-                    Following Topics
-                </router-link>
-            </nav>
-            <button>Settings</button>
-        </div>
-        <div class="section-right">
-            <nav>
-                <div class="nav-container">
-                    <div class="account-links">
-                        <a class="upcoming-lectures" v-on:click="attendedLecturesToggle = false" v-bind:class="{linkActive: !attendedLecturesToggle}">Upcoming Lectures</a>
-                        <a class="attended-lectures" v-on:click="attendedLecturesToggle = true" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
-                        <a class="disabled">My Lectures</a>
-                        <div class="underline"  v-bind:class="{attendedLectures: attendedLecturesToggle}" />
+        <div>
+            <div>
+                <div class="section-left-container">
+                    <div class="section-left">
+                        <div class="lecturer-image-name">
+                            <img class="lecturer-image" src="../assets/profileImage.png" alt="lecturer"/>
+                            <h1>Adam Smith</h1>
+                            <p>Basic User</p>
+                        </div>
                     </div>
                 </div>
-            </nav>
-            <div class="content">
-                <div class="upcoming-lectures-container" v-if="!attendedLecturesToggle">
-                    <UpcomingLecture/>
-                    <UpcomingLecture/>
-                    <UpcomingLecture/>
-                    <UpcomingLecture/>
+                <div class="section-bottom">
+                    <nav>
+                        <a>Lectures</a>
+                        <router-link to="/topics">
+                            Following Topics
+                        </router-link>
+                        <a class="settings-mobile-only">Settings</a>
+                    </nav>
+                    <button>Settings</button>
                 </div>
-                <div class="attended-lectures-container" v-if="attendedLecturesToggle">
-                    <AttendedLecture/>
+            </div>
+            <div class="section-right">
+                <nav>
+                    <div class="nav-container">
+                        <div class="account-links">
+                            <a class="upcoming-lectures" v-on:click="attendedLecturesToggle = false" v-bind:class="{linkActive: !attendedLecturesToggle}">Upcoming Lectures</a>
+                            <a class="attended-lectures" v-on:click="attendedLecturesToggle = true" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
+                            <a class="disabled">My Lectures</a>
+                            <div class="underline"  v-bind:class="{attendedLectures: attendedLecturesToggle}" />
+                        </div>
+                    </div>
+                </nav>
+                <div class="content">
+                    <div class="upcoming-lectures-container" v-if="!attendedLecturesToggle">
+                        <UpcomingLecture/>
+                        <UpcomingLecture/>
+                        <UpcomingLecture/>
+                        <UpcomingLecture/>
+                    </div>
+                    <div class="attended-lectures-container" v-if="attendedLecturesToggle">
+                        <AttendedLecture/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,12 +72,12 @@
     }
     .section-left{
         width:280px;
-        height:calc(40vh - 60px);
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 5px 5px 0 0;
         background: #2F35B5;
+        padding:15px 0;
     }
     .lecturer-image-name{
         display: flex;
@@ -81,8 +86,8 @@
         flex-direction: column;
     }
     .lecturer-image-name img{
-        margin-bottom:20px;
-        width:200px;
+        margin-bottom:15px;
+        width:100%;
         border-radius: 50%;
     }
     .lecturer-image-name h1{
@@ -105,7 +110,7 @@
     }
     .section-bottom{
         width:280px;
-        height:calc(60vh - 80px);
+        height:300px;
         background: white;
         margin:20px 50px 0 50px;
         display: flex;
@@ -207,5 +212,177 @@
     }
     .linkActive{
         color:#46497E !important;
+    }
+    .settings-mobile-only{
+        display: none;
+    }
+
+    @media screen and (max-width: 1200px) {
+        .content{
+            padding: 10px 25px;
+        }
+        .section-left{
+            width:200px;
+        }
+        .section-right{
+            width:calc(100% - 335px);
+        }
+        .section-bottom{
+            width:200px;
+        }
+        .section-bottom nav a{
+            font-size: 14px;
+            padding: 16px 16px;
+        }
+        .lecturer-image-name h1{
+            font-size: 16px;
+        }
+        .lecturer-image-name p{
+            font-size: 13px;
+        }
+        .lecturer-image-name{
+            width:85%;
+        }
+        .account-links a{
+            font-size: 13px;
+            margin: 0 15px;
+        }
+        .attended-lectures:hover ~ .underline{
+            left:184px;
+            width:141px;
+        }
+        .upcoming-lectures:hover ~ .underline{
+            width:141px;
+            left:15px;
+        }
+        .underline{
+            width:141px;
+            left:15px;
+        }
+        .attendedLectures{
+            left:184px;
+            width:141px;
+        }
+    }
+    @media screen and (max-width: 880px) {
+        .content{
+            padding: 10px 20px;
+        }
+        .section-left{
+            width:130px;
+        }
+        .section-right{
+            width:calc(100% - 260px);
+        }
+        .section-bottom{
+            width:130px;
+            height:240px;
+        }
+        .section-bottom nav a{
+            font-size: 12px;
+            padding: 14px 11px;
+        }
+        .lecturer-image-name h1{
+            font-size: 13px;
+        }
+        .lecturer-image-name p{
+            font-size: 11px;
+        }
+        .lecturer-image-name{
+            width:90%;
+        }
+        .account-links a{
+            font-size: 12px;
+            margin: 0 10px;
+        }
+        .nav-container{
+            padding: 0 8px;
+        }
+        .attended-lectures:hover ~ .underline{
+            left:162px;
+            width:126px;
+        }
+        .upcoming-lectures:hover ~ .underline{
+            width:126px;
+            left:15px;
+        }
+        .underline{
+            width:126px;
+            left:15px;
+        }
+        .attendedLectures{
+            left:162px;
+            width:126px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .settings-mobile-only{
+            display: initial;
+        }
+        .section-left-container{
+            display: none;
+        }
+        .section-right{
+            width:initial;
+            position: initial;
+            margin:20px 50px 25px 50px;
+        }
+        .section-bottom{
+            width:initial;
+            height: auto;
+            margin: 20px 50px 0 50px;
+        }
+        .section-bottom nav{
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .section-bottom button{
+            display: none;
+        }
+        .section-bottom nav a{
+            font-size: 14px;
+            padding: 18px 12px;
+            border-bottom:none;
+        }
+        .account-links a{
+            font-size: 14px;
+            margin: 0 10px;
+        }
+        .account-links{
+            width: 100%;
+            justify-content: center;
+        }
+        .nav-container{
+            padding:0;
+            width: 100%;
+        }
+        .underline{
+            display: none;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        .section-right{
+            margin: 15px 15px 25px 15px;
+        }
+        .section-bottom{
+            margin: 15px 15px 0 15px;
+        }
+    }
+    @media screen and (max-width: 580px) {
+        .section-bottom nav a{
+            font-size: 13px;
+            padding: 20px 12px;
+        }
+        .account-links a{
+            font-size: 12px;
+            margin: 0;
+            padding: 17px 0;
+        }
+        .account-links{
+            justify-content: space-around;
+        }
+        .content{
+            padding:2px 10px;
+        }
     }
 </style>

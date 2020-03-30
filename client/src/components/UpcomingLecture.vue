@@ -23,6 +23,7 @@
     }
     .upcoming-lecture{
         display: flex;
+        align-items: center;
         justify-content: space-between;
         padding: 5px 0;
         margin: 20px 0;
@@ -48,5 +49,64 @@
     }
     .name{
         padding: 0 15px;
+    }
+    @media screen and (max-width: 1200px) {
+        .upcoming-lecture p{
+            font-size:14px;
+        }
+    }
+    @media screen and (max-width: 1100px) {
+        .upcoming-lecture p{
+            font-size:13px;
+        }
+    }
+    @media screen and (max-width: 1000px) {
+        .upcoming-lecture p{
+            padding:0 15px;
+        }
+        .upcoming-lecture div{
+            padding:0 15px;
+        }
+    }
+    @media screen and (max-width: 880px) {
+        .upcoming-lecture p{
+            padding:0 10px;
+        }
+        .upcoming-lecture div{
+            padding:0 10px;
+        }
+        .upcoming-lecture p{
+            font-size:11px;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .upcoming-lecture p{
+            padding:0 15px;
+        }
+        .upcoming-lecture div{
+            padding:0 15px;
+        }
+        .upcoming-lecture p{
+            font-size:13px;
+        }
+    }
+    @media screen and (max-width: 580px) {
+        .upcoming-lecture p{
+            padding:0 7px;
+        }
+        .upcoming-lecture div{
+            padding:0 7px;
+        }
+        .upcoming-lecture p{
+            font-size:11px;
+        }
+        .upcoming-lecture{
+            padding: 5px 0;
+            margin: 13px 0;
+        }
+        .lecturer img{
+            width:30px;
+            height:30px;
+        }
     }
 </style>
