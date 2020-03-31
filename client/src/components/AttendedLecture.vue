@@ -1,6 +1,6 @@
 <template>
     <router-link to="/lecture">
-        <div class="upcoming-lecture">
+        <div class="attended-lecture">
             <p class="title">E-commerce Marketing</p>
             <div class="lecturer">
                 <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
@@ -22,8 +22,9 @@
     a{
         text-decoration: none;
     }
-    .upcoming-lecture{
+    .attended-lecture{
         display: flex;
+        align-items: center;
         justify-content: space-between;
         padding: 5px 0;
         margin: 20px 0;
@@ -60,5 +61,68 @@
         width:100px;
         border-radius: 4px;
         margin: 0 30px;
+        white-space: nowrap;
     }
+    @media screen and (max-width: 1400px) {
+        .attended-lecture p{
+            font-size:14px;
+        }
+    }
+    @media screen and (max-width: 1300px) {
+        .attended-lecture p{
+            font-size:13px;
+        }
+        .attended-lecture p{
+            padding:0 15px;
+        }
+        .attended-lecture div{
+            padding:0 15px;
+        }
+        .review-button{
+            margin: 0 15px;
+        }
+    }
+    @media screen and (max-width: 1200px) {
+        .review-button{
+            height: 32px;
+            width: 86px;
+            font-size: 12px;
+        }
+    }
+    @media screen and (max-width: 950px) {
+        .attended-lecture p{
+            font-size:12px;
+        }
+        .attended-lecture p{
+            padding:0 10px;
+        }
+        .attended-lecture div{
+            padding:0 10px;
+        }
+        .review-button{
+            margin: 0 10px;
+            height: 30px;
+            width: 76px;
+            font-size: 11px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        .review-button{
+            display: none;
+        }
+        .rating{
+            white-space: nowrap;
+        }
+        .attended-lecture p{
+            padding:0 8px;
+        }
+        .attended-lecture div{
+            padding:0 8px;
+        }
+        .review-button{
+            margin: 0 8px;
+        }
+    }
+
 </style>

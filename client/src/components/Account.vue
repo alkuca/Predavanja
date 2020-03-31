@@ -43,6 +43,12 @@
                     </div>
                     <div class="attended-lectures-container" v-if="attendedLecturesToggle">
                         <AttendedLecture/>
+                        <AttendedLecture/>
+                        <AttendedLecture/>
+                        <AttendedLecture/>
+                        <AttendedLecture/>
+                        <AttendedLecture/>
+                        <AttendedLecture/>
                     </div>
                 </div>
             </div>
