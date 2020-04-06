@@ -61,10 +61,11 @@
     .inner-container h1{
         font-size:22px;
         margin: 0;
-        padding: 30px 0 10px 0;
+        padding: 30px 20px 10px 20px;
     }
     .inner-container p{
-
+        padding: 10px 20px;
+        text-align: center;
     }
     .topics-container{
         width:60%;
@@ -115,5 +116,39 @@
         border-radius: 50%;
         border:2px solid #929292;
         margin: 0 25px;
+    }
+
+    @media screen and (max-width: 900px) {
+        .topics-container{
+            width:80%;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .inner-container h1{
+            font-size:18px;
+            padding: 20px 20px 0 20px;
+        }
+        .inner-container p{
+            font-size: 14px;
+            padding: 5px 25px;
+        }
+        .topics-container ul li{
+            margin: 17px 0;
+            height: 50px;
+        }
+        .topics-container ul{
+            margin: 0;
+        }
+    }
+    @media screen and (max-width: 550px) {
+        .topics-container{
+            width:85%;
+        }
+        .inner-container{
+            margin: 0;
+        }
+        .inner-container a{
+            align-self: center;
+        }
     }
 </style>

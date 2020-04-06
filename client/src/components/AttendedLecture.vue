@@ -109,19 +109,16 @@
 
     @media screen and (max-width: 450px) {
         .review-button{
-            display: none;
+            padding:0 8px;
         }
         .rating{
-            white-space: nowrap;
+            display: none;
         }
         .attended-lecture p{
             padding:0 8px;
         }
         .attended-lecture div{
             padding:0 8px;
-        }
-        .review-button{
-            margin: 0 8px;
         }
     }
 
