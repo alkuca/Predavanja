@@ -35,11 +35,10 @@
                         <nav>
                             <div class="nav-container">
                                 <div class="lecture-links">
-                                    <a>Details</a>
-                                    <a>Lecturer Notes<span> !</span></a>
-                                    <a>Comments(4)</a>
+                                    <a class="linkActive">Details</a>
+                                    <a>Notes</a>
+                                    <a>Comments</a>
                                     <a>FAQ</a>
-                                    <div class="underline"/>
                                 </div>
                                 <a class="interested-button"><button>Interested</button></a>
                             </div>
@@ -51,8 +50,10 @@
                                 <p>Duration: 120 min</p>
                                 <p>Location: 372 Rose Street</p>
                                 <p>City: Pula</p>
+                                <a class="interested-button-mobile"><button>Interested</button></a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -79,6 +80,7 @@
         background: #4A50D9;
         width: 100%;
         margin:0 50px;
+        height:100%;
         border-radius: 5px;
     }
     .section-top{
@@ -93,7 +95,7 @@
     .top-left{
         display: flex;
         align-items: center;
-        height:100%;
+        height: 313px;
         margin:20px 0;
         width:20%;
     }
@@ -108,6 +110,7 @@
         background: #2F35B5;
         border-radius: 5px;
         position: relative;
+        height:90%;
     }
     .lecturer-image-name{
         display: flex;
@@ -117,10 +120,15 @@
     }
     .lecturer-image-name img{
         margin-bottom:10px;
+        width:100%;
     }
     .lecturer-image-name h1{
         font-size:17px;
         color:white;
+        margin: 13px;
+    }
+    .lecturer-details p{
+        margin: 13px 7px;
     }
     .white-line{
         background: #646BF2;
@@ -174,7 +182,7 @@
         font-weight: bold;
         font-size:15px;
         text-decoration: none;
-        padding: 17px 10px;
+        padding: 19px 10px;
         margin: 0 30px;
         cursor: pointer;
         color: #676767;
@@ -211,10 +219,10 @@
     .section-bottom-content{
         padding: 30px 60px;
         display: flex;
-        min-height:358px;
+        min-height:355px;
     }
-    span{
-        color: #FFB300;
+    .details{
+        width: 100%;
     }
     .details p{
         font-weight: bold;
@@ -234,14 +242,180 @@
         height:35px;
         width:110px;
     }
-    .underline{
-        position: absolute;
-        height:2px;
-        background: #46497E;
-        bottom:-1px;
-        width:70px;
-        left:30px;
-        transition: 0.2s;
-        border-radius: 10px 10px 0 0;
+    .interested-button-mobile button{
+        background: #4A50D9;
+        color:white;
+        border-radius: 4px;
+        border:none;
+        font-weight: bold;
+        font-size:15px;
+        height:35px;
+        width:110px;
+        float: right;
+    }
+    .interested-button-mobile{
+        display: none;
+    }
+    .linkActive{
+        border-bottom: 2px solid #46497E;
+    }
+
+    @media screen and (max-width: 1600px) {
+        .section-bottom-content{
+            min-height:initial;
+        }
+    }
+
+    @media screen and (max-width: 1300px) {
+        .lecture-text h1{
+            font-size: 22px;
+        }
+        .lecture-text p{
+            font-size: 14px;
+        }
+        .date-countdown h1{
+            font-size: 18px;
+        }
+        .date-countdown p{
+            font-size: 13px;
+        }
+        .lecturer-image-name img{
+            width:90%;
+        }
+        .details p{
+            font-size: 15px;
+        }
+        .top-left{
+            width: 270px;
+        }
+
+    }
+    @media screen and (max-width: 1100px) {
+        .lecturer-image-name img{
+            width:75%;
+        }
+        .lecturer-image-name h1{
+            font-size: 16px;
+        }
+        .lecturer-details p{
+            font-size: 13px;
+        }
+        .top-left{
+            height: 250px;
+        }
+        .lecture-text h1{
+            font-size: 19px;
+        }
+        .lecture-text p{
+            font-size: 13px;
+        }
+        .date-countdown h1{
+            font-size: 16px;
+        }
+        .date-countdown p{
+            font-size: 12px;
+        }
+        .details p{
+            font-size: 14px;
+        }
+        .lecture-text {
+            margin: 35px 17px;
+        }
+        .date-countdown {
+            margin: 10px 10px 33px 10px;
+        }
+        .lecture-links a{
+            font-size: 14px;
+        }
+
+    }
+    @media screen and (max-width: 900px) {
+        .interested-button button{
+            height: 32px;
+            width: 94px;
+            font-size: 14px;
+        }
+        .nav-container{
+            padding: 0 15px;
+        }
+        .lecture-text {
+            margin: 35px 15px;
+        }
+        .lecture-links a{
+            font-size: 14px;
+            margin: 0 15px;
+            padding: 16px 10px;
+        }
+        nav{
+            height:48px;
+        }
+    }
+    @media screen and (max-width: 760px) {
+        .interested-button button{
+            height: 30px;
+            width: 84px;
+            font-size: 13px;
+        }
+        .nav-container{
+            padding: 0 15px;
+        }
+        .lecture-text {
+            margin: 35px 15px;
+        }
+        .lecture-links a{
+            font-size: 12px;
+            margin: 0 6px;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        .lecture-inner-container {
+            margin: 0 15px;
+        }
+    }
+    @media screen and (max-width: 560px) {
+        .section-top{
+            flex-direction: column;
+        }
+        .top-left{
+            width: 92%;
+            align-self: center;
+            height: 240px;
+            margin: 30px 0 10px 0;
+        }
+        .lecturer-info{
+            height: 95%;
+        }
+        .top-right{
+            align-self: center;
+        }
+        .lecture-text{
+            margin: 15px 0 5px 0;
+        }
+        .date-countdown{
+            margin: 5px 0 25px 0;
+        }
+        .interested-button{
+            display: none;
+        }
+        .lecturer-image-name img{
+            width:60%;
+        }
+        .nav-container{
+            padding: 0 5px;
+            justify-content: center;
+        }
+        .section-bottom {
+            padding: 0 10px;
+        }
+        .section-bottom-content {
+            min-height:initial;
+            padding: 20px 30px;
+        }
+        .section-bottom-inner-container {
+            margin-bottom: 10px;
+        }
+        .interested-button-mobile{
+            display: initial;
+        }
     }
 </style>
