@@ -68,7 +68,7 @@
             font-size:14px;
         }
     }
-    @media screen and (max-width: 1300px) {
+    @media screen and (max-width: 1370px) {
         .attended-lecture p{
             font-size:13px;
         }

@@ -8,49 +8,29 @@
                         <div class="lecturer-image-name">
                             <img class="lecturer-image" src="../assets/profileImage.png" alt="lecturer"/>
                             <h1>Adam Smith</h1>
-                            <p>Basic User</p>
+                            <div class="user-status-container" v-on:click="isOpen = !isOpen">
+                                <p>Basic User</p>
+                                <img class="dropdown-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" v-bind:class="{rotate: isOpen}"/>
+                            </div>
+                            <div class="status-dropdown" v-bind:class="{toggled: isOpen}" v-on:click="isOpen = false">
+                                <a v-on:click="becomeLecturer = true">Become a Lecturer</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="section-bottom">
                     <nav>
-                        <a>Lectures</a>
-                        <router-link to="/topics">
-                            Following Topics
-                        </router-link>
+                        <a v-on:click="resetAccountPage">Lectures</a>
+                        <a v-on:click="topics = true">Following Topics</a>
                         <a class="settings-mobile-only">Settings</a>
                     </nav>
                     <button>Settings</button>
                 </div>
             </div>
             <div class="section-right">
-                <nav>
-                    <div class="nav-container">
-                        <div class="account-links">
-                            <a class="upcoming-lectures" v-on:click="attendedLecturesToggle = false" v-bind:class="{linkActive: !attendedLecturesToggle}">Upcoming Lectures</a>
-                            <a class="attended-lectures" v-on:click="attendedLecturesToggle = true" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
-                            <a class="disabled">My Lectures</a>
-                            <div class="underline"  v-bind:class="{attendedLectures: attendedLecturesToggle}" />
-                        </div>
-                    </div>
-                </nav>
-                <div class="content">
-                    <div class="upcoming-lectures-container" v-if="!attendedLecturesToggle">
-                        <UpcomingLecture/>
-                        <UpcomingLecture/>
-                        <UpcomingLecture/>
-                        <UpcomingLecture/>
-                    </div>
-                    <div class="attended-lectures-container" v-if="attendedLecturesToggle">
-                        <AttendedLecture/>
-                        <AttendedLecture/>
-                        <AttendedLecture/>
-                        <AttendedLecture/>
-                        <AttendedLecture/>
-                        <AttendedLecture/>
-                        <AttendedLecture/>
-                    </div>
-                </div>
+                <AccountSectionRight v-if="!becomeLecturer && !topics"/>
+                <BecomeLecturer v-if="becomeLecturer"/>
+                <TopicSelect v-if="topics"/>
             </div>
         </div>
     </div>
@@ -58,14 +38,25 @@
 
 <script>
     import Navbar from "./Navbar";
-    import UpcomingLecture from "./UpcomingLecture";
-    import AttendedLecture from "./AttendedLecture";
+
+    import AccountSectionRight from "./AccountSectionRight"
+    import BecomeLecturer from "./BecomeLecturer";
+    import TopicSelect from "./TopicSelect";
     export default {
         name: "Account",
-        components: {AttendedLecture, UpcomingLecture, Navbar},
+        components: {TopicSelect, BecomeLecturer, Navbar,AccountSectionRight},
         data(){
             return{
-                attendedLecturesToggle: false
+                attendedLecturesToggle: false,
+                isOpen:false,
+                becomeLecturer:false,
+                topics:false
+            }
+        },
+        methods:{
+            resetAccountPage(){
+                this.becomeLecturer = false;
+                this.topics = false;
             }
         }
     }
@@ -90,8 +81,9 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        position: relative;
     }
-    .lecturer-image-name img{
+    .lecturer-image{
         margin-bottom:15px;
         width:100%;
         border-radius: 50%;
@@ -107,12 +99,13 @@
     .section-right{
         background: white;
         width:calc(100% - 420px);
-        height:calc(100% - 120px);
+        min-height:calc(100% - 120px);
         position: absolute;
         top:90px;
         right:55px;
         border-radius: 5px;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+        margin-bottom:20px;
     }
     .section-bottom{
         width:280px;
@@ -135,6 +128,7 @@
         border-bottom:1px solid rgba(0, 0, 0, 0.10);
         text-decoration: none;
         color:#676767;
+        cursor: pointer;
     }
     .section-bottom button{
         align-self: flex-end;
@@ -147,16 +141,6 @@
         font-weight: bold;
         font-size:15px;
     }
-    .nav-container{
-        padding: 0 20px;
-        position: relative;
-        z-index: 2;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        background: white;
-        border-radius: 5px 5px 0 0;
-    }
     .section-right nav{
         display: flex;
         height:55px;
@@ -164,69 +148,60 @@
         background: white;
         border-radius: 5px 5px 0 0;
     }
-    .account-links{
-        display: flex;
-        position: relative;
-        justify-content: center;
-        align-items: center;
-    }
-    .account-links a {
-        font-weight: bold;
-        font-size:15px;
-        text-decoration: none;
-        padding: 17px 10px;
-        margin: 0 30px;
-        cursor: pointer;
-        color: #676767;
-    }
     .account-links p {
         font-weight: bold;
         font-size:16px;
         text-decoration: none;
         color: #676767;
     }
-    .underline{
-        position: absolute;
-        height:2px;
-        background: #46497E;
-        bottom:-1px;
-        width:161px;
-        left:30px;
-        transition: 0.2s;
-        border-radius: 10px 10px 0 0;
-    }
-    .disabled{
-        color: #c4c4c4 !important;
-        cursor: default !important;
-    }
-    .content{
-        padding: 10px 55px;
-    }
-    .attended-lectures:hover ~ .underline{
-        left:246px;
-        width:161px;
-        transition: 0.2s;
-    }
-    .upcoming-lectures:hover ~ .underline{
-        width:161px;
-        left:30px;
-        transition: 0.2s;
-    }
-    .attendedLectures{
-        left:246px;
-        width:161px;
-    }
-    .linkActive{
-        color:#46497E !important;
-    }
     .settings-mobile-only{
         display: none;
     }
+    .user-status-container{
+        display: flex;
+    }
+    .dropdown-arrow{
+        margin-left:3px;
+        transform: rotate(0);
+        transition: 0.1s ease-in;
+    }
+    .user-status-container{
+        cursor: pointer;
+    }
+    .status-dropdown{
+        background: white;
+        border-radius: 3px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.20);
+        position: absolute;
+        bottom: -30px;
+        right: -100px;
+        z-index: 5;
+        transition: 0.1s ease-in;
+        opacity: 0;
+        visibility: hidden;
+    }
+    .status-dropdown a{
+        color:#676767;
+        font-weight: bold;
+        font-size: 15px;
+        text-align: center;
+        padding: 15px 18px;
+        display: inline-block;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .rotate{
+        transform: rotate(90deg) !important;
+        transition: 0.1s ease-out;
+    }
+    .toggled{
+        bottom: -52px !important;
+        transition: 0.1s ease-out;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
 
-    @media screen and (max-width: 1200px) {
-        .content{
-            padding: 10px 25px;
-        }
+    @media screen and (max-width: 1370px) {
         .section-left{
             width:200px;
         }
@@ -235,6 +210,7 @@
         }
         .section-bottom{
             width:200px;
+            height: auto;
         }
         .section-bottom nav a{
             font-size: 14px;
@@ -253,27 +229,8 @@
             font-size: 13px;
             margin: 0 15px;
         }
-        .attended-lectures:hover ~ .underline{
-            left:184px;
-            width:141px;
-        }
-        .upcoming-lectures:hover ~ .underline{
-            width:141px;
-            left:15px;
-        }
-        .underline{
-            width:141px;
-            left:15px;
-        }
-        .attendedLectures{
-            left:184px;
-            width:141px;
-        }
     }
     @media screen and (max-width: 880px) {
-        .content{
-            padding: 10px 20px;
-        }
         .section-left{
             width:130px;
         }
@@ -282,7 +239,6 @@
         }
         .section-bottom{
             width:130px;
-            height:240px;
         }
         .section-bottom nav a{
             font-size: 12px;
@@ -297,45 +253,35 @@
         .lecturer-image-name{
             width:90%;
         }
-        .account-links a{
-            font-size: 12px;
-            margin: 0 10px;
-        }
-        .nav-container{
-            padding: 0 8px;
-        }
-        .attended-lectures:hover ~ .underline{
-            left:162px;
-            width:126px;
-        }
-        .upcoming-lectures:hover ~ .underline{
-            width:126px;
-            left:15px;
-        }
-        .underline{
-            width:126px;
-            left:15px;
-        }
-        .attendedLectures{
-            left:162px;
-            width:126px;
-        }
     }
     @media screen and (max-width: 700px) {
         .settings-mobile-only{
             display: initial;
         }
-        .section-left-container{
-            display: none;
+        .section-left-container {
+            padding: 15px 15px 0 15px;
+        }
+        .section-left{
+            width: 100%;
+            margin: auto;
+        }
+        .lecturer-image-name{
+            width:40%
+        }
+        .lecturer-image-name h1{
+            font-size: 16px;
+        }
+        .lecturer-image-name p{
+            font-size: 14px;
         }
         .section-right{
             width:initial;
             position: initial;
             margin:20px 50px 25px 50px;
+            min-height: 450px;
         }
         .section-bottom{
             width:initial;
-            height: auto;
             margin: 20px 50px 0 50px;
         }
         .section-bottom nav{
@@ -350,21 +296,6 @@
             padding: 18px 12px;
             border-bottom:none;
         }
-        .account-links a{
-            font-size: 14px;
-            margin: 0 10px;
-        }
-        .account-links{
-            width: 100%;
-            justify-content: center;
-        }
-        .nav-container{
-            padding:0;
-            width: 100%;
-        }
-        .underline{
-            display: none;
-        }
     }
     @media screen and (max-width: 650px) {
         .section-right{
@@ -378,17 +309,6 @@
         .section-bottom nav a{
             font-size: 13px;
             padding: 20px 12px;
-        }
-        .account-links a{
-            font-size: 12px;
-            margin: 0;
-            padding: 17px 0;
-        }
-        .account-links{
-            justify-content: space-around;
-        }
-        .content{
-            padding:2px 10px;
         }
     }
 </style>

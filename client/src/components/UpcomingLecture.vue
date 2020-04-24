@@ -50,7 +50,7 @@
     .name{
         padding: 0 15px;
     }
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1370px) {
         .upcoming-lecture p{
             font-size:14px;
         }

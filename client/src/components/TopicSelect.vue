@@ -1,7 +1,4 @@
 <template>
-    <div>
-        <Navbar/>
-        <div class="main-container">
             <div class="inner-container">
                 <h1>Select topics</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.</p>
@@ -17,19 +14,16 @@
                     </router-link>
                 </div>
             </div>
-        </div>
-    </div>
 </template>
 
 <script>
-    import Navbar from "./Navbar";
+
     export default {
         name: "TopicSelect",
-        components: {Navbar},
         data(){
             return{
                 checkedTopics: [],
-                allTopics: ["Ekonomija","Fizika","Matematika","Informatika","Programiranje","Blockchain","Marketing","Facebook Marketing"]
+                allTopics: ["Ekonomija","Matematika","Informatika","Programiranje","Blockchain","Marketing","Facebook Marketing"]
             }
         },
         methods: {
@@ -46,9 +40,6 @@
 </script>
 
 <style scoped>
-    .main-container{
-        background: #F9F9F9;
-    }
     .inner-container{
         background: white;
         margin: 0 50px 0 50px;
@@ -59,20 +50,21 @@
         align-items: center;
     }
     .inner-container h1{
-        font-size:22px;
+        font-size:21px;
         margin: 0;
-        padding: 30px 20px 10px 20px;
+        padding: 25px 20px 10px 20px;
     }
     .inner-container p{
         padding: 10px 20px;
         text-align: center;
+        margin:0;
     }
     .topics-container{
         width:60%;
         display: flex;
         justify-content: center;
         flex-direction: column;
-        margin: 0 0 50px 0;
+        margin: 0 0 20px 0;
         align-items: center;
     }
     .topics-container ul{
@@ -90,7 +82,6 @@
         font-weight: bold;
         color:#707070;
     }
-
     .inner-container button{
         margin: 10px 0 0 0;
         width:130px;
@@ -117,33 +108,39 @@
         border:2px solid #929292;
         margin: 0 25px;
     }
-
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1400px) {
         .topics-container{
             width:80%;
         }
-    }
-    @media screen and (max-width: 700px) {
-        .inner-container h1{
-            font-size:18px;
-            padding: 20px 20px 0 20px;
+        .inner-container{
+            margin: 0 30px 0 30px;
         }
-        .inner-container p{
-            font-size: 14px;
-            padding: 5px 25px;
+        .inner-container h1{
+            font-size:20px;
+            padding: 30px 20px 10px 20px;
         }
         .topics-container ul li{
-            margin: 17px 0;
             height: 50px;
+            margin: 15px 0;
         }
-        .topics-container ul{
-            margin: 0;
+    }
+
+    @media screen and (max-width: 700px) {
+        .topics-container{
+            width:90%;
+        }
+        .inner-container{
+            margin: 0 10px 0 10px;
+        }
+        .inner-container h1{
+            font-size:17px;
+        }
+        .inner-container p{
+            font-size:13px;
+            padding: 5px 20px 0 20px;
         }
     }
     @media screen and (max-width: 550px) {
-        .topics-container{
-            width:85%;
-        }
         .inner-container{
             margin: 0;
         }
