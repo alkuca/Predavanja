@@ -13,24 +13,25 @@
                                 <img class="dropdown-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" v-bind:class="{rotate: isOpen}"/>
                             </div>
                             <div class="status-dropdown" v-bind:class="{toggled: isOpen}" v-on:click="isOpen = false">
-                                <a v-on:click="becomeLecturer = true">Become a Lecturer</a>
+                                <a v-on:click="toggleBecomeLecturer">Become a Lecturer</a>
+                                <a>Account Settings</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="section-bottom">
                     <nav>
-                        <a v-on:click="resetAccountPage">Lectures</a>
-                        <a v-on:click="topics = true">Following Topics</a>
-                        <a class="settings-mobile-only">Settings</a>
+                        <a v-on:click="toggleLectures" v-bind:class="{bottomNavActive: lectures}">Lectures</a>
+                        <a v-on:click="toggleTopics" v-bind:class="{bottomNavActive: topics}">Following Topics</a>
+                        <a v-on:click="togglePublishLecture" v-bind:class="{bottomNavActive: publish}">Publish</a>
                     </nav>
-                    <button>Settings</button>
                 </div>
             </div>
             <div class="section-right">
-                <AccountSectionRight v-if="!becomeLecturer && !topics"/>
-                <BecomeLecturer v-if="becomeLecturer"/>
+                <LecturesAccount v-if="lectures"/>
+                <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="this.togglePublishLecture"/>
                 <TopicSelect v-if="topics"/>
+                <PublishLecture v-if="publish"/>
             </div>
         </div>
     </div>
@@ -38,25 +39,47 @@
 
 <script>
     import Navbar from "./Navbar";
-
-    import AccountSectionRight from "./AccountSectionRight"
+    import LecturesAccount from "./LecturesAccount"
     import BecomeLecturer from "./BecomeLecturer";
     import TopicSelect from "./TopicSelect";
+    import PublishLecture from "./PublishLecture";
     export default {
         name: "Account",
-        components: {TopicSelect, BecomeLecturer, Navbar,AccountSectionRight},
+        components: {PublishLecture, TopicSelect, BecomeLecturer, Navbar,LecturesAccount},
         data(){
             return{
                 attendedLecturesToggle: false,
                 isOpen:false,
+                lectures:true,
                 becomeLecturer:false,
-                topics:false
+                topics:false,
+                publish:false
             }
         },
         methods:{
-            resetAccountPage(){
+            toggleLectures(){
+                this.lectures = true
                 this.becomeLecturer = false;
                 this.topics = false;
+                this.publish = false;
+            },
+            toggleTopics(){
+                this.lectures = false
+                this.becomeLecturer = false;
+                this.publish = false;
+                this.topics = true;
+            },
+            togglePublishLecture(){
+                this.lectures = false
+                this.becomeLecturer = false;
+                this.topics = false;
+                this.publish = true;
+            },
+            toggleBecomeLecturer(){
+                this.lectures = false
+                this.becomeLecturer = true;
+                this.topics = false;
+                this.publish = false;
             }
         }
     }
@@ -121,6 +144,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        position: relative;
     }
     .section-bottom nav a {
         padding: 18px 18px;
@@ -129,17 +153,14 @@
         text-decoration: none;
         color:#676767;
         cursor: pointer;
+        border-left: 0 solid transparent;
+        transition: 0.1s;
     }
-    .section-bottom button{
-        align-self: flex-end;
-        width: 100px;
-        height:34px;
-        margin: auto 5px 5px 0;
-        border:none;
-        background:none;
-        color:#0093A4;
-        font-weight: bold;
-        font-size:15px;
+    .bottomNavActive{
+        background:#f8f8ff;
+        border-left:5px solid #6c71f3 !important;
+        border-radius:3px;
+        transition: 0.2s;
     }
     .section-right nav{
         display: flex;
@@ -153,9 +174,6 @@
         font-size:16px;
         text-decoration: none;
         color: #676767;
-    }
-    .settings-mobile-only{
-        display: none;
     }
     .user-status-container{
         display: flex;
@@ -173,17 +191,19 @@
         border-radius: 3px;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.20);
         position: absolute;
-        bottom: -30px;
+        bottom: -60px;
         right: -100px;
         z-index: 5;
         transition: 0.1s ease-in;
         opacity: 0;
         visibility: hidden;
+        width: 170px;
+        text-align: center;
     }
     .status-dropdown a{
         color:#676767;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 14px;
         text-align: center;
         padding: 15px 18px;
         display: inline-block;
@@ -195,7 +215,7 @@
         transition: 0.1s ease-out;
     }
     .toggled{
-        bottom: -52px !important;
+        bottom: -100px !important;
         transition: 0.1s ease-out;
         opacity: 1 !important;
         visibility: visible !important;
@@ -255,9 +275,6 @@
         }
     }
     @media screen and (max-width: 700px) {
-        .settings-mobile-only{
-            display: initial;
-        }
         .section-left-container {
             padding: 15px 15px 0 15px;
         }
@@ -288,13 +305,18 @@
             flex-direction: row;
             justify-content: space-around;
         }
-        .section-bottom button{
-            display: none;
-        }
         .section-bottom nav a{
             font-size: 14px;
             padding: 18px 12px;
-            border-bottom:none;
+            border-bottom: 0 solid transparent;
+            transition: none;
+        }
+        .bottomNavActive{
+            background:transparent;
+            border-bottom:2px solid #6c71f3 !important;
+            border-left:0 !important;
+            border-radius: 0;
+            transition: none;
         }
     }
     @media screen and (max-width: 650px) {

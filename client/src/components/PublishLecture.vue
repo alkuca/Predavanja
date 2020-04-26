@@ -2,11 +2,10 @@
     <div class="main-container">
         <div class="title">
             <div class="title-inner-container">
-                <p>Become a Lecturer</p>
-                <span v-if="step === 1">/ Image</span>
-                <span v-if="step === 2">/ Personal Information</span>
-                <span v-if="step === 3">/ Academic Background</span>
-                <span v-if="step === 4">/ Employment and Hobbies</span>
+                <p>Publish Lecture</p>
+                <span v-if="step === 1">/ Name</span>
+                <span v-if="step === 2">/ Description</span>
+                <span v-if="step === 3">/ Settings</span>
             </div>
             <div class="nav-buttons">
                 <button class="return-button" v-if="step !== 1 && !formSuccess" v-on:click="prevStep">
@@ -17,90 +16,66 @@
             </div>
         </div>
         <form>
-            <div class="step-1" v-if="step === 1">
-                <div class="step-1-content">
-                    <h1>Upload a photo of you</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.</p>
-                    <div class="upload-container">
-                        <img class="upload-image" src="../assets/upload.svg" alt="upload"/>
-                    </div>
-                    <input type="file">
-                </div>
-            </div>
-            <div class="step-2" v-if="step === 2">
+            <div v-if="step === 1">
                 <div class="step-content">
                     <div class="form-input">
-                        <label for="firstName">First Name:</label>
-                        <input id="firstName" type="text" name="firstName"/>
-                    </div>
-                    <div class="form-input">
-                        <label for="secondName">Second Name:</label>
-                        <input id="secondName" type="text" name="secondName"/>
-                    </div>
-                    <div class="form-input">
-                        <label for="address">Address:</label>
-                        <input id="address" type="text" name="address"/>
-                    </div>
-                    <div class="form-input">
-                        <label for="phoneNumber">Phone number:</label>
-                        <input id="phoneNumber" type="text" name="phoneNumber"/>
+                        <label for="LectureName">Lecture's Name:</label>
+                        <input id="LectureName" type="text" name="LectureName"/>
                     </div>
                 </div>
             </div>
-            <div class="step-3" v-if="step === 3">
+            <div v-if="step === 2">
                 <div class="step-content">
                     <div class="form-input">
-                        <label for="highSchool">High School:</label>
-                        <input id="highSchool" type="text" name="highSchool"/>
-                    </div>
-                    <div class="form-input">
-                        <label for="university">University:</label>
-                        <input id="university" type="text" name="university"/>
-                    </div>
-                    <div class="form-input">
-                        <label for="achievements">Other Academic Achievements:</label>
-                        <textarea required id="achievements" name="achievements"/>
+                        <label for="LectureDescription">Lecture's Description:</label>
+                        <textarea required class="textarea" id="LectureDescription" name="LectureDescription"/>
                     </div>
                 </div>
             </div>
-            <div class="step-4" v-if="step === 4">
-                <div class="step-content">
-                    <div class="form-input">
-                        <label for="currentEmployment">Current Employment:</label>
-                        <input id="currentEmployment" type="text" name="currentEmployment"/>
-                    </div>
-                    <div class="form-input">
-                        <label for="hobbies">Hobbies:</label>
-                        <input id="hobbies" type="text" name="hobbies" placeholder="Swimming, Bowling..."/>
-                    </div>
+            <div class="step" v-if="step === 3">
+                <label class="container noSelect">Public Lecture
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container noSelect">Public Lecture
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container noSelect">Public Lecture
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container noSelect">Public Lecture
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container noSelect">Public Lecture
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="select-box">
+                    <select>
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                        <option>Option 4</option>
+                        <option>Option 5</option>
+                    </select>
                 </div>
             </div>
         </form>
-        <div v-if="formSuccess">
-            <div class="step-1-content">
-                <h1>Congratulations</h1>
-                <h1>You successfully became a Lecturer</h1>
-                <p>You are ready to publish your first Lecture</p>
-                <button v-on:click="togglePublishLecture" class="publish-button">Publish Lecture</button>
-            </div>
-        </div>
         <p class="steps-counter">step {{step}} of {{totalSteps}}</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: "BecomeLecturer",
+        name: "PublishLecture",
         data(){
             return{
                 step:1,
-                totalSteps:4,
+                totalSteps:3,
                 formSuccess: false
-            }
-        },
-        props: {
-            togglePublishLecture: {
-                type: Function
             }
         },
         methods:{
@@ -155,12 +130,15 @@
         color:#676767;
         font-size: 13px;
     }
-    .step-1-content{
+    .step-content{
         flex-direction: column;
         display: flex;
         align-items: center;
         height: 100%;
-        padding: 80px 0 0 0;
+        padding: 150px 0 0 0;
+    }
+    .step{
+        margin: 45px 40px 0 40px;
     }
     .step-1-content h1{
         margin: 14px;
@@ -175,14 +153,6 @@
         color: #707070;
         font-weight: bold;
         margin: 13px 30px;
-    }
-    .upload-container{
-        border:1px solid #949494;
-        margin: 20px 0;
-        border-radius: 4px;
-    }
-    .upload-image{
-        padding: 40px;
     }
     .nav-buttons{
         height: 100%;
@@ -217,13 +187,6 @@
         transform:rotate(90deg);
         transform-origin: 58% 36%;
     }
-    .step-1-content input{
-        width: 176px;
-        margin: 10px 0 50px 0;
-    }
-    .step-content{
-        margin: 45px 40px 0 40px;
-    }
     .form-input{
         width:300px;
         display: flex;
@@ -233,9 +196,10 @@
     .form-input label{
         font-weight: bold;
         color: #676767;
+        text-align: center;
     }
     .form-input input{
-        margin:12px 0;
+        margin-top:24px;
         color:#676767;
         font-size: 17px;
         font-weight: bold;
@@ -269,37 +233,94 @@
     .form-input textarea:valid{
         height:100px;
     }
-    .publish-button{
-        margin-top:15px;
-        width:130px;
-        height:35px;
-        font-size:14px;
-        border:none;
-        background:#4A50D9;
-        color:white;
-        font-weight: bold;
-        border-radius: 4px;
-        outline: 0;
+    .container {
+        display: block;
+        position: relative;
+        margin-bottom: 30px;
         cursor: pointer;
+        font-size: 17px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-weight: bold;
+        color:#404040;
+        max-width: 175px;
+    }
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    .noSelect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 16px;
+        width: 16px;
+        border-radius: 4px;
+        border: 2px solid #959595;
+        margin-left: 140px;
+        transition: 0.1s;
+    }
+    .container:hover input ~ .checkmark {
+        border: 2px solid #CECECE;
+        transition: 0.1s;
+    }
+    .container input:checked ~ .checkmark {
+        background-color: #4a50d9;
+        border: 2px solid #4a50d9;
+        transition:0.2s;
+    }
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+    .container .checkmark:after {
+        left: 5px;
+        top: 1px;
+        width: 3px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+    }
+
+    .select-box{
+        margin: 30px 0;
+    }
+    .select-box select {
+        color: #404040;
+        padding: 10px 10px 10px 0;
+        width: 160px;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        outline: none;
+        border-bottom: 1px solid black;
+    }
+
+    .select-box select option {
+        padding: 30px;
     }
 
     @media screen and (max-width: 1400px) {
-        .step-1-content{
-            padding: 30px 0 0 0;
-        }
-        .step-1-content h1{
-            margin: 8px;
-            font-size: 19px;
-        }
-        .step-1-content p{
-            font-size: 13px;
-        }
-        .upload-container{
-            margin: 10px 0;
-        }
-        .upload-image{
-            padding: 20px;
-        }
         .form-input{
             margin:18px 0;
         }
@@ -307,35 +328,18 @@
             font-size: 13px;
         }
         .form-input input{
-            margin:8px 0;
+            margin:14px 0;
             font-size: 13px;
         }
         .form-input input::placeholder{
             font-size: 13px;
         }
         .form-input textarea{
-            margin:16px 0;
+            margin:5px 0;
             font-size: 13px;
         }
     }
     @media screen and (max-width: 950px) {
-        .step-1-content{
-            padding: 20px 0 0 0;
-        }
-        .step-1-content h1{
-            margin: 5px;
-            font-size: 16px;
-        }
-        .step-1-content p{
-            font-size: 12px;
-            max-width: 300px;
-        }
-        .upload-container{
-            margin: 5px 0;
-        }
-        .upload-image{
-            padding: 10px;
-        }
         .form-input{
             margin:12px 0;
         }
@@ -349,8 +353,8 @@
             font-size: 12px;
         }
         .form-input textarea{
-            margin:12px 0;
             font-size: 12px;
+            margin:4px 0;
         }
         .title-inner-container{
             padding:0 10px 0 15px;
@@ -382,9 +386,6 @@
             font-size: 13px;
             margin: 0 15px 0 0;
         }
-        .form-input{
-            width:100%;
-        }
     }
     @media screen and (max-width: 700px) {
         .steps-counter{
@@ -393,19 +394,6 @@
         .step-content{
             margin:40px 25px 0 25px;
         }
-        .step-1-content h1{
-            margin: 8px;
-            font-size: 19px;
-        }
-        .step-1-content p{
-            font-size: 13px;
-        }
-        .upload-container{
-            margin: 10px 0;
-        }
-        .upload-image{
-            padding: 20px;
-        }
         .form-input{
             margin:20px 0;
         }
@@ -413,15 +401,21 @@
             font-size: 14px;
         }
         .form-input input{
-            margin:10px 0;
-            font-size: 13px;
+            margin:18px 0;
+            font-size: 14px;
         }
         .form-input input::placeholder{
             font-size: 14px;
         }
         .form-input textarea{
-            margin:20px 0;
-            font-size: 15px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .form-input{
+            width:90%;
+        }
+        .step-content{
+            padding: 85px 0 0 0;
         }
     }
 </style>
