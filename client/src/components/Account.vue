@@ -22,8 +22,9 @@
                 <div class="section-bottom">
                     <nav>
                         <a v-on:click="toggleLectures" v-bind:class="{bottomNavActive: lectures}">Lectures</a>
-                        <a v-on:click="toggleTopics" v-bind:class="{bottomNavActive: topics}">Following Topics</a>
+                        <a v-on:click="toggleTopics" v-bind:class="{bottomNavActive: topics}">Topics</a>
                         <a v-on:click="togglePublishLecture" v-bind:class="{bottomNavActive: publish}">Publish</a>
+                        <a v-on:click="toggleGroups" v-bind:class="{bottomNavActive: groups}">Groups</a>
                     </nav>
                 </div>
             </div>
@@ -53,7 +54,8 @@
                 lectures:true,
                 becomeLecturer:false,
                 topics:false,
-                publish:false
+                publish:false,
+                groups:false
             }
         },
         methods:{
@@ -62,24 +64,35 @@
                 this.becomeLecturer = false;
                 this.topics = false;
                 this.publish = false;
+                this.groups = false;
             },
             toggleTopics(){
                 this.lectures = false
                 this.becomeLecturer = false;
                 this.publish = false;
                 this.topics = true;
+                this.groups = false;
             },
             togglePublishLecture(){
                 this.lectures = false
                 this.becomeLecturer = false;
                 this.topics = false;
                 this.publish = true;
+                this.groups = false;
             },
             toggleBecomeLecturer(){
                 this.lectures = false
                 this.becomeLecturer = true;
                 this.topics = false;
                 this.publish = false;
+                this.groups = false;
+            },
+            toggleGroups(){
+                this.lectures = false
+                this.becomeLecturer = false;
+                this.topics = false;
+                this.publish = false;
+                this.groups = true;
             }
         }
     }
@@ -205,10 +218,15 @@
         font-weight: bold;
         font-size: 14px;
         text-align: center;
-        padding: 15px 18px;
+        width: 100%;
+        padding: 16px 0;
         display: inline-block;
         text-decoration: none;
         cursor: pointer;
+        border-bottom:1px solid rgba(0, 0, 0, 0.10);
+    }
+    .status-dropdown a:hover{
+        background: #E1E2FF;
     }
     .rotate{
         transform: rotate(90deg) !important;

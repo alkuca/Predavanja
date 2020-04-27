@@ -111,7 +111,7 @@
         left:-56px;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.22);
         border-radius: 5px;
-        top:-20px;
+        top:40px;
         z-index: -1;
         transition: 0.1s;
         opacity: 0;
@@ -132,14 +132,14 @@
     }
     .dropdown-arrow{
         transform: rotate(-90deg);
-        transition: 0.2s ease-in;
+        transition: 0.1s ease-in;
         background: none;
         margin-left:12px;
         margin-top: 3px;
     }
     .rotate{
         transform: rotate(0) !important;
-        transition: 0.2s ease-out;
+        transition: 0.1s ease-out;
     }
     .toggled{
         top:60px !important;

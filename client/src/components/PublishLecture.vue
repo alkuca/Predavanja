@@ -5,7 +5,9 @@
                 <p>Publish Lecture</p>
                 <span v-if="step === 1">/ Name</span>
                 <span v-if="step === 2">/ Description</span>
-                <span v-if="step === 3">/ Settings</span>
+                <span v-if="step === 3">/ Location and Time</span>
+                <span v-if="step === 4">/ Notes</span>
+                <span v-if="step === 5">/ Settings</span>
             </div>
             <div class="nav-buttons">
                 <button class="return-button" v-if="step !== 1 && !formSuccess" v-on:click="prevStep">
@@ -32,12 +34,44 @@
                     </div>
                 </div>
             </div>
-            <div class="step" v-if="step === 3">
+            <div v-if="step === 3">
+                <div class="step">
+                    <div class="form-input form-input-left">
+                        <label for="LectureCity">City:</label>
+                        <input id="LectureCity" type="text" name="LectureCity"/>
+                    </div>
+                    <div class="form-input form-input-left">
+                        <label for="LectureAddress">Address:</label>
+                        <input id="LectureAddress" type="text" name="LectureAddress"/>
+                    </div>
+                    <div class="form-input form-input-left">
+                        <label for="LectureAddressNumber">Address Number:</label>
+                        <input id="LectureAddressNumber" type="text" name="LectureAddressNumber"/>
+                    </div>
+                    <div class="form-input form-input-left">
+                        <label for="LectureTime">Start Time:</label>
+                        <input id="LectureTime" type="text" name="LectureTime"/>
+                    </div>
+                    <div class="form-input form-input-left">
+                        <label for="LectureDuration">Duration(min):</label>
+                        <input id="LectureDuration" type="text" name="LectureDuration"/>
+                    </div>
+                </div>
+            </div>
+            <div v-if="step === 4">
+                <div class="step-content">
+                    <div class="form-input">
+                        <label for="LectureNotes">Lecture's Notes:</label>
+                        <textarea required class="textarea" id="LectureNotes" name="LectureNotes"/>
+                    </div>
+                </div>
+            </div>
+            <div class="step" v-if="step === 5">
                 <label class="container noSelect">Public Lecture
                     <input type="checkbox">
                     <span class="checkmark"></span>
                 </label>
-                <label class="container noSelect">Public Lecture
+                <label class="container noSelect">Password protected
                     <input type="checkbox">
                     <span class="checkmark"></span>
                 </label>
@@ -64,6 +98,15 @@
                 </div>
             </div>
         </form>
+        <div v-if="formSuccess">
+            <div class="step-content">
+                <h1>Congratulations</h1>
+                <h1>You successfully Published a Lecture</h1>
+                <router-link to="/lecture">
+                    <button class="view-lecture-button">View Lecture</button>
+                </router-link>
+            </div>
+        </div>
         <p class="steps-counter">step {{step}} of {{totalSteps}}</p>
     </div>
 </template>
@@ -74,8 +117,8 @@
         data(){
             return{
                 step:1,
-                totalSteps:3,
-                formSuccess: false
+                totalSteps:5,
+                formSuccess: false,
             }
         },
         methods:{
@@ -136,6 +179,12 @@
         align-items: center;
         height: 100%;
         padding: 150px 0 0 0;
+    }
+    .step-content h1{
+        margin: 14px;
+        font-size: 22px;
+        padding: 0 10px;
+        text-align: center;
     }
     .step{
         margin: 45px 40px 0 40px;
@@ -198,6 +247,12 @@
         color: #676767;
         text-align: center;
     }
+    .form-input-left{
+        align-items: flex-start !important;
+    }
+    .form-input-left input{
+        width:100%;
+    }
     .form-input input{
         margin-top:24px;
         color:#676767;
@@ -237,6 +292,7 @@
         display: block;
         position: relative;
         margin-bottom: 30px;
+        padding-left: 33px;
         cursor: pointer;
         font-size: 17px;
         -webkit-user-select: none;
@@ -272,7 +328,6 @@
         width: 16px;
         border-radius: 4px;
         border: 2px solid #959595;
-        margin-left: 140px;
         transition: 0.1s;
     }
     .container:hover input ~ .checkmark {
@@ -319,6 +374,19 @@
     .select-box select option {
         padding: 30px;
     }
+    .view-lecture-button{
+        margin-top:15px;
+        width:130px;
+        height:35px;
+        font-size:14px;
+        border:none;
+        background:#4A50D9;
+        color:white;
+        font-weight: bold;
+        border-radius: 4px;
+        outline: 0;
+        cursor: pointer;
+    }
 
     @media screen and (max-width: 1400px) {
         .form-input{
@@ -337,6 +405,10 @@
         .form-input textarea{
             margin:5px 0;
             font-size: 13px;
+        }
+        .step-content h1{
+            margin: 8px;
+            font-size: 19px;
         }
     }
     @media screen and (max-width: 950px) {
@@ -369,6 +441,10 @@
             width:100px;
             font-size: 13px;
             margin: 0 20px 0 6px;
+        }
+        .step-content h1{
+            margin: 5px;
+            font-size: 16px;
         }
     }
     @media screen and (max-width: 750px) {
@@ -416,6 +492,10 @@
         }
         .step-content{
             padding: 85px 0 0 0;
+        }
+        .step-content h1{
+            margin: 8px;
+            font-size: 19px;
         }
     }
 </style>

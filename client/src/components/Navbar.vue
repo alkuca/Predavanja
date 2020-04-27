@@ -6,7 +6,7 @@
         <nav>
             <ul class="navbar-links">
                 <li><router-link to="/" class="nav-logo">Home</router-link></li>
-                <li><router-link to="/account" class="nav-logo">My Lectures</router-link></li>
+                <li><router-link to="/account" class="nav-logo">Profile</router-link></li>
             </ul>
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
                 <div class="profile-menu-image-container">
@@ -99,12 +99,21 @@
        padding:0 20px;
        font-size: 16px;
     }
-    .profile-menu{
-        height: 60px;
-        margin-left:30px;
-        display: flex;
-        cursor: pointer;
-    }
+     .navbar-links li a{
+         padding: 20px 0;
+     }
+     .navbar-links li a:hover{
+         opacity: 0.8;
+     }
+     .profile-menu{
+         height: 60px;
+         margin-left:30px;
+         display: flex;
+         cursor: pointer;
+     }
+     .profile-menu:hover{
+         opacity: 0.8;
+     }
     .profile-menu-image-container{
         width: 55px;
         position: relative;
@@ -168,6 +177,9 @@
          display: flex;
          align-items: center;
          cursor: pointer;
+     }
+     .dropdown-link:hover{
+         opacity: 0.8;
      }
      .dropdown-link img{
          width:24px;

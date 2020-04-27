@@ -3,15 +3,22 @@
         <nav>
             <div class="nav-container">
                 <div class="account-links">
-                    <a class="upcoming-lectures" v-on:click="attendedLecturesToggle = false" v-bind:class="{linkActive: !attendedLecturesToggle}">Upcoming Lectures</a>
-                    <a class="attended-lectures" v-on:click="attendedLecturesToggle = true" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
-                    <a class="disabled">My Lectures</a>
-                    <div class="underline"  v-bind:class="{attendedLectures: attendedLecturesToggle}" />
+                    <a class="upcoming-lectures" v-on:click="resetLectures" v-bind:class="{linkActive: upcomingLecturesToggle}">Upcoming Lectures</a>
+                    <a class="attended-lectures" v-on:click="toggleAttendedLectures" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
+                    <div class="category-menu" v-on:click="isOpen = !isOpen">
+                        <p>{{dropdownText}}</p>
+                        <img class="dropdown-arrow" src="../assets/nav-arrow.svg" alt="nav arrow" v-bind:class="{rotate: isOpen}" />
+                        <div class="category-menu-dropdown" v-bind:class="{toggled: isOpen}">
+                            <a v-on:click="toggleActiveLectures">Active</a>
+                            <a v-on:click="toggleFinishedLectures">Finished</a>
+                        </div>
+                    </div>
+                    <div class="underline" v-if="attendedLecturesToggle || upcomingLecturesToggle" v-bind:class="{attendedLectures: attendedLecturesToggle}" />
                 </div>
             </div>
         </nav>
         <div class="content">
-            <div class="upcoming-lectures-container" v-if="!attendedLecturesToggle">
+            <div class="upcoming-lectures-container" v-if="upcomingLecturesToggle">
                 <UpcomingLecture/>
                 <UpcomingLecture/>
                 <UpcomingLecture/>
@@ -39,7 +46,42 @@
         components: {AttendedLecture, UpcomingLecture},
         data(){
             return{
-                attendedLecturesToggle: false
+                isOpen:false,
+                dropdownText:"My Lectures",
+                attendedLecturesToggle: false,
+                upcomingLecturesToggle:true,
+                activeLecturesToggle:false,
+                finishedLecturesToggle:false
+            }
+        },
+        methods:{
+            resetLectures(){
+                this.attendedLecturesToggle = false;
+                this.upcomingLecturesToggle = true;
+                this.activeLecturesToggle = false;
+                this.finishedLecturesToggle = false;
+                this.dropdownText = "My Lectures";
+            },
+            toggleAttendedLectures(){
+                this.attendedLecturesToggle = true;
+                this.upcomingLecturesToggle = false;
+                this.activeLecturesToggle = false;
+                this.finishedLecturesToggle = false;
+                this.dropdownText = "My Lectures";
+            },
+            toggleActiveLectures(){
+                this.attendedLecturesToggle = false;
+                this.upcomingLecturesToggle = false;
+                this.activeLecturesToggle = true;
+                this.finishedLecturesToggle = false;
+                this.dropdownText = "Active";
+            },
+            toggleFinishedLectures(){
+                this.attendedLecturesToggle = false;
+                this.upcomingLecturesToggle = false;
+                this.activeLecturesToggle = false;
+                this.finishedLecturesToggle = true;
+                this.dropdownText = "Finished";
             }
         }
     }
@@ -94,6 +136,9 @@
         background: white;
         border-radius: 5px 5px 0 0;
     }
+    .linkActive{
+        border-radius: 0;
+    }
     .account-links{
         display: flex;
         position: relative;
@@ -104,14 +149,14 @@
         font-weight: bold;
         font-size:15px;
         text-decoration: none;
-        padding: 17px 10px;
+        padding: 20px 10px;
         margin: 0 30px;
         cursor: pointer;
         color: #676767;
     }
     .account-links p {
         font-weight: bold;
-        font-size:16px;
+        font-size:15px;
         text-decoration: none;
         color: #676767;
     }
@@ -136,9 +181,7 @@
         left:246px;
         width:161px;
     }
-    .linkActive{
-        color:#46497E !important;
-    }
+
     .attended-lectures:hover ~ .underline{
         left:246px;
         width:161px;
@@ -157,6 +200,59 @@
         padding: 15px 18px;
         display: inline-block;
         text-decoration: none;
+    }
+
+    .category-menu{
+        position: relative;
+        cursor: pointer;
+        padding: 2px 5px;
+        margin: 0 30px;
+        display: flex;
+    }
+    .category-menu-dropdown{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        width: calc(100% + 50px);
+        left: -31px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+        border-radius: 5px;
+        top:40px;
+        z-index: -1;
+        transition: 0.1s;
+        opacity: 0;
+        visibility: hidden;
+    }
+    .category-menu-dropdown a{
+        width:100%;
+        padding:16px 5px;
+        text-align: center;
+        margin:0;
+        color: #676767;
+        background: white;
+        border-bottom:1px solid rgba(59, 59, 255, 0.08);
+        cursor: pointer;
+    }
+    .category-menu-dropdown a:hover{
+        background: #E1E2FF;
+    }
+    .dropdown-arrow{
+        transform: rotate(-90deg);
+        transition: 0.1s ease-in;
+        background: none;
+        margin-left:12px;
+        margin-top: 3px;
+    }
+    .rotate{
+        transform: rotate(0) !important;
+        transition: 0.1s ease-out;
+    }
+    .toggled{
+        top:52px !important;
+        transition: 0.1s;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     @media screen and (max-width: 1370px) {
@@ -192,6 +288,9 @@
         .attendedLectures{
             left:184px;
             width:141px;
+        }
+        .account-links p{
+            font-size:13px;
         }
     }
     @media screen and (max-width: 880px) {
@@ -231,6 +330,9 @@
             left:162px;
             width:126px;
         }
+        .category-menu{
+            margin: 0 20px;
+        }
     }
     @media screen and (max-width: 700px) {
         .section-bottom nav{
@@ -260,6 +362,16 @@
         .underline{
             display: none;
         }
+        .linkActive{
+            border-bottom:2px solid #6c71f3 !important;
+        }
+        .account-links p{
+            font-size: 14px;
+        }
+        .category-menu{
+            margin: 0;
+            padding: 0;
+        }
     }
     @media screen and (max-width: 580px) {
         .section-bottom nav a{
@@ -269,13 +381,23 @@
         .account-links a{
             font-size: 12px;
             margin: 0;
-            padding: 17px 0;
+            padding: 16px 0;
+        }
+        .account-links p{
+            font-size: 12px;
         }
         .account-links{
             justify-content: space-around;
         }
         .content{
             padding:2px 10px;
+        }
+        .category-menu-dropdown{
+            width: calc(100% + 35px);
+            left: -25px;
+        }
+        .toggled{
+            top:46px !important;
         }
     }
 </style>
