@@ -369,7 +369,7 @@
             font-size: 14px;
         }
         .category-menu{
-            margin: 0;
+            margin: 0 20px;
             padding: 0;
         }
     }
@@ -381,7 +381,7 @@
         .account-links a{
             font-size: 12px;
             margin: 0;
-            padding: 16px 0;
+            padding: 20px 0;
         }
         .account-links p{
             font-size: 12px;

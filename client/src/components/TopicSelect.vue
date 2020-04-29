@@ -9,9 +9,6 @@
                             <p :value="topic" :id="topic">{{topic}}</p>
                         </li>
                     </ul>
-                    <router-link to="/">
-                        <button>Continue</button>
-                    </router-link>
                 </div>
             </div>
 </template>
@@ -22,10 +19,10 @@
         name: "TopicSelect",
         data(){
             return{
-                checkedTopics: [],
-                allTopics: ["Ekonomija","Matematika","Informatika","Programiranje","Blockchain","Marketing","Facebook Marketing"]
+                checkedTopics: []
             }
         },
+        props: ['allTopics'],
         methods: {
             handleSelectItem(item){
                 if(!this.checkedTopics.includes(item) ){
@@ -81,21 +78,6 @@
         cursor: pointer;
         font-weight: bold;
         color:#707070;
-    }
-    .inner-container button{
-        margin: 10px 0 0 0;
-        width:130px;
-        height:40px;
-        border:none;
-        background:#4A50D9;
-        font-weight: bold;
-        color:white;
-        font-size:15px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .inner-container a{
-        align-self: flex-end;
     }
     .selected{
         background: #4A50D9 !important;

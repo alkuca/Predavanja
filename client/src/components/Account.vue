@@ -31,7 +31,7 @@
             <div class="section-right">
                 <LecturesAccount v-if="lectures"/>
                 <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="this.togglePublishLecture"/>
-                <TopicSelect v-if="topics"/>
+                <SubscribedTopics v-if="topics"/>
                 <PublishLecture v-if="publish"/>
             </div>
         </div>
@@ -42,11 +42,12 @@
     import Navbar from "./Navbar";
     import LecturesAccount from "./LecturesAccount"
     import BecomeLecturer from "./BecomeLecturer";
-    import TopicSelect from "./TopicSelect";
+
     import PublishLecture from "./PublishLecture";
+    import SubscribedTopics from "./SubscribedTopics";
     export default {
         name: "Account",
-        components: {PublishLecture, TopicSelect, BecomeLecturer, Navbar,LecturesAccount},
+        components: {SubscribedTopics, PublishLecture, BecomeLecturer, Navbar,LecturesAccount},
         data(){
             return{
                 attendedLecturesToggle: false,
