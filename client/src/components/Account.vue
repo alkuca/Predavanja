@@ -14,7 +14,7 @@
                             </div>
                             <div class="status-dropdown" v-bind:class="{toggled: isOpen}" v-on:click="isOpen = false">
                                 <a v-on:click="toggleBecomeLecturer">Become a Lecturer</a>
-                                <a>Account Settings</a>
+                                <a v-on:click="toggleSettings">Account Settings</a>
                             </div>
                         </div>
                     </div>
@@ -33,6 +33,8 @@
                 <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="this.togglePublishLecture"/>
                 <SubscribedTopics v-if="topics"/>
                 <PublishLecture v-if="publish"/>
+                <Groups v-if="groups"/>
+                <AccountSettings v-if="settings"/>
             </div>
         </div>
     </div>
@@ -45,9 +47,11 @@
 
     import PublishLecture from "./PublishLecture";
     import SubscribedTopics from "./SubscribedTopics";
+    import AccountSettings from "./AccountSettings";
+    import Groups from "./Groups";
     export default {
         name: "Account",
-        components: {SubscribedTopics, PublishLecture, BecomeLecturer, Navbar,LecturesAccount},
+        components: {Groups, AccountSettings, SubscribedTopics, PublishLecture, BecomeLecturer, Navbar,LecturesAccount},
         data(){
             return{
                 attendedLecturesToggle: false,
@@ -56,7 +60,8 @@
                 becomeLecturer:false,
                 topics:false,
                 publish:false,
-                groups:false
+                groups:false,
+                settings:false
             }
         },
         methods:{
@@ -66,6 +71,7 @@
                 this.topics = false;
                 this.publish = false;
                 this.groups = false;
+                this.settings = false;
             },
             toggleTopics(){
                 this.lectures = false
@@ -73,6 +79,7 @@
                 this.publish = false;
                 this.topics = true;
                 this.groups = false;
+                this.settings = false;
             },
             togglePublishLecture(){
                 this.lectures = false
@@ -80,6 +87,7 @@
                 this.topics = false;
                 this.publish = true;
                 this.groups = false;
+                this.settings = false;
             },
             toggleBecomeLecturer(){
                 this.lectures = false
@@ -87,6 +95,7 @@
                 this.topics = false;
                 this.publish = false;
                 this.groups = false;
+                this.settings = false;
             },
             toggleGroups(){
                 this.lectures = false
@@ -94,6 +103,15 @@
                 this.topics = false;
                 this.publish = false;
                 this.groups = true;
+                this.settings = false;
+            },
+            toggleSettings(){
+                this.lectures = false
+                this.becomeLecturer = false;
+                this.topics = false;
+                this.publish = false;
+                this.groups = false;
+                this.settings = true;
             }
         }
     }

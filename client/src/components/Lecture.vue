@@ -38,7 +38,7 @@
                                     <a class="linkActive">Details</a>
                                     <a>Notes</a>
                                     <a>Comments</a>
-                                    <a>FAQ</a>
+                                    <a>Reviews</a>
                                 </div>
                                 <a class="interested-button"><button>Interested</button></a>
                             </div>

@@ -2,19 +2,22 @@
     <router-link to="/lecture">
         <div class="attended-lecture">
             <p class="title">E-commerce Marketing</p>
-            <div class="lecturer">
+            <div class="lecturer" v-if="!finishedLectureToggle">
                 <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
                 <p class="name">John Doe</p>
             </div>
+            <p v-if="finishedLectureToggle">19.02.2020</p>
+            <p v-if="finishedLectureToggle">Reviews: 19</p>
             <p class="rating">Rating: 4.3/5</p>
-            <button class="review-button">Add Review</button>
+            <button v-if="!finishedLectureToggle" class="review-button">Add Review</button>
         </div>
     </router-link>
 </template>
 
 <script>
     export default {
-        name: "AttendedLecture"
+        name: "AttendedLecture",
+        props:["finishedLectureToggle"]
     }
 </script>
 

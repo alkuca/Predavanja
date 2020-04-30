@@ -6,7 +6,7 @@
                     <a class="upcoming-lectures" v-on:click="resetLectures" v-bind:class="{linkActive: upcomingLecturesToggle}">Upcoming Lectures</a>
                     <a class="attended-lectures" v-on:click="toggleAttendedLectures" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
                     <div class="category-menu" v-on:click="isOpen = !isOpen">
-                        <p>{{dropdownText}}</p>
+                        <p v-bind:class="{linkActive: finishedLecturesToggle || activeLecturesToggle}">{{dropdownText}}</p>
                         <img class="dropdown-arrow" src="../assets/nav-arrow.svg" alt="nav arrow" v-bind:class="{rotate: isOpen}" />
                         <div class="category-menu-dropdown" v-bind:class="{toggled: isOpen}">
                             <a v-on:click="toggleActiveLectures">Active</a>
@@ -33,6 +33,13 @@
                 <AttendedLecture/>
                 <AttendedLecture/>
             </div>
+            <div v-if="activeLecturesToggle">
+                <UpcomingLecture/>
+            </div>
+            <div v-if="finishedLecturesToggle">
+                <AttendedLecture :finishedLectureToggle="finishedLecturesToggle"/>
+                <AttendedLecture :finishedLectureToggle="finishedLecturesToggle"/>
+            </div>
         </div>
     </div>
 </template>
@@ -56,6 +63,7 @@
         },
         methods:{
             resetLectures(){
+                this.isOpen = false;
                 this.attendedLecturesToggle = false;
                 this.upcomingLecturesToggle = true;
                 this.activeLecturesToggle = false;
@@ -63,6 +71,7 @@
                 this.dropdownText = "My Lectures";
             },
             toggleAttendedLectures(){
+                this.isOpen = false;
                 this.attendedLecturesToggle = true;
                 this.upcomingLecturesToggle = false;
                 this.activeLecturesToggle = false;
@@ -70,6 +79,7 @@
                 this.dropdownText = "My Lectures";
             },
             toggleActiveLectures(){
+
                 this.attendedLecturesToggle = false;
                 this.upcomingLecturesToggle = false;
                 this.activeLecturesToggle = true;
@@ -77,6 +87,7 @@
                 this.dropdownText = "Active";
             },
             toggleFinishedLectures(){
+
                 this.attendedLecturesToggle = false;
                 this.upcomingLecturesToggle = false;
                 this.activeLecturesToggle = false;
@@ -137,7 +148,7 @@
         border-radius: 5px 5px 0 0;
     }
     .linkActive{
-        border-radius: 0;
+        color:#46497E !important;
     }
     .account-links{
         display: flex;
@@ -153,6 +164,7 @@
         margin: 0 30px;
         cursor: pointer;
         color: #676767;
+        border-radius: 0;
     }
     .account-links p {
         font-weight: bold;

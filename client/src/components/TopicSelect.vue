@@ -1,16 +1,16 @@
 <template>
-            <div class="inner-container">
-                <h1>Select topics</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.</p>
-                <div class="topics-container">
-                    <ul>
-                        <li v-for="topic in allTopics" v-bind:key="topic" @click="handleSelectItem(topic)">
-                            <div class="select" v-bind:class="{ selected: checkedTopics.indexOf(topic) !== -1 }"/>
-                            <p :value="topic" :id="topic">{{topic}}</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="inner-container">
+        <h1>Select topics</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.</p>
+        <div class="topics-container">
+            <ul>
+                <li v-for="topic in allTopics" v-bind:key="topic" @click="handleSelectItem(topic)">
+                    <div class="select" v-bind:class="{ selected: checkedTopics.indexOf(topic) !== -1 }"/>
+                    <p :value="topic" :id="topic">{{topic}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script>
