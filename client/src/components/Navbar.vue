@@ -11,6 +11,9 @@
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
                 <div class="profile-menu-image-container">
                     <img src="../assets/profileImage.png" alt="profile image"/>
+                    <div class="circle">
+                        <span>3</span>
+                    </div>
                 </div>
                 <img class="dropdown-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" v-bind:class="{rotate: isOpen}" />
             </div>
@@ -28,17 +31,22 @@
                         <router-link to="/account" class="nav-logo">Home</router-link>
                     </div>
                     <div class="dropdown-link only-mobile">
-                        <router-link to="/account" class="nav-logo">My Lectures</router-link>
-                    </div>
-                    <div class="dropdown-link">
-                        <img class="dropdown-link-image" src="../assets/settings.svg" alt="settings icon"/>
-                        <router-link to="/account" class="nav-logo">Account</router-link>
+                        <router-link to="/account" class="nav-logo">Profile</router-link>
                     </div>
                     <div class="line"/>
                     <div class="dropdown-link logout">
                         <img src="../assets/logout.svg" alt="logout icon"/>
                         <router-link to="/login" class="nav-logo">Log Out</router-link>
                     </div>
+                </div>
+                <div class="dropdown-section-three">
+                    <Notification/>
+                    <Notification/>
+                    <Notification/>
+                    <div class="clear-all-container">
+                        <button>clear all</button>
+                    </div>
+
                 </div>
             </div>
         </nav>
@@ -47,8 +55,10 @@
 </template>
 
 <script>
+    import Notification from "./Notification";
     export default {
         name: "Navbar",
+        components: {Notification},
         data(){
             return{
                 isOpen:false
@@ -130,7 +140,6 @@
     .profile-menu-dropdown{
         width:314px;
         background:#2F35B5;
-        height:250px;
         position: absolute;
         top:-60px;
         z-index: -1;
@@ -173,6 +182,10 @@
         padding:15px 30px;
         background:#2F35B5;
     }
+     .dropdown-section-three{
+         padding:15px 30px;
+         background:#4A50D9;
+     }
      .dropdown-link{
          display: flex;
          align-items: center;
@@ -194,6 +207,7 @@
         height:1px;
         background: #5e77d9;
         margin: 10px 0 12px 0;
+        display: none;
     }
     .toggled{
         top:60px !important;
@@ -227,7 +241,35 @@
      .only-mobile{
          display: none;
      }
-
+     .clear-all-container{
+         display: flex;
+         justify-content: flex-end;
+     }
+     .clear-all-container button{
+        border:0;
+        background: transparent;
+        font-weight: bold;
+        color:#DFE0FF;
+        cursor: pointer;
+         outline: 0;
+     }
+     .circle{
+         position: absolute;
+         right:5px;
+         top:8px;
+         width:17px;
+         height:17px;
+         background: #00C1CF;
+         border-radius: 50%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+     }
+     .circle span{
+        font-weight: bold;
+        color:white;
+         font-size: 12px;
+     }
 
      @media screen and (max-width: 650px) {
         header{
@@ -242,16 +284,19 @@
          .profile-menu-dropdown{
              width:85%;
              right:0;
-             height:calc(100vh - 60px);
          }
          .dropdown-link a{
-             font-size: 20px;
+             font-size: 15px;
          }
          .dropdown-section-two{
-             padding: 25px 30px;
+             padding: 5px 20px;
          }
          .dropdown-link{
-             padding: 15px 0;
+             padding: 10px 0;
+         }
+         .line {
+             margin: 5px 0 6px 0;
+             display: inline-block;
          }
          .logout{
              margin-left: 15px;
@@ -261,6 +306,12 @@
          }
          .only-mobile{
              display: block;
+         }
+         .dark{
+             background: transparent;
+         }
+         .dropdown-section-one{
+             padding: 15px 20px;
          }
 
      }

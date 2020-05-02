@@ -2,9 +2,10 @@
     <div class="nav-container" v-on:click="emitToParent">
         <nav>
             <div class="lectures-links">
-                <a class="following-lectures" v-on:click="allLecturesToggle = false" v-bind:class="{linkActive: !allLecturesToggle}">Following Lectures</a>
-                <a class="all-lectures" v-on:click="allLecturesToggle = true" v-bind:class="{linkActive: allLecturesToggle}">All Lectures</a>
-                <div  class="underline" v-bind:class="{allLectures: allLecturesToggle}" />
+                <a class="following-lectures" v-on:click="lectureToggle = 'following'" v-bind:class="{linkActive: lectureToggle === 'following'}">Following Lectures</a>
+                <a class="all-lectures" v-on:click="lectureToggle = 'all'" v-bind:class="{linkActive: lectureToggle === 'all'}">All Lectures</a>
+                <a class="upcoming-lectures" v-on:click="lectureToggle = 'upcoming'" v-bind:class="{linkActive: lectureToggle === 'upcoming'}">Upcoming</a>
+                <div class="underline" v-bind:class="{all: lectureToggle === 'all', following: lectureToggle === 'following', upcoming: lectureToggle === 'upcoming' }" />
                 <div class="category-menu" v-on:click="isOpen = !isOpen">
                     <p>Category</p>
                     <img class="dropdown-arrow" src="../assets/nav-arrow.svg" alt="nav arrow" v-bind:class="{rotate: isOpen}" />
@@ -17,12 +18,6 @@
                         <a>Mathematics</a>
                     </div>
                 </div>
-                <!--
-                <div class="search-container">
-                    <img class="glass" src="../assets/glass.svg" alt="search icon"/>
-                    <input class="search" type="search" autocomplete="off" placeholder="Search...">
-                </div>
-                -->
             </div>
         </nav>
     </div>
@@ -34,12 +29,12 @@
         data(){
             return{
                 isOpen:false,
-                allLecturesToggle: false
+                lectureToggle:"following"
             }
         },
         methods: {
             emitToParent () {
-                this.$emit('childToParent', this.allLecturesToggle)
+                this.$emit('childToParent', this.lectureToggle)
             }
         }
     }
@@ -55,8 +50,7 @@
         font-weight: bold;
         font-size:16px;
         text-decoration: none;
-        padding: 17px 10px;
-        margin: 0 30px;
+        padding: 17px 40px;
         cursor: pointer;
         color: #676767;
     }
@@ -147,23 +141,6 @@
         opacity: 1 !important;
         visibility: visible !important;
     }
-    .search{
-        border:none;
-        font-size: 16px;
-        outline:none;
-    }
-    .search::placeholder{
-        color:#B9B9B9;
-        font-weight: bold;
-    }
-    .glass{
-        margin-right:7px;
-    }
-    .search-container{
-        padding: 18px 5px;
-        margin: 0 30px;
-        display: flex;
-    }
     .underline{
         position: absolute;
         height:3px;
@@ -184,10 +161,20 @@
         left:30px;
         transition: 0.2s;
     }
-    .allLectures{
-        left:246px ;
-        width:130px ;
+    .upcoming-lectures:hover ~ .underline{
+        width:115px;
+        left:418px;
+        transition: 0.2s;
     }
+    .all{
+        left:246px;
+        width:130px;
+    }
+    .upcoming{
+        width:115px;
+        left:418px;
+    }
+
 
     @media screen and (max-width: 900px) {
         nav{
@@ -199,12 +186,16 @@
         .underline{
             display: none;
         }
-
+    }
+    @media screen and (max-width: 800px) {
+        .category-menu{
+            display: none;
+        }
     }
     @media screen and (max-width: 650px) {
         .lectures-links a {
             font-size:12px;
-            margin: 0 3px;
+            padding: 17px 13px;
         }
         .lectures-links p {
             font-size:12px;

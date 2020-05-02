@@ -3,17 +3,19 @@
         <div class="upcoming-lecture">
             <p class="date">22.04.2020</p>
             <p class="title">Functional Programing</p>
-            <div class="lecturer">
+            <div v-if="!activeLecturesToggle" class="lecturer">
                 <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
                 <p class="name">John Doe</p>
             </div>
+            <p v-if="activeLecturesToggle">Interested: 12</p>
         </div>
     </router-link>
 </template>
 
 <script>
     export default {
-        name: "UpcomingLecture"
+        name: "UpcomingLecture",
+        props:["activeLecturesToggle"]
     }
 </script>
 
@@ -32,10 +34,7 @@
         color:#686868;
         cursor: pointer;
     }
-    .title{
-        padding: 0 30px;
-    }
-    .date{
+    .upcoming-lecture p{
         padding: 0 30px;
     }
     .lecturer{

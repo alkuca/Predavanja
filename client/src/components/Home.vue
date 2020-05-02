@@ -3,17 +3,20 @@
         <Navbar/>
         <LecturesNavbar v-on:childToParent="onChildClick"/>
         <div class="lectures-container">
-            <div class="lectures followingLectures"  v-if="!lectureNavToggle">
+            <div class="lectures" v-if="lectureNavToggle === 'following'">
                 <LectureCard/>
                 <LectureCard/>
                 <LectureCard/>
             </div>
-            <div class="lectures allLectures" v-if="lectureNavToggle">
+            <div class="lectures" v-if="lectureNavToggle === 'all'">
                 <LectureCard/>
                 <LectureCard/>
                 <LectureCard/>
                 <LectureCard/>
                 <LectureCard/>
+                <LectureCard/>
+            </div>
+            <div class="lectures" v-if="lectureNavToggle === 'upcoming'">
                 <LectureCard/>
             </div>
         </div>
@@ -29,7 +32,7 @@
         components: {LectureCard, Navbar, LecturesNavbar},
         data(){
             return{
-                lectureNavToggle:""
+                lectureNavToggle:"following"
             }
         },
         methods: {

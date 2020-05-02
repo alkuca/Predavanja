@@ -6,7 +6,7 @@
                     <a class="upcoming-lectures" v-on:click="resetLectures" v-bind:class="{linkActive: upcomingLecturesToggle}">Upcoming Lectures</a>
                     <a class="attended-lectures" v-on:click="toggleAttendedLectures" v-bind:class="{linkActive: attendedLecturesToggle}">Attended Lectures</a>
                     <div class="category-menu" v-on:click="isOpen = !isOpen">
-                        <p v-bind:class="{linkActive: finishedLecturesToggle || activeLecturesToggle}">{{dropdownText}}</p>
+                        <p v-bind:class="{linkActiveMyLectures: finishedLecturesToggle || activeLecturesToggle}">{{dropdownText}}</p>
                         <img class="dropdown-arrow" src="../assets/nav-arrow.svg" alt="nav arrow" v-bind:class="{rotate: isOpen}" />
                         <div class="category-menu-dropdown" v-bind:class="{toggled: isOpen}">
                             <a v-on:click="toggleActiveLectures">Active</a>
@@ -34,7 +34,7 @@
                 <AttendedLecture/>
             </div>
             <div v-if="activeLecturesToggle">
-                <UpcomingLecture/>
+                <UpcomingLecture :activeLecturesToggle="activeLecturesToggle"/>
             </div>
             <div v-if="finishedLecturesToggle">
                 <AttendedLecture :finishedLectureToggle="finishedLecturesToggle"/>
@@ -150,6 +150,10 @@
     .linkActive{
         color:#46497E !important;
     }
+    .linkActiveMyLectures{
+        border-bottom:2px solid #6c71f3 !important;
+        color:#46497E !important;
+    }
     .account-links{
         display: flex;
         position: relative;
@@ -213,13 +217,15 @@
         display: inline-block;
         text-decoration: none;
     }
-
     .category-menu{
         position: relative;
         cursor: pointer;
         padding: 2px 5px;
         margin: 0 30px;
         display: flex;
+    }
+    .category-menu p{
+        padding: 19px 0;
     }
     .category-menu-dropdown{
         display: flex;
@@ -228,21 +234,22 @@
         position: absolute;
         width: calc(100% + 50px);
         left: -31px;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
         border-radius: 5px;
         top:40px;
-        z-index: -1;
+        z-index: 1;
         transition: 0.1s;
         opacity: 0;
         visibility: hidden;
+        background: white;
     }
     .category-menu-dropdown a{
         width:100%;
-        padding:16px 5px;
+        padding:16px 0;
         text-align: center;
         margin:0;
         color: #676767;
-        background: white;
+        z-index: 2;
         border-bottom:1px solid rgba(59, 59, 255, 0.08);
         cursor: pointer;
     }
@@ -261,7 +268,7 @@
         transition: 0.1s ease-out;
     }
     .toggled{
-        top:52px !important;
+        top:67px !important;
         transition: 0.1s;
         opacity: 1 !important;
         visibility: visible !important;
@@ -374,9 +381,6 @@
         .underline{
             display: none;
         }
-        .linkActive{
-            border-bottom:2px solid #6c71f3 !important;
-        }
         .account-links p{
             font-size: 14px;
         }
@@ -409,7 +413,7 @@
             left: -25px;
         }
         .toggled{
-            top:46px !important;
+            top:61px !important;
         }
     }
 </style>

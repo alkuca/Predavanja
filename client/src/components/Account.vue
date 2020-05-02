@@ -164,7 +164,6 @@
     }
     .section-bottom{
         width:280px;
-        height:300px;
         background: white;
         margin:20px 50px 0 50px;
         display: flex;
