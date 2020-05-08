@@ -221,7 +221,7 @@
         position: relative;
         cursor: pointer;
         padding: 2px 5px;
-        margin: 0 30px;
+        margin: 0 25px;
         display: flex;
     }
     .category-menu p{
@@ -350,7 +350,7 @@
             width:126px;
         }
         .category-menu{
-            margin: 0 20px;
+            margin: 0 10px;
         }
     }
     @media screen and (max-width: 700px) {
@@ -385,7 +385,6 @@
             font-size: 14px;
         }
         .category-menu{
-            margin: 0 20px;
             padding: 0;
         }
     }
@@ -411,6 +410,9 @@
         .category-menu-dropdown{
             width: calc(100% + 35px);
             left: -25px;
+        }
+        .category-menu{
+            margin: 0;
         }
         .toggled{
             top:61px !important;

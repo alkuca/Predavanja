@@ -35,25 +35,36 @@
                         <nav>
                             <div class="nav-container">
                                 <div class="lecture-links">
-                                    <a class="linkActive">Details</a>
-                                    <a>Notes</a>
-                                    <a>Comments</a>
-                                    <a>Reviews</a>
+                                    <a v-on:click="toggleDetails" v-bind:class="{linkActive: detailsToggle}">Details</a>
+                                    <a v-on:click="toggleNotes" v-bind:class="{linkActive: notesToggle}">Notes</a>
+                                    <a v-on:click="toggleComments" v-bind:class="{linkActive: commentsToggle}">Comments</a>
+                                    <a v-on:click="toggleReviews" v-bind:class="{linkActive: reviewsToggle}">Reviews</a>
                                 </div>
                                 <a class="interested-button"><button>Interested</button></a>
                             </div>
                         </nav>
                         <div class="section-bottom-content">
-                            <div class="details">
+                            <div v-if="detailsToggle" class="section-bottom-container">
                                 <p>Date: 18.05.2020</p>
                                 <p>Time: 18:00</p>
                                 <p>Duration: 120 min</p>
                                 <p>Location: 372 Rose Street</p>
                                 <p>City: Pula</p>
-                                <a class="interested-button-mobile"><button>Interested</button></a>
+                                <p>Additional instructions: First door on the right</p>
+                                <div class="interested-button-mobile">
+                                    <button>Interested</button>
+                                </div>
+                            </div>
+                            <div v-if="notesToggle" class="section-bottom-container">
+                                <p>Notes</p>
+                            </div>
+                            <div v-if="commentsToggle" class="section-bottom-container">
+                                <p>Comments</p>
+                            </div>
+                            <div v-if="reviewsToggle" class="section-bottom-container">
+                                <p>Reviews</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -65,7 +76,41 @@
     import Navbar from "./Navbar";
     export default {
         name: "Lecture",
-        components: {Navbar}
+        components: {Navbar},
+        data(){
+            return{
+                detailsToggle:true,
+                notesToggle:false,
+                commentsToggle:false,
+                reviewsToggle:false
+            }
+        },
+        methods:{
+            toggleDetails(){
+                this.detailsToggle = true;
+                this.notesToggle = false;
+                this.commentsToggle = false;
+                this.reviewsToggle = false;
+            },
+            toggleNotes(){
+                this.detailsToggle = false;
+                this.notesToggle = true;
+                this.commentsToggle = false;
+                this.reviewsToggle = false;
+            },
+            toggleComments(){
+                this.detailsToggle = false;
+                this.notesToggle = false;
+                this.commentsToggle = true;
+                this.reviewsToggle = false;
+            },
+            toggleReviews(){
+                this.detailsToggle = false;
+                this.notesToggle = false;
+                this.commentsToggle = false;
+                this.reviewsToggle = true;
+            }
+        }
     }
 </script>
 
@@ -186,6 +231,7 @@
         margin: 0 30px;
         cursor: pointer;
         color: #676767;
+        border-bottom: 2px solid transparent;
     }
     .lecture-links p {
         font-weight: bold;
@@ -221,13 +267,13 @@
         display: flex;
         min-height:355px;
     }
-    .details{
+    .section-bottom-container{
         width: 100%;
     }
-    .details p{
+    .section-bottom-container p{
         font-weight: bold;
         color: #595959;
-        margin: 20px 0;
+        margin: 16px 0;
     }
     .interested-button{
         align-self: center;
@@ -257,7 +303,7 @@
         display: none;
     }
     .linkActive{
-        border-bottom: 2px solid #46497E;
+        border-bottom: 2px solid #46497E !important;
     }
 
     @media screen and (max-width: 1600px) {
@@ -282,8 +328,9 @@
         .lecturer-image-name img{
             width:90%;
         }
-        .details p{
+        .section-bottom-container p{
             font-size: 15px;
+            margin: 14px 0;
         }
         .top-left{
             width: 270px;
@@ -315,7 +362,7 @@
         .date-countdown p{
             font-size: 12px;
         }
-        .details p{
+        .section-bottom-container p{
             font-size: 14px;
         }
         .lecture-text {
@@ -327,7 +374,6 @@
         .lecture-links a{
             font-size: 14px;
         }
-
     }
     @media screen and (max-width: 900px) {
         .interested-button button{
