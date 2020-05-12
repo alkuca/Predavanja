@@ -51,6 +51,11 @@
         padding:0 25px;
         position: relative;
     }
+    @media screen and (max-width: 1400px) {
+        .lectures{
+            padding: 0 40px;
+        }
+    }
     @media screen and (max-width: 650px) {
         .lectures{
             padding: 0 15px;

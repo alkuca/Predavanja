@@ -186,6 +186,12 @@
         .underline{
             display: none;
         }
+        .lectures-links a{
+            border-bottom: 2px solid transparent;
+        }
+        .linkActive{
+            border-bottom: 2px solid #46497E !important;
+        }
     }
     @media screen and (max-width: 800px) {
         .category-menu{
@@ -195,7 +201,7 @@
     @media screen and (max-width: 650px) {
         .lectures-links a {
             font-size:12px;
-            padding: 17px 13px;
+            padding: 19px 13px;
         }
         .lectures-links p {
             font-size:12px;

@@ -40,30 +40,48 @@
                                     <a v-on:click="toggleComments" v-bind:class="{linkActive: commentsToggle}">Comments</a>
                                     <a v-on:click="toggleReviews" v-bind:class="{linkActive: reviewsToggle}">Reviews</a>
                                 </div>
-                                <a class="interested-button"><button>Interested</button></a>
+                                <button v-if="detailsToggle || notesToggle" class="interested-button">Interested</button>
+                                <button v-if="commentsToggle" class="interested-button">Add Comment</button>
+                                <button v-if="reviewsToggle" class="interested-button">Add Review</button>
                             </div>
                         </nav>
                         <div class="section-bottom-content">
-                            <div v-if="detailsToggle" class="section-bottom-container">
-                                <p>Date: 18.05.2020</p>
-                                <p>Time: 18:00</p>
-                                <p>Duration: 120 min</p>
-                                <p>Location: 372 Rose Street</p>
-                                <p>City: Pula</p>
-                                <p>Additional instructions: First door on the right</p>
-                                <div class="interested-button-mobile">
-                                    <button>Interested</button>
+                            <transition name="fade">
+                                <div v-if="detailsToggle" class="section-bottom-container">
+                                    <p>Date: 18.05.2020</p>
+                                    <p>Time: 18:00</p>
+                                    <p>Duration: 120 min</p>
+                                    <p>Location: 372 Rose Street</p>
+                                    <p>City: Pula</p>
+                                    <p>Additional instructions: First door on the right</p>
+                                    <div class="interested-button-mobile">
+                                        <button>Interested</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div v-if="notesToggle" class="section-bottom-container">
-                                <p>Notes</p>
-                            </div>
-                            <div v-if="commentsToggle" class="section-bottom-container">
-                                <p>Comments</p>
-                            </div>
-                            <div v-if="reviewsToggle" class="section-bottom-container">
-                                <p>Reviews</p>
-                            </div>
+                            </transition>
+                            <transition name="fade">
+                                <div v-if="notesToggle" class="section-bottom-container">
+                                    <LectureNote/>
+                                </div>
+                            </transition>
+                            <transition name="fade">
+                                <div v-if="commentsToggle" class="section-bottom-container">
+                                    <LectureComment/>
+                                    <LectureComment/>
+                                    <LectureComment/>
+                                    <div class="interested-button-mobile">
+                                        <button>Add Comment</button>
+                                    </div>
+                                </div>
+                            </transition>
+                            <transition name="fade">
+                                <div v-if="reviewsToggle" class="section-bottom-container">
+                                    <LectureReview/>
+                                    <div class="interested-button-mobile">
+                                        <button>Add Review</button>
+                                    </div>
+                                </div>
+                            </transition>
                         </div>
                     </div>
                 </div>
@@ -74,9 +92,12 @@
 
 <script>
     import Navbar from "./Navbar";
+    import LectureNote from "./LectureNote";
+    import LectureComment from "./LectureComment";
+    import LectureReview from "./LectureReview";
     export default {
         name: "Lecture",
-        components: {Navbar},
+        components: {LectureReview, LectureComment, LectureNote, Navbar},
         data(){
             return{
                 detailsToggle:true,
@@ -115,6 +136,13 @@
 </script>
 
 <style scoped>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.5s;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+        transition: 0s;
+    }
     .lecture-container{
         display: flex;
         position: relative;
@@ -278,15 +306,15 @@
     .interested-button{
         align-self: center;
     }
-    .interested-button button{
+    .interested-button{
         background: #4A50D9;
         color:white;
         border-radius: 4px;
         border:none;
         font-weight: bold;
-        font-size:15px;
+        font-size:14px;
         height:35px;
-        width:110px;
+        width:120px;
     }
     .interested-button-mobile button{
         background: #4A50D9;
@@ -296,8 +324,7 @@
         font-weight: bold;
         font-size:15px;
         height:35px;
-        width:110px;
-        float: right;
+        width:100%;
     }
     .interested-button-mobile{
         display: none;
@@ -312,28 +339,42 @@
         }
     }
 
-    @media screen and (max-width: 1300px) {
+    @media screen and (max-width: 1400px) {
         .lecture-text h1{
-            font-size: 22px;
+            font-size: 20px;
         }
         .lecture-text p{
-            font-size: 14px;
+            font-size: 12px;
+        }
+        .lecturer-details{
+            font-size: 12px;
         }
         .date-countdown h1{
-            font-size: 18px;
+            font-size: 16px;
         }
         .date-countdown p{
-            font-size: 13px;
+            font-size: 11px;
         }
         .lecturer-image-name img{
-            width:90%;
+            width:53%;
         }
         .section-bottom-container p{
-            font-size: 15px;
+            font-size: 14px;
             margin: 14px 0;
         }
         .top-left{
             width: 270px;
+            height: 212px;
+        }
+        .lecture-links a{
+            padding:15px 0;
+            font-size: 14px;
+        }
+        nav{
+            height:48px;
+        }
+        .section-bottom-content{
+            padding: 20px 50px;
         }
 
     }

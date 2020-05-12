@@ -98,8 +98,14 @@
             margin: 0 30px 0 30px;
         }
         .inner-container h1{
-            font-size:20px;
-            padding: 30px 20px 10px 20px;
+            font-size:17px;
+            padding: 25px 20px 5px 20px;
+        }
+        .inner-container p{
+            font-size:14px;
+        }
+        .topics-container ul{
+            margin:0;
         }
         .topics-container ul li{
             height: 50px;

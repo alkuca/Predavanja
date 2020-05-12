@@ -390,13 +390,13 @@
 
     @media screen and (max-width: 1400px) {
         .form-input{
-            margin:18px 0;
+            margin:13px 0;
         }
         .form-input label{
             font-size: 13px;
         }
         .form-input input{
-            margin:14px 0;
+            margin:12px 0;
             font-size: 13px;
         }
         .form-input input::placeholder{

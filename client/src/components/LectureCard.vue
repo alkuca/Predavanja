@@ -140,7 +140,7 @@
         right:10px;
     }
 
-    @media screen and (max-width: 1450px) {
+    @media screen and (max-width: 1400px) {
         .lecturer-details p{
             font-size:13px;
         }
@@ -161,6 +161,8 @@
         }
         .card-container{
             height: 320px;
+            flex: 0 calc(50% - 20px);
+            margin: 10px 10px;
         }
         .lecturer-info{
             height: 280px;
@@ -232,13 +234,10 @@
     }
     @media screen and (max-width: 650px) {
         .card-container{
-            margin: 15px 0;
+            margin: 10px 0 7px 0;
         }
     }
     @media screen and (max-width: 450px) {
-        .date-section a{
-
-        }
         .section-left{
             width:45%;
         }
