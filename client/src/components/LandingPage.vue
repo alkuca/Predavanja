@@ -10,6 +10,7 @@
         </nav>
         <div class="main-container">
             <section class="section-left">
+                <img class="dots2" src="../assets/dots2.png" alt="dots background"/>
                 <p class="small-title">LOREM IPSUM DOLOR SIT AMET</p>
                 <h1 class="main-title">Lorem ipsum dolor sit amet,consectetur.</h1>
                 <p class="title-text">
@@ -25,8 +26,12 @@
             <section class="section-right">
                 <img class="landing-image" src="../assets/main.png" alt="landing image"/>
             </section>
+            <div class="section-bottom"/>
         </div>
         <div class="blue-background-section" />
+        <div class="section-two">
+
+        </div>
     </div>
 </template>
 
@@ -37,6 +42,11 @@
 </script>
 
 <style scoped>
+    .section-two{
+        height:2000px;
+        background: #4A50D9;
+    }
+
     .landing-page{
         height:100vh;
         background: url(../assets/bg.svg) no-repeat;
@@ -48,6 +58,7 @@
         margin:0;
         height: calc(100% - 69px);
         display: flex;
+        flex-wrap: wrap;
     }
     nav{
         z-index: 2;
@@ -103,9 +114,10 @@
         margin-right: 50px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         z-index: 2;
+        position: relative;
+        justify-content: flex-end;
     }
     .landing-image{
         width:70%;
@@ -117,6 +129,19 @@
         right:0;
         bottom:150px;
         z-index: 2;
+        opacity: 0.4;
+    }
+    .dots2{
+        width: 70px;
+        z-index: 2;
+        margin-top:-50px;
+        margin-bottom:30px;
+    }
+    .section-bottom{
+        width:100%;
+        background: #4A50D9;
+        z-index: 3;
+        flex-flow: column;
     }
     .blue-background-section{
         position: absolute;
@@ -134,7 +159,7 @@
     }
     .start-button {
         position: relative;
-        padding: 7px 5px;
+        padding: 12px 5px;
         text-align: center;
         cursor: pointer;
         overflow: hidden;
@@ -194,6 +219,9 @@
             width:calc(40% - 50px);
             margin-left:50px;
         }
+        .dots{
+            bottom:50px;
+        }
     }
 
     @media screen and (max-width: 1140px) {
@@ -236,12 +264,11 @@
         }
     }
     @media screen and (max-width: 680px) {
-        .main-container{
-            flex-direction: column;
-            align-content: center;
-        }
         nav{
             padding: 0 25px;
+        }
+        .dots2{
+            display: none;
         }
         .section-left{
             width: calc(100% - 50px);
@@ -275,6 +302,9 @@
         .blue-background-section{
             width: 100%;
             height:75%;
+        }
+        .section-bottom{
+            display: none;
         }
     }
 
