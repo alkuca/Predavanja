@@ -30,7 +30,70 @@
         </div>
         <div class="blue-background-section" />
         <div class="section-two">
-
+            <div class="landing-text">
+                <h1>Lorem ipsum dolor sit amet,consectetur</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
+                    ipsum dolor sit amet consectetur.</p>
+            </div>
+            <div class="blocks-container">
+                <div class="block">
+                    <img class="block-img" src="../assets/learn.svg" alt="learn image"/>
+                    <h1>Learn</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                </div>
+                <div class="block">
+                    <img class="block-img" src="../assets/teach.svg" alt="teach image"/>
+                    <h1>Teach</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-three">
+            <div class="img-text-section-left">
+                <img class="discover-img" src="../assets/discover.png" alt="discover"/>
+                <img class="dots3" src="../assets/dots2.png" alt="dots"/>
+            </div>
+            <div class="img-text-section-right">
+                <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p class="blue-subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                </p>
+                <img class="dots4" src="../assets/dots2.png" alt="dots"/>
+            </div>
+        </div>
+        <div class="section-four">
+            <div class="section-four-block">
+                <h1>Learn</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            </div>
+            <div class="section-four-block">
+                <h1>Learn</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            </div>
+            <div class="section-four-block">
+                <h1>Learn</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            </div>
+        </div>
+        <div class="section-five">
+            <div class="img-text-section-right add-margin-left">
+                <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p class="blue-subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                </p>
+                <img class="dots3" src="../assets/dots2.png" alt="dots"/>
+            </div>
+            <div class="img-text-section-left">
+                <img class="review-image" src="../assets/review.png" alt="review"/>
+                <img class="dots4" src="../assets/dots2.png" alt="dots"/>
+            </div>
         </div>
     </div>
 </template>
@@ -42,11 +105,6 @@
 </script>
 
 <style scoped>
-    .section-two{
-        height:2000px;
-        background: #4A50D9;
-    }
-
     .landing-page{
         height:100vh;
         background: url(../assets/bg.svg) no-repeat;
@@ -139,7 +197,7 @@
     }
     .section-bottom{
         width:100%;
-        background: #4A50D9;
+        background: #2E34CC;
         z-index: 3;
         flex-flow: column;
     }
@@ -196,20 +254,184 @@
         transition:0.2s;
         z-index: -1;
     }
+    .underline{
+        position: absolute;
+        height:3px;
+        background: transparent;
+        bottom:0;
+        width:100px;
+        left:12px;
+        transition: left 0.2s, width 0.2s, background 0.1s;
+        border-radius: 10px 10px 0 0;
+    }
+    .login:hover ~ .underline{
+        left:133px;
+        width:85px;
+        transition: left 0.2s, width 0.2s;
+        background: #46497E;
+    }
+    .register:hover ~ .underline{
+        width:100px;
+        background: #46497E;
+        left:12px;
+        transition: left 0.2s, width 0.2s;
+    }
+    .section-two{
+        background: url(../assets/bgs2.svg) no-repeat;
+        background-size: cover;
+    }
+    .landing-text{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0 0 0;
+    }
+    .landing-text h1{
+        margin: 0;
+        color:white;
+        font-size: 18px;
+        text-align: center;
+    }
+    .landing-text p{
+        color:#CED0FF;
+        text-align: center;
+        font-size: 14px;
+        width: 350px;
+    }
+    .blocks-container{
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        padding: 50px 10%;
+    }
+    .block{
+        width:33%;
+        height: 340px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 0 7px rgba(0,0,0,0.22);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .block-img{
+        width: 100px;
+    }
+    .block h1{
+        color:#4A50D9;
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 50px 0 12px 0;
+    }
+    .block p{
+        font-size: 12px;
+        text-align: center;
+        color:#8F8F8F;
+        margin: 0 50px;
+    }
+    .section-three{
+        display: flex;
+        background: #FCFCFF;
+        margin-top:35px;
+        padding:50px 0;
+    }
+    .img-text-section-left{
+        width: 60%;
+        margin: 0 40px;
+        justify-content: center;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+    }
+    .img-text-section-right{
+        width: 40%;
+        margin: 0 40px;
+        justify-content: center;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+    }
+    .discover-img{
+        width:85%;
+    }
+    .blue-title{
+        color: #4A50D9;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .blue-subtitle{
+        margin-top:0;
+        font-size: 15px;
+    }
+    .dots3{
+        width:50px;
+        top:-20px;
+        left: 0;
+        z-index: 2;
+        position: absolute;
+    }
+    .dots4{
+        width:50px;
+        bottom:-10px;
+        right: 0;
+        z-index: 2;
+        position: absolute;
+        transform: rotate(180deg);
+    }
+    .section-four{
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        padding: 50px 0;
+        background: #2e34cc;
+    }
+    .section-four-block{
+        width:25%;
+    }
+    .section-four-block h1{
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+        color:white;
+    }
+    .section-four-block p{
+        margin-top:0;
+        font-size: 12px;
+        text-align: center;
+        color:#F8F8F8;
+    }
+
+    .section-five{
+        display: flex;
+        padding:70px 0;
+    }
+    .add-margin-left{
+        margin-left: 90px !important;
+    }
+    .review-image{
+        width:80%;
+    }
+    .section-five .dots3{
+        left:-50px;
+    }
 
     @media screen and (max-width: 1400px) {
         .small-title{
-            font-size: 18px;
+            font-size: 17px;
         }
         .main-title{
-            font-size: 40px;
+            font-size: 36px;
         }
         .title-text{
-            font-size: 16px;
+            font-size: 15px;
         }
         .start-button {
             width:140px;
-            font-size: 22px;
+            font-size: 20px;
             margin-top:5px;
         }
         nav{
@@ -222,8 +444,11 @@
         .dots{
             bottom:50px;
         }
+        .dots2{
+            width: 50px;
+            margin-top:-30px;
+        }
     }
-
     @media screen and (max-width: 1140px) {
         .start-button{
             font-size: 18px;
@@ -270,6 +495,9 @@
         .dots2{
             display: none;
         }
+        .main-container{
+            height: auto;
+        }
         .section-left{
             width: calc(100% - 50px);
             margin-left:25px;
@@ -306,29 +534,5 @@
         .section-bottom{
             display: none;
         }
-    }
-
-    .underline{
-        position: absolute;
-        height:3px;
-        background: transparent;
-        bottom:0;
-        width:100px;
-        left:12px;
-        transition: left 0.2s, width 0.2s, background 0.1s;
-        border-radius: 10px 10px 0 0;
-
-    }
-    .login:hover ~ .underline{
-        left:133px;
-        width:85px;
-        transition: left 0.2s, width 0.2s;
-        background: #46497E;
-    }
-    .register:hover ~ .underline{
-        width:100px;
-        background: #46497E;
-        left:12px;
-        transition: left 0.2s, width 0.2s;
     }
 </style>

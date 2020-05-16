@@ -174,9 +174,79 @@
         width:115px;
         left:418px;
     }
-
-
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1400px) {
+        .nav-container{
+            height: 60px;
+        }
+        nav{
+            height:50px;
+        }
+        .underline{
+            width: 134px;
+            left: 15px;
+        }
+        .all-lectures:hover ~ .underline{
+            left: 174px;
+            width: 109px;
+        }
+        .following-lectures:hover ~ .underline{
+            width: 134px;
+            left: 15px;
+        }
+        .upcoming-lectures:hover ~ .underline{
+            width: 92px;
+            left: 304px;
+        }
+        .all{
+            left: 174px;
+            width: 109px;
+        }
+        .upcoming{
+            width: 92px;
+            left: 304px;
+        }
+        .category-menu-dropdown a{
+            padding: 12px 5px !important;
+            font-size: 12px !important;
+        }
+        .lectures-links a{
+            font-size: 13px;
+            padding: 17px 25px;
+        }
+        .lectures-links p{
+            font-size: 13px;
+        }
+        .category-menu-dropdown{
+            width: calc(100% + 70px);
+            left: -45px;
+        }
+        .toggled{
+            top: 54px !important;
+        }
+        .category-menu{
+            margin: 0 25px;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        .lectures-links a {
+            font-size:12px;
+            padding: 17px 13px;
+        }
+        .category-menu-dropdown a{
+            padding: 13px 13px !important;
+        }
+        .lectures-links p {
+            font-size:12px;
+        }
+        .category-menu{
+            margin: 0 3px;
+        }
+        .lectures-links{
+            justify-content: space-evenly;
+        }
+        .nav-container{
+            padding: 0 15px;
+        }
         nav{
             width:100%;
         }
@@ -192,34 +262,14 @@
         .linkActive{
             border-bottom: 2px solid #46497E !important;
         }
+        .lectures-links p {
+            font-size:12px;
+        }
     }
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 550px) {
         .category-menu{
             display: none;
         }
     }
-    @media screen and (max-width: 650px) {
-        .lectures-links a {
-            font-size:12px;
-            padding: 19px 13px;
-        }
-        .lectures-links p {
-            font-size:12px;
-        }
-        .category-menu{
-            margin: 0 3px;
-        }
-        .lectures-links{
-            justify-content: space-evenly;
-        }
-        .nav-container{
-            padding: 0 15px;
-        }
-    }
-    @media screen and (max-width: 425px) {
-        .category-menu-dropdown{
-            width:calc(100% + 60px);
-            left:-46px;
-        }
-    }
+
 </style>

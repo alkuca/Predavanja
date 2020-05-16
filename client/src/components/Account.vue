@@ -263,10 +263,16 @@
         }
         .section-right{
             width:calc(100% - 335px);
+            top: 71px;
+            min-height: calc(100% - 93px);
+        }
+        .section-left-container {
+            padding: 10px 50px 0 50px;
         }
         .section-bottom{
             width:200px;
             height: auto;
+            margin-top:12px;
         }
         .section-bottom nav a{
             font-size: 14px;

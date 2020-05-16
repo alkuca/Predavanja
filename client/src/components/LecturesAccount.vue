@@ -225,7 +225,7 @@
         display: flex;
     }
     .category-menu p{
-        padding: 19px 0;
+        padding: 20px 0;
     }
     .category-menu-dropdown{
         display: flex;

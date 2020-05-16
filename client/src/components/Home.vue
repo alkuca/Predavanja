@@ -54,6 +54,7 @@
     @media screen and (max-width: 1400px) {
         .lectures{
             padding: 0 40px;
+            margin-top: 0;
         }
     }
     @media screen and (max-width: 650px) {
