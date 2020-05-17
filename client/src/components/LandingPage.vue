@@ -18,7 +18,7 @@
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
                 <div class="start-button">
-                    <p>Get Started</p>
+                    <p>Sign Up</p>
                     <div class="mask"/>
                 </div>
                 <img class="dots" src="../assets/dots.png" alt="dots background"/>
@@ -48,14 +48,20 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
                 </div>
+                <div class="block">
+                    <img class="block-img" src="../assets/earn.svg" alt="earn image"/>
+                    <h1>Earn</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                </div>
             </div>
         </div>
         <div class="section-three">
-            <div class="img-text-section-left">
+            <div class="section-three-left">
                 <img class="discover-img" src="../assets/discover.png" alt="discover"/>
                 <img class="dots3" src="../assets/dots2.png" alt="dots"/>
             </div>
-            <div class="img-text-section-right">
+            <div class="section-three-right">
                 <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
                 <p class="blue-subtitle">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
@@ -82,17 +88,15 @@
             </div>
         </div>
         <div class="section-five">
-            <div class="img-text-section-right add-margin-left">
+            <div class="section-five-left">
                 <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
                 <p class="blue-subtitle">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
-                <img class="dots3" src="../assets/dots2.png" alt="dots"/>
             </div>
-            <div class="img-text-section-left">
+            <div class="section-five-right">
                 <img class="review-image" src="../assets/review.png" alt="review"/>
-                <img class="dots4" src="../assets/dots2.png" alt="dots"/>
             </div>
         </div>
     </div>
@@ -112,9 +116,8 @@
     }
     .main-container{
         width:100%;
-        padding:0;
+        padding: 80px 0 180px 0;
         margin:0;
-        height: calc(100% - 69px);
         display: flex;
         flex-wrap: wrap;
     }
@@ -125,7 +128,7 @@
         justify-content: space-between;
         padding: 0 100px;
         align-items: center;
-        border-bottom:1px solid rgba(0, 0, 0, 0.20)
+        border-bottom:1px solid rgba(0, 0, 0, 0.12)
     }
     .nav-links{
         display: flex;
@@ -222,7 +225,7 @@
         cursor: pointer;
         overflow: hidden;
         text-decoration: none;
-        width:165px;
+        width: 130px;
         font-weight: bold;
         font-size: 26px;
         color:#4A50D9;
@@ -279,35 +282,38 @@
     .section-two{
         background: url(../assets/bgs2.svg) no-repeat;
         background-size: cover;
+        position: relative;
+        z-index: 2;
     }
     .landing-text{
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        padding: 30px 0 0 0;
+        padding: 140px 0 0 0;
     }
     .landing-text h1{
         margin: 0;
         color:white;
-        font-size: 18px;
+        font-size: 22px;
         text-align: center;
     }
     .landing-text p{
         color:#CED0FF;
         text-align: center;
-        font-size: 14px;
-        width: 350px;
+        font-size: 16px;
+        width: 50%;
     }
     .blocks-container{
         display: flex;
         justify-content: space-around;
         align-content: center;
-        padding: 50px 10%;
+        padding: 0 10% 0 10%;
+        margin-top: 5%;
     }
     .block{
         width:33%;
-        height: 340px;
+        height: 400px;
         background: white;
         border-radius: 5px;
         box-shadow: 0 0 7px rgba(0,0,0,0.22);
@@ -315,6 +321,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        margin:0 40px
     }
     .block-img{
         width: 100px;
@@ -323,40 +330,40 @@
         color:#4A50D9;
         text-align: center;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 24px;
         margin: 50px 0 12px 0;
     }
     .block p{
-        font-size: 12px;
+        font-size: 16px;
         text-align: center;
         color:#8F8F8F;
         margin: 0 50px;
     }
     .section-three{
         display: flex;
-        background: #FCFCFF;
+        background: #fdfdff;
         margin-top:35px;
-        padding:50px 0;
+        padding:100px 0;
     }
-    .img-text-section-left{
+    .section-three-left{
         width: 60%;
-        margin: 0 40px;
+        margin: 0 0 0 40px;
         justify-content: center;
         display: flex;
         position: relative;
         flex-direction: column;
         align-items: center;
     }
-    .img-text-section-right{
+    .section-three-right{
         width: 40%;
-        margin: 0 40px;
+        margin: 0 10% 0 0;
         justify-content: center;
         display: flex;
         position: relative;
         flex-direction: column;
     }
     .discover-img{
-        width:85%;
+        width:70%;
     }
     .blue-title{
         color: #4A50D9;
@@ -384,39 +391,50 @@
     }
     .section-four{
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-content: center;
-        padding: 50px 0;
+        padding: 90px 0;
         background: #2e34cc;
     }
     .section-four-block{
-        width:25%;
+        width:20%;
+        margin: 0 40px;
     }
     .section-four-block h1{
         font-weight: bold;
-        font-size: 16px;
+        font-size: 18px;
         text-align: center;
         color:white;
     }
     .section-four-block p{
         margin-top:0;
-        font-size: 12px;
+        font-size: 14px;
         text-align: center;
         color:#F8F8F8;
     }
 
     .section-five{
         display: flex;
-        padding:70px 0;
+        margin-top:35px;
+        padding:100px 0;
     }
-    .add-margin-left{
-        margin-left: 90px !important;
+    .section-five-left{
+        width: 40%;
+        margin: 0 40px 0 10%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .section-five-right{
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-right: 40px;
+        align-items: center;
     }
     .review-image{
-        width:80%;
-    }
-    .section-five .dots3{
-        left:-50px;
+        width:65%;
     }
 
     @media screen and (max-width: 1400px) {
@@ -430,16 +448,17 @@
             font-size: 15px;
         }
         .start-button {
-            width:140px;
             font-size: 20px;
             margin-top:5px;
+            width:105px;
         }
         nav{
             padding: 0 50px;
+            height: 50px;
         }
         .section-left{
             width:calc(40% - 50px);
-            margin-left:50px;
+            margin-left:70px;
         }
         .dots{
             bottom:50px;
@@ -448,10 +467,50 @@
             width: 50px;
             margin-top:-30px;
         }
+        .nav-links p {
+            padding: 17px 20px;
+            font-size: 13px;
+        }
+        nav h1{
+            font-size: 18px;
+        }
+        .section-right{
+            margin-right: 30px;
+        }
+        .login:hover ~ .underline{
+            left:99px;
+            width:60px;
+        }
+        .register:hover ~ .underline{
+            width:75px;
+            left:7px;
+        }
+        .landing-text{
+            padding: 70px 20px 0 20px;
+        }
+        .landing-text h1{
+            font-size: 20px;
+        }
+        .landing-text p{
+            font-size: 15px;
+        }
+        .blocks-container{
+            margin-top: 4%;
+            padding: 0 3%;
+        }
+        .block{
+            width:33%;
+            height: 350px;
+            margin:0 30px
+        }
+        .dots4{
+            right:-30px;
+        }
     }
     @media screen and (max-width: 1140px) {
         .start-button{
             font-size: 18px;
+            width:95px;
         }
         .small-title{
             font-size: 14px;
@@ -465,15 +524,48 @@
         .landing-image{
             width:60%;
         }
-        .dots{
+        .block{
+            height: 280px;
+            margin:0 15px
+        }
+        .block-img {
             width: 70px;
-            right:0;
-            bottom:-50px;
+        }
+        .block h1 {
+            font-size: 16px;
+            margin: 50px 0 12px 0;
+        }
+        .block p {
+            font-size: 12px;
+            margin: 0 25px;
+        }
+        .blue-title {
+            font-size: 25px;
+        }
+        .blue-subtitle {
+            font-size: 14px;
+        }
+        .discover-img {
+            width: 80%;
+        }
+        .review-image{
+            width: 75%;
+        }
+        .section-four-block {
+            width: 25%;
+            margin: 0 20px;
+        }
+        .blocks-container{
+            padding-bottom: 50px;
+        }
+        .section-two{
+            background-size: initial;
         }
     }
     @media screen and (max-width: 850px) {
         .start-button{
             font-size: 16px;
+            width:80px;
         }
         .small-title{
             font-size: 12px;
@@ -486,6 +578,34 @@
         }
         .landing-image{
             width:80%;
+        }
+        .block{
+            height: 250px;
+        }
+        .block-img {
+            width: 60px;
+        }
+        .block h1 {
+            margin: 30px 0 12px 0;
+        }
+        .block p {
+            margin: 0 15px;
+        }
+        .blocks-container{
+            margin-top: 2%;
+            padding-bottom:50px;
+        }
+        .discover-img {
+            width: 100% !important;
+        }
+        .review-image{
+            width: 95% !important;
+        }
+        .blue-title {
+            font-size: 20px;
+        }
+        .blue-subtitle {
+            font-size: 13px;
         }
     }
     @media screen and (max-width: 680px) {
@@ -503,9 +623,6 @@
             margin-left:25px;
             margin-top:7%;
             margin-bottom:5%;
-        }
-        .start-button{
-            font-size: 22px;
         }
         .small-title{
             font-size: 14px;
@@ -533,6 +650,176 @@
         }
         .section-bottom{
             display: none;
+        }
+        .section-two{
+            background: #2e34cc;
+        }
+        .section-three{
+            flex-direction: column;
+            align-items: center;
+        }
+        .section-three-left{
+            width: 100%;
+            margin: 0 0 60px 0;
+        }
+        .discover-img {
+            width: 80% !important;
+        }
+        .section-three-right {
+            width: 80%;
+            margin: 0;
+            align-items: center;
+        }
+        .section-three-right h1 {
+            text-align: center;
+        }
+        .section-three-right p {
+            text-align: center;
+        }
+        .dots3 {
+            top: -40px;
+            left: 20px;
+        }
+        .dots4 {
+            right:-50px;
+            bottom: -55px;
+        }
+        .section-four {
+            flex-direction: column;
+            align-items: center;
+        }
+        .section-four-block {
+            width: 60%;
+            margin: 25px 50px;
+        }
+        .blocks-container {
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .block{
+            width:65%;
+            margin: 20px 0;
+            height: 350px;
+        }
+        .block h1{
+            font-size: 24px;
+            margin: 12px 35px;
+        }
+        .block p{
+            font-size: 15px;
+            margin: 0 35px;
+        }
+        .block-img{
+            width: 90px;
+        }
+        .main-container {
+            width: 100%;
+            padding: 0 0 100px 0;
+        }
+        .section-five{
+            flex-direction: column;
+            align-items: center;
+            padding:40px 0;
+        }
+        .section-five-right{
+            width: 100%;
+            margin: 50px 0 60px 0;
+        }
+        .review-image {
+            width: 80% !important;
+        }
+        .section-five-left {
+            width: 80%;
+            margin: 0;
+            align-items: center;
+        }
+        .section-five-left h1 {
+            text-align: center;
+        }
+        .section-five-left p {
+            text-align: center;
+        }
+        .underline{
+            display: none;
+        }
+        .start-button {
+            width: 120px;
+            font-size: 20px;
+            border-radius: 3px;
+            color:white;
+            border:none;
+            background: #4A50D9;
+            margin-top: 15px;
+            padding: 10px 5px;
+        }
+        .start-button:hover p {
+            color:white;
+        }
+        .start-button:hover {
+            width: 120px;
+        }
+    }
+    @media screen and (max-width: 580px) {
+        nav{
+            padding: 0 10px 0 25px;
+        }
+        .nav-links p{
+            padding:17px 10px;
+        }
+        .main-container{
+            padding: 0 0 50px 0;
+        }
+        .section-left{
+            margin-top:30px;
+            margin-bottom:45px;
+        }
+        .landing-text{
+            padding: 60px 15px 0 15px;
+        }
+        .landing-text p {
+            width: 100%;
+        }
+        .blocks-container{
+            margin-top:25px;
+        }
+        .block{
+            width: 85%;
+            margin: 15px 0;
+            height: 300px;
+        }
+        .section-three{
+            padding: 50px 0;
+        }
+        .section-three-left{
+            margin: 0 0 25px 0;
+        }
+        .dots4 {
+            right: -20px;
+            bottom: -35px;
+        }
+        .blue-title {
+            font-size: 24px;
+        }
+        .blue-subtitle{
+            font-size: 16px;
+        }
+        .section-four{
+            padding:30px 0;
+        }
+        .section-four-block h1{
+            font-size: 24px;
+        }
+        .section-four-block p {
+            font-size: 16px;
+        }
+        .section-four-block {
+            width: 80%;
+            margin: 20px 0;
+        }
+        .section-five{
+            padding:25px 0;
+            margin-top:0;
         }
     }
 </style>
