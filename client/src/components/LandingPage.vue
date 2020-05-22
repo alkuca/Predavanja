@@ -11,65 +11,86 @@
         <div class="main-container">
             <section class="section-left">
                 <img class="dots2" src="../assets/dots2.png" alt="dots background"/>
-                <p class="small-title">LOREM IPSUM DOLOR SIT AMET</p>
-                <h1 class="main-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p class="title-text">
+                <p class="small-title" data-aos-once="true" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200">LOREM IPSUM DOLOR SIT AMET</p>
+                <h1 class="main-title" data-aos-once="true" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1200">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p class="title-text" data-aos-once="true" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1200">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
-                <div class="start-button">
-                    <p>Sign Up</p>
-                    <div class="mask"/>
+                <div class="start-button" data-aos-once="true" data-aos="fade-in" data-aos-delay="1200" data-aos-duration="1800" data-aos-anchor=".main-title">
+                    <button>Sign Up</button>
                 </div>
                 <img class="dots" src="../assets/dots.png" alt="dots background"/>
             </section>
-            <section class="section-right">
-                <img class="landing-image" src="../assets/main.png" alt="landing image"/>
+            <section class="section-right" data-aos-once="true" data-aos="fade" data-aos-duration="1500">
+                <img class="landing-image" src="../assets/ppl.svg" alt="landing image"/>
             </section>
             <div class="section-bottom"/>
         </div>
-        <div class="blue-background-section" />
+        <!-- <div class="blue-background-section" /> -->
         <div class="section-two">
-            <div class="landing-text">
+            <div class="landing-text" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
                 <h1>Lorem ipsum dolor sit amet,consectetur</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
                     ipsum dolor sit amet consectetur.</p>
             </div>
             <div class="blocks-container">
-                <div class="block">
+                <div class="block" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
                     <img class="block-img" src="../assets/learn.svg" alt="learn image"/>
                     <h1>Learn</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-                <div class="block">
+                <div class="block" data-aos-once="true" data-aos-delay="200" data-aos="fade-up" data-aos-duration="1000">
                     <img class="block-img" src="../assets/teach.svg" alt="teach image"/>
                     <h1>Teach</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-                <div class="block">
+                <div class="block" data-aos-once="true" data-aos-delay="400" data-aos="fade-up" data-aos-duration="1000">
                     <img class="block-img" src="../assets/earn.svg" alt="earn image"/>
                     <h1>Earn</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
             </div>
         </div>
         <div class="section-three">
             <div class="section-three-left">
-                <img class="discover-img" src="../assets/discover.png" alt="discover"/>
+                <img data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" class="discover-img" src="../assets/discover.png" alt="discover"/>
                 <img class="dots3" src="../assets/dots2.png" alt="dots"/>
             </div>
             <div class="section-three-right">
-                <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p class="blue-subtitle">
+                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                </p>
+            </div>
+        </div>
+        <div class="section-five">
+            <div class="section-five-left">
+                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                </p>
+            </div>
+            <div class="section-five-right" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
+                <img class="review-image" src="../assets/blog.svg" alt="review"/>
+            </div>
+        </div>
+        <div class="section-three">
+            <div class="section-three-left" data-aos-once="true" data-aos="fade-up" data-aos-duration="1500">
+                <img class="discover-img" src="../assets/creativity.svg" alt="discover"/>
+            </div>
+            <div class="section-three-right">
+                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
                 <img class="dots4" src="../assets/dots2.png" alt="dots"/>
             </div>
         </div>
+
         <div class="section-four">
             <div class="section-four-block">
                 <h1>Learn</h1>
@@ -87,19 +108,16 @@
                     Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
             </div>
         </div>
-        <div class="section-five">
-            <div class="section-five-left">
-                <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p class="blue-subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
-                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
-                </p>
-            </div>
-            <div class="section-five-right">
-                <img class="review-image" src="../assets/review.png" alt="review"/>
+        <div class="section-six">
+            <div class="content-center">
+                <h1 class="center-title">Blockchain lorem ipsum dolor sit amet</h1>
+                <p class="center-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
+                    ipsum dolor sit amet consectetur.</p>
+                <img class="blockchain" src="../assets/blockchain.svg" alt="blockchain"/>
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
@@ -111,12 +129,12 @@
 <style scoped>
     .landing-page{
         height:100vh;
-        background: url(../assets/bg.svg) no-repeat;
+        background: url(../assets/bgs5.svg) no-repeat;
         background-size: cover;
     }
     .main-container{
         width:100%;
-        padding: 80px 0 180px 0;
+        padding: 80px 0 130px 0;
         margin:0;
         display: flex;
         flex-wrap: wrap;
@@ -128,7 +146,6 @@
         justify-content: space-between;
         padding: 0 100px;
         align-items: center;
-        border-bottom:1px solid rgba(0, 0, 0, 0.12)
     }
     .nav-links{
         display: flex;
@@ -139,7 +156,6 @@
         color:#303030;
         padding: 25px 30px;
         margin: 0;
-
         cursor: pointer;
     }
     .nav-links p:hover{
@@ -178,11 +194,12 @@
         align-items: center;
         z-index: 2;
         position: relative;
-        justify-content: flex-end;
+        justify-content: center;
     }
     .landing-image{
-        width:70%;
-        margin-left:100px;
+        width:90%;
+        margin-left:60px;
+        margin-top: 60px;
     }
     .dots{
         position: absolute;
@@ -213,49 +230,16 @@
         height: calc(55% + 200px);
         z-index: 1;
     }
-    .start-button p {
-        text-decoration: none;
-        transition:0.2s;
-        margin:0;
-    }
-    .start-button {
-        position: relative;
-        padding: 12px 5px;
-        text-align: center;
-        cursor: pointer;
-        overflow: hidden;
-        text-decoration: none;
-        width: 130px;
-        font-weight: bold;
-        font-size: 26px;
-        color:#4A50D9;
-        border-left: 5px solid #4A50D9;
-        transition: 0.2s;
-        z-index: 10;
-        margin-top:20px;
-    }
-    .start-button:hover p {
+    .start-button button{
+        background: #4A50D9;
         color:white;
-    }
-    .start-button:hover {
-        transition: 0.2s;
-        width:180px;
-    }
-    .start-button .mask {
-        position: absolute;
-        width: 0;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: #4A50D9;
-        z-index: -1;
-        transition: 0.2s;
-    }
-    .start-button:hover .mask {
-        background: #4A50D9;
-        width:100%;
-        transition:0.2s;
-        z-index: -1;
+        border:0;
+        width:150px;
+        height:46px;
+        margin-top:12px;
+        font-size: 19px;
+        font-weight: bold;
+        border-radius: 3px;
     }
     .underline{
         position: absolute;
@@ -280,7 +264,7 @@
         transition: left 0.2s, width 0.2s;
     }
     .section-two{
-        background: url(../assets/bgs2.svg) no-repeat;
+        background: url(../assets/bgs3.svg) no-repeat;
         background-size: cover;
         position: relative;
         z-index: 2;
@@ -308,8 +292,9 @@
         display: flex;
         justify-content: space-around;
         align-content: center;
-        padding: 0 10% 0 10%;
+        padding: 0 10% 80px 10%;
         margin-top: 5%;
+        margin-bottom: 10%;
     }
     .block{
         width:33%;
@@ -341,9 +326,8 @@
     }
     .section-three{
         display: flex;
-        background: #fdfdff;
         margin-top:35px;
-        padding:100px 0;
+        padding:50px 0 50px 0;
     }
     .section-three-left{
         width: 60%;
@@ -393,7 +377,8 @@
         display: flex;
         justify-content: center;
         align-content: center;
-        padding: 90px 0;
+        padding: 75px 0;
+        margin-top: 100px;
         background: #2e34cc;
     }
     .section-four-block{
@@ -416,7 +401,7 @@
     .section-five{
         display: flex;
         margin-top:35px;
-        padding:100px 0;
+        padding:50px 0 0 0;
     }
     .section-five-left{
         width: 40%;
@@ -434,12 +419,45 @@
         align-items: center;
     }
     .review-image{
-        width:65%;
+        width:70%;
     }
+    .section-six{
+        margin-top:35px;
+        padding:50px 0 0 0;
+        background: url(../assets/bgs6.svg) no-repeat;
+        background-size: cover;
+    }
+    .content-center{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding:0 30px;
+    }
+    .center-title{
+        font-size: 25px;
+        text-align: center;
+        color:#4A50D9;
+    }
+    .center-text{
+        font-size: 20px;
+        margin: 5px 0;
+        width:500px;
+        text-align: center;
+        color:#313131;
+    }
+    .blockchain{
+        padding: 70px 0 155px 0;
+        width: 250px;
+    }
+
 
     @media screen and (max-width: 1400px) {
         .small-title{
             font-size: 17px;
+        }
+        .main-container{
+            padding: 20px 0 47px 0;
         }
         .main-title{
             font-size: 36px;
@@ -453,12 +471,18 @@
             width:105px;
         }
         nav{
-            padding: 0 50px;
-            height: 50px;
+            padding: 0 70px;
+            height:70px;
         }
         .section-left{
             width:calc(40% - 50px);
             margin-left:70px;
+        }
+        .center-title{
+            font-size: 21px;
+        }
+        .center-text{
+            font-size: 15px;
         }
         .dots{
             bottom:50px;
@@ -468,7 +492,7 @@
             margin-top:-30px;
         }
         .nav-links p {
-            padding: 17px 20px;
+            padding: 22px 20px;
             font-size: 13px;
         }
         nav h1{
@@ -496,7 +520,7 @@
         }
         .blocks-container{
             margin-top: 4%;
-            padding: 0 3%;
+            padding: 0 3% 80px 3%;
         }
         .block{
             width:33%;
@@ -508,10 +532,6 @@
         }
     }
     @media screen and (max-width: 1140px) {
-        .start-button{
-            font-size: 18px;
-            width:95px;
-        }
         .small-title{
             font-size: 14px;
         }
@@ -522,7 +542,8 @@
             font-size: 13px;
         }
         .landing-image{
-            width:60%;
+            width:90%;
+            margin-top:0;
         }
         .block{
             height: 280px;
@@ -563,10 +584,6 @@
         }
     }
     @media screen and (max-width: 850px) {
-        .start-button{
-            font-size: 16px;
-            width:80px;
-        }
         .small-title{
             font-size: 12px;
         }
@@ -575,9 +592,6 @@
         }
         .title-text{
             font-size: 12px;
-        }
-        .landing-image{
-            width:80%;
         }
         .block{
             height: 250px;
@@ -638,7 +652,6 @@
             margin-right:0;
         }
         .landing-image{
-            width:70%;
             margin-left:0;
         }
         .dots{
@@ -718,13 +731,13 @@
             padding: 0 0 100px 0;
         }
         .section-five{
-            flex-direction: column;
+            flex-direction: column-reverse;
             align-items: center;
             padding:40px 0;
         }
         .section-five-right{
             width: 100%;
-            margin: 50px 0 60px 0;
+            margin: 50px 0 0 0;
         }
         .review-image {
             width: 80% !important;
@@ -742,22 +755,6 @@
         }
         .underline{
             display: none;
-        }
-        .start-button {
-            width: 120px;
-            font-size: 20px;
-            border-radius: 3px;
-            color:white;
-            border:none;
-            background: #4A50D9;
-            margin-top: 15px;
-            padding: 10px 5px;
-        }
-        .start-button:hover p {
-            color:white;
-        }
-        .start-button:hover {
-            width: 120px;
         }
     }
     @media screen and (max-width: 580px) {

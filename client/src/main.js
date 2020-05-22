@@ -8,6 +8,8 @@ import Lecture from "./components/Lecture";
 import Register from "./components/Register";
 import TopicSelect from "./components/TopicSelect";
 import LandingPage from "./components/LandingPage";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 Vue.use(VueRouter);
 
@@ -27,6 +29,9 @@ const router = new VueRouter({
 });
 
 new Vue({
+  created () {
+    AOS.init({disable: 'mobile'})
+  },
   router,
   render: h => h(App),
 }).$mount('#app');
