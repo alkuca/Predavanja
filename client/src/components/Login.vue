@@ -1,13 +1,15 @@
 <template>
     <div class="login-page">
-        <div class="top-left-title">
-            <h1>Predavanja</h1>
-        </div>
-        <div class="top-right-button">
-            <router-link to="/register">
-                <button>Register</button>
-            </router-link>
-        </div>
+        <nav>
+            <div class="top-left-title">
+                <h1>Predavanja</h1>
+            </div>
+            <div class="top-right-button">
+                <router-link to="/register">
+                    <button>Register</button>
+                </router-link>
+            </div>
+        </nav>
         <div class="login-form-container">
             <div class="logo-container">
                 <img src="../assets/logo.svg" alt="logo"/>
@@ -20,7 +22,7 @@
                     <div class="form-input">
                         <input id="password" type="password" name="password" v-model="input.password" placeholder="Password" />
                     </div>
-                    <router-link to="/"><button class="login-button" type="submit">Login</button></router-link>
+                    <router-link to="/home" class="login-button" tag="button">Login</router-link>
                 </form>
             </div>
         </div>
@@ -50,20 +52,24 @@
 <style scoped>
     .login-page{
         width:100%;
-        height:100vh;
         background:#2E34CC;
-        display:flex;
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        height: 100%;
+        background: url(../assets/bgs3.svg) no-repeat;
+        background-size: cover;
     }
     .login-form-container{
-        width:375px;
-        height:390px;
+        width:350px;
+        height:370px;
         background:white;
         border-radius:5px;
-        box-shadow: 0 0 11px rgba(0, 0, 0, 0.40);
-        position:relative;
+        box-shadow: 0 0 11px rgba(0, 0, 0, 0.18);
+        align-self: center;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
     .logo-container{
         width: 100%;
@@ -77,7 +83,6 @@
         width:200px;
     }
     .login-form{
-        height: 70%;
         width:100%;
         display: flex;
         justify-content: center;
@@ -98,26 +103,26 @@
         border-radius: 3px;
         cursor: pointer;
     }
-    .login-button a{
-        text-decoration: none;
-        color:white;
+    .login-button:hover{
+        opacity: 0.9;
+        transition: 0.2s;
     }
     .login-form form{
         width:70%
+    }
+    .top-right-button button:hover{
+        background: white;
+        color:#2E34CC;
+        transition: 0.2s;
     }
     .form-input input{
         width:100%;
         height:20px;
         border:0;
         outline:0;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #ABABAB;
         text-indent: 4px;
-        padding-bottom:2px;
-    }
-    .top-left-title{
-        position: absolute;
-        top:5px;
-        left:35px;
+        padding-bottom:5px;
     }
     .top-left-title h1{
         font-size: 26px;
@@ -131,14 +136,44 @@
         margin:18px 0 18px 0;
         width:105px;
         height:36px;
-        border-radius:2px;
         font-weight: bold;
         font-size:15px;
         cursor: pointer;
+        border-radius: 3px;
     }
-    .top-right-button{
-        position: absolute;
-        top:5px;
-        right:35px;
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 50px;
+    }
+
+    @media screen and (max-width: 580px) {
+        nav{
+            padding:0 15px;
+        }
+        .login-form form{
+            width:85%
+        }
+        .login-form-container{
+            width:85%;
+            height:370px;
+            margin: 20px;
+        }
+        .logo-container {
+           height:25%;
+        }
+        .logo-container img{
+            width:75%;
+        }
+        .login-button{
+            height:44px;
+            font-size: 17px;
+        }
+        .form-input input{
+            font-size: 16px;
+        }
+        .form-input{
+            margin: 0 0 50px 0;
+        }
     }
 </style>

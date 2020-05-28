@@ -1,11 +1,11 @@
 <template>
     <header>
-        <router-link to="/" class="nav-logo">
+        <router-link to="/home" class="nav-logo">
             <img src="../assets/logoWhite.svg" alt="navbar logo"/>
         </router-link>
         <nav>
             <ul class="navbar-links">
-                <li><router-link to="/" class="nav-logo">Home</router-link></li>
+                <li><router-link to="/home" class="nav-logo">Home</router-link></li>
                 <li><router-link to="/account" class="nav-logo">Profile</router-link></li>
             </ul>
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
@@ -46,7 +46,6 @@
                     <div class="clear-all-container">
                         <button>clear all</button>
                     </div>
-
                 </div>
             </div>
         </nav>

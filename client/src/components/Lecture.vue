@@ -40,9 +40,7 @@
                                     <a v-on:click="toggleComments" v-bind:class="{linkActive: commentsToggle}">Comments</a>
                                     <a v-on:click="toggleReviews" v-bind:class="{linkActive: reviewsToggle}">Reviews</a>
                                 </div>
-                                <button v-if="detailsToggle || notesToggle" class="interested-button">Interested</button>
-                                <button v-if="commentsToggle" class="interested-button">Add Comment</button>
-                                <button v-if="reviewsToggle" class="interested-button">Add Review</button>
+                                <button class="interested-button">Interested</button>
                             </div>
                         </nav>
                         <div class="section-bottom-content">
@@ -66,20 +64,16 @@
                             </transition>
                             <transition name="fade">
                                 <div v-if="commentsToggle" class="section-bottom-container">
+                                    <AddComment/>
                                     <LectureComment/>
                                     <LectureComment/>
                                     <LectureComment/>
-                                    <div class="interested-button-mobile">
-                                        <button>Add Comment</button>
-                                    </div>
                                 </div>
                             </transition>
                             <transition name="fade">
                                 <div v-if="reviewsToggle" class="section-bottom-container">
+                                    <AddReview/>
                                     <LectureReview/>
-                                    <div class="interested-button-mobile">
-                                        <button>Add Review</button>
-                                    </div>
                                 </div>
                             </transition>
                         </div>
@@ -95,9 +89,11 @@
     import LectureNote from "./LectureNote";
     import LectureComment from "./LectureComment";
     import LectureReview from "./LectureReview";
+    import AddComment from "./AddComment";
+    import AddReview from "./AddReview";
     export default {
         name: "Lecture",
-        components: {LectureReview, LectureComment, LectureNote, Navbar},
+        components: {AddReview, AddComment, LectureReview, LectureComment, LectureNote, Navbar},
         data(){
             return{
                 detailsToggle:true,
@@ -198,7 +194,7 @@
     .lecturer-image-name h1{
         font-size:17px;
         color:white;
-        margin: 13px;
+        margin: 7px;
     }
     .lecturer-details p{
         margin: 13px 7px;
@@ -304,9 +300,6 @@
         margin: 16px 0;
     }
     .interested-button{
-        align-self: center;
-    }
-    .interested-button{
         background: #4A50D9;
         color:white;
         border-radius: 4px;
@@ -315,6 +308,12 @@
         font-size:14px;
         height:35px;
         width:120px;
+        align-self: center;
+        cursor: pointer;
+    }
+    .interested-button:hover{
+        opacity: 0.9;
+        transition: 0.2s;
     }
     .interested-button-mobile button{
         background: #4A50D9;
@@ -331,6 +330,10 @@
     }
     .linkActive{
         border-bottom: 2px solid #46497E !important;
+    }
+    .bottom-info{
+        display: flex;
+        align-items: center;
     }
 
     @media screen and (max-width: 1600px) {
@@ -376,7 +379,11 @@
         .section-bottom-content{
             padding: 20px 50px;
         }
-
+        .interested-button{
+            font-size:13px;
+            height:33px;
+            width:95px;
+        }
     }
     @media screen and (max-width: 1100px) {
         .lecturer-image-name img{
@@ -496,7 +503,7 @@
         }
         .section-bottom-content {
             min-height:initial;
-            padding: 20px 30px;
+            padding: 20px 11px;
         }
         .section-bottom-inner-container {
             margin-bottom: 10px;

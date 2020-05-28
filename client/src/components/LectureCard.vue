@@ -120,15 +120,19 @@
         align-self: flex-end;
     }
     .date-section button{
-        height:32px;
+        height:34px;
         border:none;
-        background: white;
-        width:100px;
+        background: #00c1cf;
+        width:110px;
         border-radius: 3px;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.22);
         font-weight: bold;
-        color:#4A50D9;
+        color:white;
         cursor:pointer;
+    }
+    .date-section button:hover{
+        transition: 0.2s;
+        opacity: 0.9;
     }
     .date p{
         color:white;

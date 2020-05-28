@@ -17,13 +17,13 @@ Vue.config.productionTip = false;
 
 const router = new VueRouter({
   routes:[
-    {path: "/", component: Home},
+    {path: "/", component: LandingPage},
     {path: "/login", component: Login},
     {path: "/account", component: Account},
     {path: "/lecture", component: Lecture},
     {path: "/register", component: Register},
     {path: "/topics", component: TopicSelect},
-    {path: "/landing", component: LandingPage}
+    {path: "/home", component: Home}
   ],
   mode: "history"
 });

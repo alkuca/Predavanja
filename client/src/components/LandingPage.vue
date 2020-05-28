@@ -3,9 +3,7 @@
         <nav>
             <h1>Lorem</h1>
             <div class="nav-links">
-                <p class="register">Register</p>
-                <p class="login">Login</p>
-                <div class="underline"/>
+                <router-link to="/login" class="login" tag="button">Login</router-link>
             </div>
         </nav>
         <div class="main-container">
@@ -17,8 +15,8 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
-                <div class="start-button" data-aos-once="true" data-aos="fade-in" data-aos-delay="1200" data-aos-duration="1800" data-aos-anchor=".main-title">
-                    <button>Sign Up</button>
+                <div data-aos-once="true" data-aos="fade-in" data-aos-delay="1200" data-aos-duration="1800" data-aos-anchor=".main-title">
+                    <router-link to="/register" class="start-button" tag="button">Sign Up <img class="arrow-button" src="../assets/arrowRight.svg" alt="arrow" /></router-link>
                 </div>
                 <img class="dots" src="../assets/dots.png" alt="dots background"/>
             </section>
@@ -27,7 +25,6 @@
             </section>
             <div class="section-bottom"/>
         </div>
-        <!-- <div class="blue-background-section" /> -->
         <div class="section-two">
             <div class="landing-text" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
                 <h1>Lorem ipsum dolor sit amet,consectetur</h1>
@@ -52,45 +49,46 @@
                 </div>
             </div>
         </div>
-        <div class="section-three">
-            <div class="section-three-left">
-                <img data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" class="discover-img" src="../assets/discover.png" alt="discover"/>
-                <img class="dots3" src="../assets/dots2.png" alt="dots"/>
+        <div class="large-section">
+            <div class="section-three">
+                <div class="section-three-left">
+                    <img data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" class="discover-img" src="../assets/discover.png" alt="discover"/>
+                    <img class="dots3" src="../assets/dots2.png" alt="dots"/>
+                </div>
+                <div class="section-three-right">
+                    <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                    <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                        Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                    </p>
+                </div>
             </div>
-            <div class="section-three-right">
-                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
-                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
-                </p>
+            <div class="section-five">
+                <div class="section-five-left">
+                    <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                    <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                        Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                    </p>
+                </div>
+                <div class="section-five-right" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
+                    <img class="review-image" src="../assets/blog.svg" alt="review"/>
+                </div>
+            </div>
+            <div class="section-three">
+                <div class="section-three-left" data-aos-once="true" data-aos="fade-up" data-aos-duration="1500">
+                    <img class="discover-img" src="../assets/creativity.svg" alt="discover"/>
+                </div>
+                <div class="section-three-right">
+                    <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                    <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                        Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                    </p>
+                    <img class="dots4" src="../assets/dots2.png" alt="dots"/>
+                </div>
             </div>
         </div>
-        <div class="section-five">
-            <div class="section-five-left">
-                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
-                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
-                </p>
-            </div>
-            <div class="section-five-right" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
-                <img class="review-image" src="../assets/blog.svg" alt="review"/>
-            </div>
-        </div>
-        <div class="section-three">
-            <div class="section-three-left" data-aos-once="true" data-aos="fade-up" data-aos-duration="1500">
-                <img class="discover-img" src="../assets/creativity.svg" alt="discover"/>
-            </div>
-            <div class="section-three-right">
-                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
-                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
-                </p>
-                <img class="dots4" src="../assets/dots2.png" alt="dots"/>
-            </div>
-        </div>
-
         <div class="section-four">
             <div class="section-four-block">
                 <h1>Learn</h1>
@@ -108,12 +106,65 @@
                     Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
             </div>
         </div>
-        <div class="section-six">
+        <div class="notebook-section">
+            <div class="notebook-section-left">
+                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title text-right">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle text-right">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                </p>
+            </div>
+            <div class="notebook-section-right">
+                <img data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class="notebook-image" src="../assets/laptop.png" alt="notebook"/>
+            </div>
+        </div>
+        <div class="phone-section">
+            <div class="phone-section-left">
+                <img data-aos="fade-right" data-aos-once="true" data-aos-duration="1000" class="phone-image" src="../assets/phone.png" alt="phone"/>
+            </div>
+            <div class="phone-section-right">
+                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                </p>
+            </div>
+        </div>
+        <div class="tablet-section">
+            <div class="tablet-section-left">
+                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title text-right">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-subtitle text-right">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
+                    Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
+                </p>
+            </div>
+            <div class="tablet-section-right">
+                <img data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class="tablet-image" src="../assets/tablet.png" alt="chat"/>
+            </div>
+        </div>
+        <div class="section-four">
+            <div class="section-four-block">
+                <h1>Learn</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            </div>
+            <div class="section-four-block">
+                <h1>Learn</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            </div>
+            <div class="section-four-block">
+                <h1>Learn</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            </div>
+        </div>
+        <div class="blockchain-section">
             <div class="content-center">
-                <h1 class="center-title">Blockchain lorem ipsum dolor sit amet</h1>
-                <p class="center-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
+                <h1 class="center-title" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">Blockchain lorem ipsum dolor sit amet</h1>
+                <p class="center-text" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
                     ipsum dolor sit amet consectetur.</p>
-                <img class="blockchain" src="../assets/blockchain.svg" alt="blockchain"/>
+                <img class="blockchain" src="../assets/blockchain.svg" alt="blockchain" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000"/>
             </div>
         </div>
     </div>
@@ -144,22 +195,30 @@
         position: relative;
         display: flex;
         justify-content: space-between;
-        padding: 0 100px;
+        padding: 0 80px 0 100px;
         align-items: center;
     }
     .nav-links{
         display: flex;
         position: relative;
     }
-    .nav-links p{
+    .login{
+        margin:0 15px;
+        outline:0;
+        height: 32px;
+        width:95px;
+        background: transparent;
+        border:3px solid #4A50D9;
         font-weight: bold;
-        color:#303030;
-        padding: 25px 30px;
-        margin: 0;
+        color: #4A50D9;
+        border-radius: 3px;
         cursor: pointer;
     }
-    .nav-links p:hover{
-
+    .login:hover{
+        background: #4A50D9;
+        color:white;
+        transition: 0.2s;
+        opacity: 0.9;
     }
     .section-left{
         width:calc(40% - 100px);
@@ -221,16 +280,7 @@
         z-index: 3;
         flex-flow: column;
     }
-    .blue-background-section{
-        position: absolute;
-        top:0;
-        left:0;
-        background: rgba(248, 248, 255, 0.70);
-        width: calc(40% + 80px);
-        height: calc(55% + 200px);
-        z-index: 1;
-    }
-    .start-button button{
+    .start-button{
         background: #4A50D9;
         color:white;
         border:0;
@@ -239,29 +289,28 @@
         margin-top:12px;
         font-size: 19px;
         font-weight: bold;
-        border-radius: 3px;
+        border-radius: 4px;
+        position: relative;
+        transition: 0.2s;
+        cursor: pointer;
     }
-    .underline{
+    .arrow-button{
+        margin-left: 6px;
+        opacity: 0;
+        transition: 0.2s;
+        width:20px;
         position: absolute;
-        height:3px;
-        background: transparent;
-        bottom:0;
-        width:100px;
-        left:12px;
-        transition: left 0.2s, width 0.2s, background 0.1s;
-        border-radius: 10px 10px 0 0;
+        right:23px;
+        top: 15px;
     }
-    .login:hover ~ .underline{
-        left:133px;
-        width:85px;
-        transition: left 0.2s, width 0.2s;
-        background: #46497E;
+    .start-button:hover .arrow-button{
+        opacity: 1;
+        transition: 0.2s;
     }
-    .register:hover ~ .underline{
-        width:100px;
-        background: #46497E;
-        left:12px;
-        transition: left 0.2s, width 0.2s;
+    .start-button:hover{
+        width:170px;
+        padding-right:36px;
+        transition: 0.2s;
     }
     .section-two{
         background: url(../assets/bgs3.svg) no-repeat;
@@ -421,7 +470,7 @@
     .review-image{
         width:70%;
     }
-    .section-six{
+    .blockchain-section{
         margin-top:35px;
         padding:50px 0 0 0;
         background: url(../assets/bgs6.svg) no-repeat;
@@ -448,9 +497,95 @@
     }
     .blockchain{
         padding: 70px 0 155px 0;
-        width: 250px;
+        width: 450px;
+    }
+    .large-section{
+        background: url(../assets/bgs7.svg) no-repeat;
+        background-size: cover;
+    }
+    .notebook-section{
+        padding:100px 0 50px 0;
+        display: flex;
+        justify-content: flex-end;
+        overflow-x: hidden;
+        height: 100%;
+        background: url(../assets/bgs8.svg) no-repeat;
+        background-size: cover;
+    }
+    .notebook-section-right{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    .notebook-image{
+        width:100%;
+        position: absolute;
+        right:0;
+    }
+    .notebook-section-left{
+        width: 50%;
+        margin: 0 0 0 10%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .text-right{
+        text-align: right;
     }
 
+    .phone-section{
+        padding:50px 0 0 0;
+        display: flex;
+        justify-content: flex-start;
+        background: url(../assets/bgs9.svg) no-repeat;
+        background-size: cover;
+    }
+    .phone-section-right{
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        margin-right: 40px;
+    }
+    .phone-image{
+        width:80%;
+    }
+    .phone-section-left{
+        width: 35%;
+        margin: 0 0 0 50px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .tablet-section{
+        padding:100px 0 50px 0;
+        display: flex;
+        justify-content: flex-end;
+        overflow-x: hidden;
+        height: 100%;
+    }
+    .tablet-section-right{
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 50px;
+    }
+    .tablet-section-left{
+        width: 40%;
+        margin: 0 30px 0 8%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .tablet-image{
+        width:90%;
+    }
 
     @media screen and (max-width: 1400px) {
         .small-title{
@@ -468,10 +603,9 @@
         .start-button {
             font-size: 20px;
             margin-top:5px;
-            width:105px;
         }
         nav{
-            padding: 0 70px;
+            padding: 0 40px 0 70px;
             height:70px;
         }
         .section-left{
@@ -501,14 +635,6 @@
         .section-right{
             margin-right: 30px;
         }
-        .login:hover ~ .underline{
-            left:99px;
-            width:60px;
-        }
-        .register:hover ~ .underline{
-            width:75px;
-            left:7px;
-        }
         .landing-text{
             padding: 70px 20px 0 20px;
         }
@@ -530,10 +656,16 @@
         .dots4{
             right:-30px;
         }
+        .blockchain{
+            width: 250px;
+        }
     }
     @media screen and (max-width: 1140px) {
         .small-title{
             font-size: 14px;
+        }
+        .notebook-section{
+            padding-bottom: 40px !important;
         }
         .main-title{
             font-size: 30px;
@@ -657,10 +789,6 @@
         .dots{
             display: none;
         }
-        .blue-background-section{
-            width: 100%;
-            height:75%;
-        }
         .section-bottom{
             display: none;
         }
@@ -753,19 +881,89 @@
         .section-five-left p {
             text-align: center;
         }
-        .underline{
-            display: none;
+        .text-right{
+            text-align: center;
+        }
+        .notebook-section{
+            padding:50px 0 100px 0;
+            flex-direction: column-reverse;
+        }
+        .notebook-section-right{
+            width: 100%;
+            position: initial;
+        }
+        .notebook-image{
+            width:70%;
+            position: initial;
+            align-self: flex-end;
+        }
+        .notebook-section-left{
+            width: 90%;
+            margin: 0;
+            padding: 8% 5% 0 5%;
+        }
+        .phone-section{
+            padding:0;
+            flex-direction: column;
+        }
+        .phone-section-right{
+            width: 90%;
+            margin: 0;
+            padding: 8% 5% 0 5%;
+            text-align: center;
+        }
+        .phone-image{
+            width:60%;
+        }
+        .phone-section-left{
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .tablet-section{
+            padding:50px 0 0 0;
+            flex-direction: column-reverse;
+        }
+        .tablet-section-right{
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .tablet-section-left{
+            width: 90%;
+            margin: 0;
+            padding: 8% 5% 0 5%;
+            text-align: center;
+        }
+        .tablet-image{
+            width:80%;
         }
     }
     @media screen and (max-width: 580px) {
         nav{
             padding: 0 10px 0 25px;
         }
-        .nav-links p{
-            padding:17px 10px;
+        .login{
+            margin: 0 6px;
+            width:90px;
+        }
+        .notebook-section{
+            height:auto;
+        }
+        .tablet-section{
+            height:auto;
         }
         .main-container{
             padding: 0 0 50px 0;
+        }
+        .notebook-image{
+            width:90%;
+        }
+        .notebook-section{
+            padding:50px 0 0 0;
         }
         .section-left{
             margin-top:30px;
@@ -786,7 +984,8 @@
             height: 300px;
         }
         .section-three{
-            padding: 50px 0;
+            padding: 50px 0 25px 0;
+            margin-top:0;
         }
         .section-three-left{
             margin: 0 0 25px 0;
@@ -817,6 +1016,12 @@
         .section-five{
             padding:25px 0;
             margin-top:0;
+        }
+        .center-text{
+            width:auto;
+        }
+        .section-five-right{
+            margin:0;
         }
     }
 </style>
