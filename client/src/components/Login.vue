@@ -22,7 +22,7 @@
                     <div class="form-input">
                         <input id="password" type="password" name="password" v-model="input.password" placeholder="Password" />
                     </div>
-                    <router-link to="/home" class="login-button" tag="button">Login</router-link>
+                    <button type="submit" class="login-button">Login</button>
                 </form>
             </div>
         </div>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+    import firebase from "firebase";
+
     export default {
         name: 'Login',
         data() {
@@ -42,8 +44,14 @@
         },
         methods: {
             login() {
-                console.log(this.input.email);
-                console.log(this.input.password);
+                firebase.auth().signInWithEmailAndPassword(this.input.email, this.input.password)
+                    .then(user => {
+                            console.log(user)
+                            this.$router.push('home')
+                        },
+                        err => {
+                            console.log(err.message);
+                        });
             }
         }
     }

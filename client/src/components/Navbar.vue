@@ -36,7 +36,7 @@
                     <div class="line"/>
                     <div class="dropdown-link logout">
                         <img src="../assets/logout.svg" alt="logout icon"/>
-                        <router-link to="/login" class="nav-logo">Log Out</router-link>
+                        <button v-on:click=logout class="nav-logo">Log Out</button>
                     </div>
                 </div>
                 <div class="dropdown-section-three">
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+    import firebase from 'firebase';
     import Notification from "./Notification";
     export default {
         name: "Navbar",
@@ -61,6 +62,13 @@
         data(){
             return{
                 isOpen:false
+            }
+        },
+        methods: {
+            logout(){
+                firebase.auth().signOut().then(() => {
+                    this.$router.push('login')
+                })
             }
         }
     }

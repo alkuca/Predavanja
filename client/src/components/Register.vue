@@ -28,7 +28,7 @@
                     <div class="form-input">
                         <input id="password2" type="password" name="password2" v-model="input.password2" placeholder="Repeat Password" />
                     </div>
-                    <router-link to="/login" class="register-button" tag="button">Register</router-link>
+                    <button type="submit" class="register-button">Register</button>
                 </form>
             </div>
         </div>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+    import firebase from 'firebase';
+
     export default {
         name: "Register",
         data() {
@@ -50,10 +52,14 @@
         },
         methods: {
             register() {
-                console.log(this.input.email);
-                console.log(this.input.username);
-                console.log(this.input.password);
-                console.log(this.input.password2);
+                firebase.auth().createUserWithEmailAndPassword(this.input.email, this.input.password)
+                    .then(user => {
+                        console.log(user)
+                        this.$router.push('home')
+                    },
+                    err => {
+                        console.log(err.message);
+                    });
             }
         }
     }
