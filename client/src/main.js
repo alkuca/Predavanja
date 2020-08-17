@@ -22,7 +22,7 @@ const router = new VueRouter({
     {path: "/", component: LandingPage, meta:{ requiresGuest: true }},
     {path: "/login", component: Login, meta:{ requiresGuest: true }},
     {path: "/account", component: Account, meta:{ requiresAuth: true }},
-    {path: "/lecture", component: Lecture, meta:{ requiresAuth: true }},
+    {path: "/lecture/:id", name: "lecture", component: Lecture, meta:{ requiresAuth: true }},
     {path: "/register", component: Register, meta:{ requiresGuest: true }},
     {path: "/topics", component: TopicSelect, meta:{ requiresAuth: true }},
     {path: "/home", component: Home, meta:{ requiresAuth: true }}

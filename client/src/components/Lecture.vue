@@ -8,24 +8,24 @@
                         <div class="lecturer-info">
                             <div class="lecturer-image-name">
                                 <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
-                                <h1>Adam Smith</h1>
+                                <h1>{{ lecture.author }}</h1>
                             </div>
                             <div class="white-line"/>
                             <div class="lecturer-details">
-                                <p>Lectures lectured: 8</p>
-                                <p>Rating 4.3/5</p>
+                                <p>Lectures lectured: {{ lecturesLectured.length}}</p>
+                                <p>Rating {{ rating }}/5</p>
                             </div>
                         </div>
                     </div>
                     <div class="top-right">
                         <div class="lecture-text">
-                            <h1>E-commerce Marketing</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                            <h1>{{  lecture.title }}</h1>
+                            <p>{{  lecture.description }}</p>
                         </div>
                         <div class="date-countdown">
                             <div>
-                                <h1>98h 32min 33sec until lecture starts</h1>
-                                <p>12 people are coming</p>
+                                <h1>{{ timeCountdown }} until lecture starts</h1>
+                                <p>{{ peopleInterested.length }} People are interested</p>
                             </div>
                         </div>
                     </div>
@@ -40,40 +40,39 @@
                                     <a v-on:click="toggleComments" v-bind:class="{linkActive: commentsToggle}">Comments</a>
                                     <a v-on:click="toggleReviews" v-bind:class="{linkActive: reviewsToggle}">Reviews</a>
                                 </div>
-                                <button class="interested-button">Interested</button>
+                                <button v-on:click="addToUpcoming" v-bind:class="{ disabled: this.upcoming_lectures.indexOf(this.$route.params.id) > -1 }"
+                                        class="interested-button">Interested</button>
                             </div>
                         </nav>
                         <div class="section-bottom-content">
                             <transition name="fade">
                                 <div v-if="detailsToggle" class="section-bottom-container">
-                                    <p>Date: 18.05.2020</p>
-                                    <p>Time: 18:00</p>
-                                    <p>Duration: 120 min</p>
-                                    <p>Location: 372 Rose Street</p>
-                                    <p>City: Pula</p>
-                                    <p>Additional instructions: First door on the right</p>
+                                    <p>Date: {{ dateHappening | moment }}</p>
+                                    <p>Time: {{ timeStarting }}</p>
+                                    <p>Duration: {{ duration }} minutes</p>
+                                    <p>Location: {{ address }}</p>
+                                    <p>City: {{ city }}</p>
+                                    <p>Additional instructions: {{ additionalInstructions }}</p>
                                     <div class="interested-button-mobile">
-                                        <button>Interested</button>
+                                        <button v-on:click="addToUpcoming" v-bind:class="{ disabled: this.upcoming_lectures.indexOf(this.$route.params.id) > -1 }">Interested</button>
                                     </div>
                                 </div>
                             </transition>
                             <transition name="fade">
                                 <div v-if="notesToggle" class="section-bottom-container">
-                                    <LectureNote/>
+                                    <LectureNote v-for="note in notes" :key="note.uid" :note="note"/>
                                 </div>
                             </transition>
                             <transition name="fade">
                                 <div v-if="commentsToggle" class="section-bottom-container">
-                                    <AddComment/>
-                                    <LectureComment/>
-                                    <LectureComment/>
-                                    <LectureComment/>
+                                    <AddComment :comments="this.comments"/>
+                                    <LectureComment v-for="comment in comments" :key="comment.uid" :comment="comment"/>
                                 </div>
                             </transition>
                             <transition name="fade">
                                 <div v-if="reviewsToggle" class="section-bottom-container">
                                     <AddReview/>
-                                    <LectureReview/>
+                                    <LectureReview v-for="review in reviews" :key="review.uid" :review="review"/>
                                 </div>
                             </transition>
                         </div>
@@ -91,15 +90,33 @@
     import LectureReview from "./LectureReview";
     import AddComment from "./AddComment";
     import AddReview from "./AddReview";
+    import firebase from "firebase";
+    import moment from 'moment'
+
     export default {
         name: "Lecture",
         components: {AddReview, AddComment, LectureReview, LectureComment, LectureNote, Navbar},
         data(){
             return{
-                detailsToggle:true,
-                notesToggle:false,
-                commentsToggle:false,
-                reviewsToggle:false
+              detailsToggle:true,
+              notesToggle:false,
+              commentsToggle:false,
+              reviewsToggle:false,
+              upcoming_lectures:"",
+              lecture:"",
+              lecturesLectured: "0",
+              rating: "0.0",
+              timeCountdown: "",
+              dateHappening: "",
+              peopleInterested: "",
+              timeStarting: "",
+              duration: "",
+              address: "",
+              city: "",
+              additionalInstructions: "",
+              notes:[],
+              comments:[],
+              reviews:[]
             }
         },
         methods:{
@@ -126,8 +143,56 @@
                 this.notesToggle = false;
                 this.commentsToggle = false;
                 this.reviewsToggle = true;
+            },
+            calculateTime(){
+              let time_now  = "16/08/2020 18:00:01";
+              let time_then = "18/08/2020 14:20:32";
+
+              let ms = moment(time_then,"DD/MM/YYYY HH:mm:ss").diff(moment(time_now,"DD/MM/YYYY HH:mm:ss"));
+              let d = moment.duration(ms);
+              this.timeCountdown = Math.floor(d.asHours())+ " hours and " + moment.utc(ms).format("mm") + " minutes";
+            },
+            addToUpcoming(){
+              let userRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid)
+              userRef.update({
+                upcoming_lectures: firebase.firestore.FieldValue.arrayUnion(this.$route.params.id)
+              });
+              this.upcoming_lectures.push(this.$route.params.id)
             }
+        },
+      filters: {
+        moment: function (date) {
+          return moment(date).format('MMMM Do YYYY');
         }
+      },
+      created() {
+        firebase.firestore().collection("lectures").doc(this.$route.params.id).get()
+            .then(doc => {
+              this.lecture = doc.data()
+              this.dateHappening = doc.data().date_happening.t
+              this.duration = doc.data().duration
+              this.city = doc.data().city
+              this.address = doc.data().address
+              this.location = doc.data().location
+              this.additionalInstructions = doc.data().additional_instructions
+              this.timeStarting = doc.data().time_starting
+              this.peopleInterested = doc.data().people_interested
+              this.notes = doc.data().notes
+              this.reviews = doc.data().reviews
+              this.comments = doc.data().comments
+
+              firebase.firestore().collection("users").doc(this.lecture.author_id).get()
+                  .then(doc => {
+                    this.lecturesLectured = doc.data().lectures_lectured
+                    this.rating = doc.data().rating;
+                  })
+            })
+        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+            .then(doc => {
+              this.upcoming_lectures = doc.data().upcoming_lectures
+            })
+        this.calculateTime();
+      }
     }
 </script>
 
@@ -334,6 +399,10 @@
     .bottom-info{
         display: flex;
         align-items: center;
+    }
+    .disabled{
+      pointer-events: none;
+      opacity: 0.4;
     }
 
     @media screen and (max-width: 1600px) {

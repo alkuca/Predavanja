@@ -94,7 +94,18 @@
                 this.finishedLecturesToggle = true;
                 this.dropdownText = "Finished";
             }
+        },
+      props: {
+        upcomingLectures: {
+          type: Array
+        },
+        attendedLectures: {
+          type: Array
+        },
+        myLectures: {
+          type: Array
         }
+      },
     }
 </script>
 

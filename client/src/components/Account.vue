@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="section-right">
-                <LecturesAccount v-if="lectures"/>
+                <LecturesAccount v-if="lectures" :upcomingLectures="this.upcomingLectures" :attendedLectures="this.attendedLectures" :myLectures="this.myLectures"/>
                 <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="this.togglePublishLecture"/>
                 <SubscribedTopics v-if="topics"/>
                 <PublishLecture v-if="publish"/>
@@ -49,6 +49,7 @@
     import SubscribedTopics from "./SubscribedTopics";
     import AccountSettings from "./AccountSettings";
     import Groups from "./Groups";
+    import firebase from "firebase";
     export default {
         name: "Account",
         components: {Groups, AccountSettings, SubscribedTopics, PublishLecture, BecomeLecturer, Navbar,LecturesAccount},
@@ -61,7 +62,12 @@
                 topics:false,
                 publish:false,
                 groups:false,
-                settings:false
+                settings:false,
+                currentUserToken: "",
+                currentUserProfile: "",
+                attendedLectures:[],
+                upcomingLectures:[],
+                myLectures:[]
             }
         },
         methods:{
@@ -112,8 +118,49 @@
                 this.publish = false;
                 this.groups = false;
                 this.settings = true;
+            },
+            getUserProfile(){
+              this.currentUserToken = firebase.auth().currentUser;
+
+              firebase.firestore().collection("users").doc(this.currentUserToken.uid).get()
+                  .then(
+                      (docRef) => {
+                        this.currentUserProfile = docRef.data();
+                      })
+                  .catch(
+                      (error) => {
+                        console.log(error)
+                      })
+            },
+            getAllLectures(){
+              firebase.firestore().collection("lectures").get()
+                  .then(
+                      (querySnapshot) => {
+                        this.allLectures = querySnapshot.docs.map(doc => {
+                          const data = doc.data();
+                          data.id = doc.id;
+                          return data
+                        });
+                        this.attendedLectures = this.allLectures.filter((x) => {
+                          return Object.values(!this.currentUserProfile.attended_lectures).indexOf(x.id) === -1;
+                        });
+                        this.upcomingLectures = this.allLectures.filter((x) => {
+                          return Object.values(!this.currentUserProfile.upcoming_lectures).indexOf(x.id) === -1;
+                        });
+                        this.myLectures = this.allLectures.filter((x) => {
+                          return Object.values(!this.currentUserToken.uid).indexOf(x.id) === -1;
+                        });
+                      })
+                  .catch(
+                      (error) => {
+                        console.log(error)
+                      })
             }
-        }
+          },
+      created(){
+        this.getUserProfile();
+        this.getAllLectures();
+      }
     }
 </script>
 

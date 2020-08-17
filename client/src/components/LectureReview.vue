@@ -1,29 +1,36 @@
 <template>
     <div class="review-container">
         <div class="review-top">
-            <h1>Stacey Johnson</h1>
+            <h1>{{ review.user }}</h1>
             <div class="time">
-                <p>19.05.2020</p>
-                <p>at 13:56</p>
+              <p>{{ review.date | moment }}</p>
             </div>
         </div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus. Consectetur adipiscing elit.
-            Vivamus ut dolor purus.
-        </p>
+        <p>{{ review.value }}</p>
         <div class="stars-container">
-            <star-rating :rating="3.8" :show-rating="false" :star-size="15" :read-only="true" :increment="0.01"></star-rating>
+            <star-rating :rating="review.rating" :show-rating="false" :star-size="15" :read-only="true" :increment="0.01"></star-rating>
         </div>
     </div>
 </template>
 
 <script>
     import StarRating from "vue-star-rating";
+    import moment from "moment";
 
     export default {
         name: "LectureReview",
         components: {
             StarRating
+        },
+        props:{
+          review:{
+            type: Object
+          }
+        },
+        filters: {
+          moment: function (date) {
+            return moment(date).format("MMMM Do YYYY, H:mm");
+          }
         },
         data(){
             return{

@@ -1,24 +1,30 @@
 <template>
     <div class="comment-container">
         <div class="comment-top">
-            <h1>Stacey Smith</h1>
+            <h1>{{ comment.user }}</h1>
             <div class="time">
-                <p>19.05.2020</p>
-                <p>at 13:56</p>
+              <p>{{ comment.date | moment }}</p>
             </div>
         </div>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.
-            Lorem ipsum dolor sit amet consectetur adipiscing. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Vivamus ut dolor purus.Lorem ipsum dolor sit amet
-            consectetur adipiscing.
-        </p>
+        <p>{{ comment.value }}</p>
     </div>
 </template>
 
 <script>
+  import moment from "moment";
+
     export default {
-        name: "LectureComment"
+      name: "LectureComment",
+      props:{
+        comment:{
+          type: Object
+        }
+      },
+      filters: {
+        moment: function (date) {
+          return moment(date).format("MMMM Do YYYY, H:mm");
+        }
+      },
     }
 </script>
 

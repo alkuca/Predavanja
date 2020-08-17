@@ -5,26 +5,26 @@
                 <div class="lecturer-image-name">
                     <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
                     <img class="star" src="../assets/star.png" alt="star"/>
-                    <h1>Adam Smith</h1>
+                    <h1>{{ lecture.author }}</h1>
                 </div>
                 <div class="white-line"/>
                 <div class="lecturer-details">
-                    <p>Lectures lectured: 8</p>
-                    <p>Rating 4.3/5</p>
+                    <p>Lectures lectured: {{ lecturesLectured.length }}</p>
+                    <p>Rating {{ rating }}/5</p>
                 </div>
             </div>
         </div>
         <div class="section-right">
             <div class="lecture-text">
-                <h1>E-commerce Marketing</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+                <h1>{{ lecture.title }}</h1>
+                <p>{{ lecture.description }}</p>
             </div>
             <div class="date-section">
                 <div class="date">
-                    <p>Date: 18.02.2020</p>
-                    <p>People interested: 24</p>
+                    <p>Date: {{ lecture.date_happening.t | moment }}</p>
+                    <p>People interested: {{ lecture.people_interested.length }}</p>
                 </div>
-                <router-link to="/lecture">
+                <router-link v-bind:to="{ name: 'lecture', params: {id: this.lecture.id}}">
                     <button>View Details</button>
                 </router-link>
             </div>
@@ -33,8 +33,34 @@
 </template>
 
 <script>
+import moment from 'moment'
+import firebase from "firebase";
+
     export default {
-        name: "LectureCard"
+      name: "LectureCard",
+      data(){
+        return{
+          lecturesLectured: "0",
+          rating: "0.0"
+        }
+      },
+      props:{
+          lecture:{
+            type: Object
+          }
+      },
+      filters: {
+        moment: function (date) {
+          return moment(date).format('MMMM Do YYYY');
+        }
+      },
+      created() {
+        firebase.firestore().collection("users").doc(this.lecture.author_id).get()
+        .then(doc => {
+          this.lecturesLectured = doc.data().lectures_lectured
+          this.rating = doc.data().rating;
+        })
+      }
     }
 </script>
 

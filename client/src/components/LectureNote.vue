@@ -1,19 +1,25 @@
 <template>
-    <div class="note-container">
-        <h1>12h ago</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.
-            Lorem ipsum dolor sit amet consectetur adipiscing. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Vivamus ut dolor purus.Lorem ipsum dolor sit amet
-            consectetur adipiscing.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Vivamus ut dolor purus.
-        </p>
-    </div>
+  <div class="note-container">
+    <h1>{{ note.date | moment }}</h1>
+    <p>{{ note.value }}</p>
+  </div>
 </template>
 
 <script>
+    import moment from "moment";
+
     export default {
-        name: "LectureNote"
+      name: "LectureNote",
+      props:{
+        note:{
+          type: Object
+        }
+      },
+      filters: {
+        moment: function (date) {
+          return moment(date).format("MMMM Do YYYY, H:mm");
+        }
+      }
     }
 </script>
 

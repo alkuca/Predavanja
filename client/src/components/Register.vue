@@ -17,6 +17,12 @@
             <div class="register-form">
                 <form v-on:submit.prevent="register()">
                     <div class="form-input">
+                        <input id="firstName" type="text" name="firstName" v-model="input.firstName" placeholder="First Name" />
+                    </div>
+                    <div class="form-input">
+                        <input id="secondName" type="text" name="secondName" v-model="input.secondName" placeholder="Second Name" />
+                    </div>
+                    <div class="form-input">
                         <input id="username" type="text" name="username" v-model="input.username" placeholder="Username" />
                     </div>
                     <div class="form-input">
@@ -43,6 +49,8 @@
         data() {
             return {
                 input: {
+                    firstName:"",
+                    secondName:"",
                     username:"",
                     email: "",
                     password: "",
@@ -52,14 +60,23 @@
         },
         methods: {
             register() {
+              if(this.input.password !== this.input.password2){
+                alert("passwords dont match")
+              }else{
                 firebase.auth().createUserWithEmailAndPassword(this.input.email, this.input.password)
                     .then(user => {
-                        console.log(user)
-                        this.$router.push('home')
-                    },
-                    err => {
-                        console.log(err.message);
-                    });
+                          //create user profile with additional data in user collection
+                          firebase.firestore().collection("users").doc(user.user.uid).set({
+                            firstName: this.input.firstName,
+                            secondName: this.input.secondName,
+                            username: this.input.username,
+                          })
+                          this.$router.push('home')
+                        },
+                        err => {
+                          console.log(err.message);
+                        });
+              }
             }
         }
     }
@@ -77,7 +94,6 @@
     }
     .register-form-container{
         width:375px;
-        height:450px;
         background:white;
         border-radius:5px;
         box-shadow: 0 0 11px rgba(0, 0, 0, 0.18);
@@ -93,7 +109,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        height: 27%;
+        margin:25px 0;
     }
     .logo-container img{
         width:200px;
@@ -109,7 +125,7 @@
         margin:0 0 35px 0;
     }
     .register-button{
-        margin:20px 0 25px 0;
+        margin:5px 0 30px 0;
         height:35px;
         background:#2E34CC;
         color:white;
@@ -138,7 +154,7 @@
         outline:0;
         border-bottom: 1px solid #ABABAB;
         text-indent: 4px;
-        padding-bottom:5px;
+        padding-bottom:4px;
     }
     .top-left-title h1{
         font-size: 26px;

@@ -21,8 +21,8 @@
                 <div class="dropdown-section-one">
                     <img src="../assets/profileImage.png" alt="profile image"/>
                     <div class="user-details">
-                        <p class="name">John Doe</p>
-                        <p class="username">username</p>
+                        <p class="name">{{ this.currentUserProfile.firstName + " " + this.currentUserProfile.secondName }}</p>
+                        <p class="username">{{ this.currentUserProfile.username }}</p>
                         <p class="user-type">Basic User</p>
                     </div>
                 </div>
@@ -34,16 +34,17 @@
                         <router-link to="/account" class="nav-logo">Profile</router-link>
                     </div>
                     <div class="line"/>
-                    <div class="dropdown-link logout">
-                        <img src="../assets/logout.svg" alt="logout icon"/>
-                        <button v-on:click=logout class="nav-logo">Log Out</button>
-                    </div>
+
                 </div>
                 <div class="dropdown-section-three">
                     <Notification/>
                     <Notification/>
                     <Notification/>
                     <div class="clear-all-container">
+                      <div class="dropdown-link logout">
+                        <img src="../assets/logout.svg" alt="logout icon"/>
+                        <button v-on:click=logout class="nav-logo">Log Out</button>
+                      </div>
                         <button>clear all</button>
                     </div>
                 </div>
@@ -61,7 +62,9 @@
         components: {Notification},
         data(){
             return{
-                isOpen:false
+              isOpen: false,
+              currentUserToken: "",
+              currentUserProfile: ""
             }
         },
         methods: {
@@ -70,7 +73,20 @@
                     this.$router.push('login')
                 })
             }
-        }
+        },
+        created() {
+         this.currentUserToken = firebase.auth().currentUser;
+
+          firebase.firestore().collection("users").doc(this.currentUserToken.uid).get()
+              .then(
+                  (docRef) => {
+                    this.currentUserProfile = docRef.data();
+                  })
+              .catch(
+                  (error) => {
+                    console.log(error)
+                  })
+       }
     }
 </script>
 
@@ -250,7 +266,7 @@
      }
      .clear-all-container{
          display: flex;
-         justify-content: flex-end;
+         justify-content: space-between;
      }
      .clear-all-container button{
         border:0;

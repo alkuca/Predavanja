@@ -3,22 +3,15 @@
         <Navbar/>
         <LecturesNavbar v-on:childToParent="onChildClick"/>
         <div class="lectures-container">
-            <div class="lectures" v-if="lectureNavToggle === 'following'">
-                <LectureCard/>
-                <LectureCard/>
-                <LectureCard/>
-            </div>
-            <div class="lectures" v-if="lectureNavToggle === 'all'">
-                <LectureCard/>
-                <LectureCard/>
-                <LectureCard/>
-                <LectureCard/>
-                <LectureCard/>
-                <LectureCard/>
-            </div>
-            <div class="lectures" v-if="lectureNavToggle === 'upcoming'">
-                <LectureCard/>
-            </div>
+          <div class="lectures" v-if="lectureNavToggle === 'following'">
+            <LectureCard v-for="lecture in followingLectures" :key="lecture.id" :lecture="lecture"/>
+          </div>
+          <div class="lectures" v-if="lectureNavToggle === 'all'">
+            <LectureCard v-for="lecture in allLectures" :key="lecture.id" :lecture="lecture"/>
+          </div>
+          <div class="lectures" v-if="lectureNavToggle === 'upcoming'">
+            <LectureCard v-for="lecture in upcomingLectures" :key="lecture.id" :lecture="lecture"/>
+          </div>
         </div>
     </div>
 </template>
@@ -27,19 +20,63 @@
     import Navbar from "./Navbar";
     import LecturesNavbar from "./LecturesNavbar";
     import LectureCard from "./LectureCard";
+    import firebase from "firebase";
     export default {
         name: "Home",
         components: {LectureCard, Navbar, LecturesNavbar},
         data(){
             return{
-                lectureNavToggle:"following"
+              lectureNavToggle:"following",
+              allLectures:[],
+              currentUserToken: "",
+              currentUserProfile: "",
+              followingLectures:[],
+              upcomingLectures:[]
             }
         },
         methods: {
             onChildClick (value) {
                 this.lectureNavToggle = value
+            },
+            getUserProfile(){
+              this.currentUserToken = firebase.auth().currentUser;
+
+              firebase.firestore().collection("users").doc(this.currentUserToken.uid).get()
+                  .then(
+                      (docRef) => {
+                        this.currentUserProfile = docRef.data();
+                      })
+                  .catch(
+                      (error) => {
+                        console.log(error)
+                      })
+            },
+            getAllLectures(){
+              firebase.firestore().collection("lectures").get()
+                  .then(
+                      (querySnapshot) => {
+                       this.allLectures = querySnapshot.docs.map(doc => {
+                         const data = doc.data();
+                         data.id = doc.id;
+                         return data
+                       });
+                        this.followingLectures = this.allLectures.filter((x) => {
+                          return Object.values(!this.currentUserProfile.following_lectures).indexOf(x.id) === -1;
+                        });
+                        this.upcomingLectures = this.allLectures.filter((x) => {
+                          return Object.values(!this.currentUserProfile.upcoming_lectures).indexOf(x.id) === -1;
+                        });
+                     })
+                  .catch(
+                      (error) => {
+                       console.log(error)
+                     })
             }
-        }
+          },
+      created() {
+        this.getUserProfile();
+        this.getAllLectures();
+      }
     }
 </script>
 

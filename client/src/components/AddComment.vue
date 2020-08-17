@@ -4,15 +4,45 @@
             <h1>Comment as Adam Smith</h1>
         </div>
         <form>
-            <textarea required class="textarea" id="comment" name="comment"/>
-            <button>Post</button>
+            <textarea required class="textarea" id="comment" name="comment" v-model="value"/>
+            <button v-on:click="postComment">Post</button>
         </form>
     </div>
 </template>
 
 <script>
+    import firebase from "firebase";
+
     export default {
-        name: "AddComment"
+      name: "AddComment",
+      data(){
+        return{
+          author: "Adam",
+          value: ""
+        }
+      },
+      props:{
+        comments:{
+          type: Array
+        }
+      },
+      methods:{
+        postComment(e){
+          e.preventDefault()
+          let newComment = {
+            user : this.author,
+            value : this.value,
+            date : Date.now(),
+            user_id : firebase.auth().currentUser.uid
+          }
+          let lectureRef = firebase.firestore().collection("lectures").doc(this.$route.params.id)
+          lectureRef.update({
+            comments: firebase.firestore.FieldValue.arrayUnion(newComment)
+          });
+          this.comments.push(newComment)
+          this.value = ""
+        }
+      }
     }
 </script>
 
