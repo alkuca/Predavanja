@@ -54,7 +54,7 @@
                                     <p>City: {{ city }}</p>
                                     <p>Additional instructions: {{ additionalInstructions }}</p>
                                     <div class="interested-button-mobile">
-                                        <button v-on:click="addToUpcoming" v-bind:class="{ disabled: this.upcoming_lectures.indexOf(this.$route.params.id) > -1 }">Interested</button>
+                                        <button v-on:click="addToUpcoming" v-bind:class="{ disabled: upcoming_lectures.indexOf(this.$route.params.id) > -1 }">Interested</button>
                                     </div>
                                 </div>
                             </transition>
@@ -65,13 +65,13 @@
                             </transition>
                             <transition name="fade">
                                 <div v-if="commentsToggle" class="section-bottom-container">
-                                    <AddComment :comments="this.comments"/>
+                                    <AddComment :comments="comments" :first-name="firstName" :second-name="secondName"/>
                                     <LectureComment v-for="comment in comments" :key="comment.uid" :comment="comment"/>
                                 </div>
                             </transition>
                             <transition name="fade">
                                 <div v-if="reviewsToggle" class="section-bottom-container">
-                                    <AddReview/>
+                                    <AddReview :reviews="reviews" :first-name="firstName" :second-name="secondName"/>
                                     <LectureReview v-for="review in reviews" :key="review.uid" :review="review"/>
                                 </div>
                             </transition>
@@ -116,7 +116,9 @@
               additionalInstructions: "",
               notes:[],
               comments:[],
-              reviews:[]
+              reviews:[],
+              firstName: "",
+              secondName: "",
             }
         },
         methods:{
@@ -190,6 +192,8 @@
         firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
             .then(doc => {
               this.upcoming_lectures = doc.data().upcoming_lectures
+              this.firstName = doc.data().firstName
+              this.secondName = doc.data().secondName
             })
         this.calculateTime();
       }

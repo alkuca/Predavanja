@@ -1,7 +1,7 @@
 <template>
     <div class="add-comment-container">
         <div class="add-comment-top">
-            <h1>Comment as Adam Smith</h1>
+            <h1>Comment as {{ firstName }} {{ secondName }}</h1>
         </div>
         <form>
             <textarea required class="textarea" id="comment" name="comment" v-model="value"/>
@@ -17,20 +17,25 @@
       name: "AddComment",
       data(){
         return{
-          author: "Adam",
           value: ""
         }
       },
       props:{
         comments:{
           type: Array
+        },
+        firstName:{
+          type: String
+        },
+        secondName:{
+          type: String
         }
       },
       methods:{
         postComment(e){
           e.preventDefault()
           let newComment = {
-            user : this.author,
+            user : this.firstName + " " + this.secondName,
             value : this.value,
             date : Date.now(),
             user_id : firebase.auth().currentUser.uid
@@ -42,7 +47,7 @@
           this.comments.push(newComment)
           this.value = ""
         }
-      }
+      },
     }
 </script>
 

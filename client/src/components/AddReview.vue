@@ -1,34 +1,64 @@
 <template>
     <div class="add-review-container">
         <div class="add-review-top">
-            <h1>Add a review as Adam Smith</h1>
+            <h1>Add a review as {{ firstName }} {{ secondName }}</h1>
         </div>
         <form>
-            <textarea required class="textarea" id="comment" name="comment"/>
+            <textarea required class="textarea" id="review" name="review" v-model="value"/>
             <div class="rate-container">
                 <star-rating :star-size="20" :show-rating="false" v-model="rating"></star-rating>
-                <button>Post</button>
+                <button v-on:click="postReview">Post</button>
             </div>
         </form>
-        <div class="stars-container">
-
-        </div>
+        <div class="stars-container"/>
     </div>
 </template>
 
 <script>
     import StarRating from "vue-star-rating";
+    import firebase from "firebase";
 
     export default {
-        name: "AddReview",
-        components: {
-            StarRating
+      name: "AddReview",
+      components: {
+        StarRating
+      },
+      data(){
+        return{
+          rating: 0,
+          value: ""
+        }
+      },
+      props:{
+        reviews:{
+          type: Array
         },
-        data(){
-            return{
-                rating: 0
-            }
+        firstName:{
+          type: String
         },
+        secondName:{
+          type: String
+        }
+      },
+      methods:{
+        postReview(e){
+          e.preventDefault()
+          let newReview = {
+            user : this.firstName + " " + this.secondName,
+            value : this.value,
+            rating: this.rating,
+            date : Date.now(),
+            user_id : firebase.auth().currentUser.uid
+          }
+          let lectureRef = firebase.firestore().collection("lectures").doc(this.$route.params.id)
+          lectureRef.update({
+            reviews: firebase.firestore.FieldValue.arrayUnion(newReview)
+          });
+          this.reviews.push(newReview)
+          this.value = ""
+          this.rating = 0
+        }
+      },
     }
 </script>
 
