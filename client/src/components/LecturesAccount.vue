@@ -19,26 +19,22 @@
         </nav>
         <div class="content">
             <div class="upcoming-lectures-container" v-if="upcomingLecturesToggle">
-                <UpcomingLecture/>
-                <UpcomingLecture/>
-                <UpcomingLecture/>
-                <UpcomingLecture/>
+                <UpcomingLecture v-for="upcomingLecture in upcomingLectures" :key="upcomingLecture.id" :upcomingLecture="upcomingLecture"/>
             </div>
             <div class="attended-lectures-container" v-if="attendedLecturesToggle">
-                <AttendedLecture/>
-                <AttendedLecture/>
-                <AttendedLecture/>
-                <AttendedLecture/>
-                <AttendedLecture/>
-                <AttendedLecture/>
-                <AttendedLecture/>
+                <AttendedLecture v-for="attendedLecture in attendedLectures" :key="attendedLecture.id" :attendedLecture="attendedLecture"/>
             </div>
             <div v-if="activeLecturesToggle">
-                <UpcomingLecture :activeLecturesToggle="activeLecturesToggle"/>
+                <ActiveLecture :activeLecturesToggle="activeLecturesToggle"
+                                 v-for="myActiveLecture in myActiveLectures"
+                                 :key="myActiveLecture.id"
+                                 :myActiveLecture="myActiveLecture"/>
             </div>
             <div v-if="finishedLecturesToggle">
-                <AttendedLecture :finishedLectureToggle="finishedLecturesToggle"/>
-                <AttendedLecture :finishedLectureToggle="finishedLecturesToggle"/>
+                <FinishedLecture :finishedLectureToggle="finishedLecturesToggle"
+                                 v-for="myFinishedLecture in myFinishedLectures"
+                                 :key="myFinishedLecture.id"
+                                 :myFinishedLecture="myFinishedLecture"/>
             </div>
         </div>
     </div>
@@ -47,10 +43,12 @@
 <script>
     import UpcomingLecture from "./UpcomingLecture";
     import AttendedLecture from "./AttendedLecture";
+    import ActiveLecture from "@/components/ActiveLecture";
+    import FinishedLecture from "@/components/FinishedLecture";
 
     export default {
         name: "AccountSectionRight",
-        components: {AttendedLecture, UpcomingLecture},
+        components: {FinishedLecture, ActiveLecture, AttendedLecture, UpcomingLecture},
         data(){
             return{
                 isOpen:false,
@@ -58,7 +56,10 @@
                 attendedLecturesToggle: false,
                 upcomingLecturesToggle:true,
                 activeLecturesToggle:false,
-                finishedLecturesToggle:false
+                finishedLecturesToggle:false,
+                finishedLectures:[],
+                myActiveLectures:[],
+                myFinishedLectures:[]
             }
         },
         methods:{
@@ -79,7 +80,9 @@
                 this.dropdownText = "My Lectures";
             },
             toggleActiveLectures(){
-
+                this.myActiveLectures = this.myLectures.filter(x => {
+                  return x.is_completed === false;
+                });
                 this.attendedLecturesToggle = false;
                 this.upcomingLecturesToggle = false;
                 this.activeLecturesToggle = true;
@@ -87,13 +90,15 @@
                 this.dropdownText = "Active";
             },
             toggleFinishedLectures(){
-
+                this.myFinishedLectures = this.myLectures.filter(x => {
+                  return x.is_completed === true;
+                });
                 this.attendedLecturesToggle = false;
                 this.upcomingLecturesToggle = false;
                 this.activeLecturesToggle = false;
                 this.finishedLecturesToggle = true;
                 this.dropdownText = "Finished";
-            }
+            },
         },
       props: {
         upcomingLectures: {

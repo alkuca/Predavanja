@@ -1,21 +1,31 @@
 <template>
-    <router-link to="/lecture">
+    <router-link v-bind:to="{ name: 'lecture', params: {id: upcomingLecture.id}}">
         <div class="upcoming-lecture">
-            <p class="date">22.04.2020</p>
-            <p class="title">Functional Programing</p>
-            <div v-if="!activeLecturesToggle" class="lecturer">
+            <p class="date">{{ upcomingLecture.date_happening | moment  }}</p>
+            <p class="title">{{ upcomingLecture.title }}</p>
+            <div class="lecturer">
                 <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
-                <p class="name">John Doe</p>
+                <p class="name">{{  upcomingLecture.author }}</p>
             </div>
-            <p v-if="activeLecturesToggle">Interested: 12</p>
         </div>
     </router-link>
 </template>
 
 <script>
+    import moment from "moment";
+
     export default {
-        name: "UpcomingLecture",
-        props:["activeLecturesToggle"]
+      name: "UpcomingLecture",
+      props: {
+        upcomingLecture:{
+          type: Object
+        }
+      },
+      filters: {
+        moment: function (date) {
+          return moment(date).format("MMMM Do YYYY");
+        }
+      }
     }
 </script>
 

@@ -29,8 +29,8 @@
                 </div>
             </div>
             <div class="section-right">
-                <LecturesAccount v-if="lectures" :upcomingLectures="this.upcomingLectures" :attendedLectures="this.attendedLectures" :myLectures="this.myLectures"/>
-                <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="this.togglePublishLecture"/>
+                <LecturesAccount v-if="lectures" :upcomingLectures="upcomingLectures" :attendedLectures="attendedLectures" :myLectures="myLectures"/>
+                <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture"/>
                 <SubscribedTopics v-if="topics"/>
                 <PublishLecture v-if="publish"/>
                 <Groups v-if="groups"/>
@@ -57,7 +57,7 @@
             return{
                 attendedLecturesToggle: false,
                 isOpen:false,
-                lectures:true,
+                lectures:false,
                 becomeLecturer:false,
                 topics:false,
                 publish:false,
@@ -65,6 +65,7 @@
                 settings:false,
                 currentUserToken: "",
                 currentUserProfile: "",
+                allLectures:[],
                 attendedLectures:[],
                 upcomingLectures:[],
                 myLectures:[]
@@ -137,9 +138,7 @@
                   .then(
                       (querySnapshot) => {
                         this.allLectures = querySnapshot.docs.map(doc => {
-                          const data = doc.data();
-                          data.id = doc.id;
-                          return data
+                          return { id: doc.id, ...doc.data() }
                         });
                         this.attendedLectures = this.allLectures.filter((x) => {
                           return Object.values(!this.currentUserProfile.attended_lectures).indexOf(x.id) === -1;
@@ -157,9 +156,10 @@
                       })
             }
           },
-      created(){
+      mounted(){
         this.getUserProfile();
         this.getAllLectures();
+        this.lectures = true;
       }
     }
 </script>
