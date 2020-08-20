@@ -10,35 +10,51 @@
                 <button class="return-button" v-if="editToggled" v-on:click="toggleEdit">
                     <img class="return-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" />
                 </button>
-                <button v-on:click="toggleEdit" v-if="editToggled" class="save-button">Save Changes</button>
+                <button v-on:click="updateTopics" v-if="editToggled" class="save-button">Save Changes</button>
             </div>
         </div>
         <div v-if="!editToggled" class="subscribed-topics-container">
             <ul>
-                <li v-for="topic in allTopics" v-bind:key="topic">
-                    {{topic}}
+                <li v-for="topic in subscribedTopics" v-bind:key="topic">
+                    {{ topic }}
                 </li>
             </ul>
         </div>
-        <TopicSelect v-if="editToggled" :allTopics="allTopics"/>
+        <TopicSelect v-if="editToggled" :allTopics="allTopics" :subscribedTopics="subscribedTopics" v-on:childToParent="onChildClick"/>
     </div>
 </template>
 
 <script>
     import TopicSelect from "./TopicSelect";
+    import firebase from "firebase";
     export default {
         name: "SubscribedTopics",
         components: {TopicSelect},
         data() {
             return {
-                checkedTopics: [],
+                checkedTopics: null,
                 allTopics: ["Ekonomija", "Matematika", "Informatika", "Programiranje", "Blockchain", "Marketing", "Facebook Marketing"],
                 editToggled: false
+            }
+        },
+        props:{
+            subscribedTopics:{
+              type:Array
             }
         },
         methods:{
             toggleEdit(){
                 this.editToggled = !this.editToggled
+            },
+            onChildClick (value) {
+              this.checkedTopics = value
+            },
+            updateTopics(){
+              let userRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid)
+              userRef.update({
+                subscribed_topics: this.checkedTopics
+              });
+              this.toggleEdit();
             }
         }
     }

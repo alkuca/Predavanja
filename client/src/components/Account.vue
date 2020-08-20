@@ -31,7 +31,7 @@
             <div class="section-right">
                 <LecturesAccount v-if="lectures" :upcomingLectures="upcomingLectures" :attendedLectures="attendedLectures" :myLectures="myLectures"/>
                 <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture"/>
-                <SubscribedTopics v-if="topics"/>
+                <SubscribedTopics v-if="topics" :subscribedTopics="currentUserProfile.subscribed_topics"/>
                 <PublishLecture v-if="publish"/>
                 <Groups v-if="groups"/>
                 <AccountSettings v-if="settings"/>
@@ -57,7 +57,7 @@
             return{
                 attendedLecturesToggle: false,
                 isOpen:false,
-                lectures:false,
+                lectures:true,
                 becomeLecturer:false,
                 topics:false,
                 publish:false,
@@ -159,7 +159,6 @@
       mounted(){
         this.getUserProfile();
         this.getAllLectures();
-        this.lectures = true;
       }
     }
 </script>

@@ -22,7 +22,7 @@
                 checkedTopics: []
             }
         },
-        props: ['allTopics'],
+        props: ['allTopics','subscribedTopics'],
         methods: {
             handleSelectItem(item){
                 if(!this.checkedTopics.includes(item) ){
@@ -31,8 +31,19 @@
                     let index = this.checkedTopics.indexOf(item);
                     this.$delete(this.checkedTopics, index)
                 }
-            }
-        }
+              this.emitToParent(this.checkedTopics);
+            },
+          emitToParent (a) {
+            this.$emit('childToParent', a)
+          },
+          selectAlreadySubscribedTopics(){
+            this.checkedTopics = this.subscribedTopics;
+            this.emitToParent(this.checkedTopics);
+          },
+        },
+      mounted() {
+        this.selectAlreadySubscribedTopics()
+      }
     }
 </script>
 

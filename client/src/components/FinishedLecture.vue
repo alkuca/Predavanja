@@ -1,5 +1,5 @@
 <template>
-  <router-link to="asd">
+  <router-link v-bind:to="{ name: 'lecture', params: {id: myFinishedLecture.id}}">
     <div class="attended-lecture">
       <p class="title">{{ myFinishedLecture.title }}</p>
       <p class="rating">Rating: {{ myFinishedLecture.rating }}/5</p>

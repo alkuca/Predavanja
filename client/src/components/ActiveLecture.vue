@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/lecture">
+  <router-link v-bind:to="{ name: 'lecture', params: {id: myActiveLecture.id}}">
     <div class="upcoming-lecture">
       <p class="date">{{  myActiveLecture.date_happening | moment }}</p>
       <p class="title">{{ myActiveLecture.title }}</p>
