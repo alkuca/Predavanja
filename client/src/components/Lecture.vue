@@ -147,7 +147,7 @@
                 this.reviewsToggle = true;
             },
             calculateTime(){
-              let time_now  = "16/08/2020 18:00:01";
+              let time_now  = "16/08/2020 18:00:00";
               let time_then = "18/08/2020 14:20:32";
 
               let ms = moment(time_then,"DD/MM/YYYY HH:mm:ss").diff(moment(time_now,"DD/MM/YYYY HH:mm:ss"));
@@ -171,7 +171,7 @@
         firebase.firestore().collection("lectures").doc(this.$route.params.id).get()
             .then(doc => {
               this.lecture = doc.data()
-              this.dateHappening = doc.data().date_happening.t
+              this.dateHappening = doc.data().date_happening
               this.duration = doc.data().duration
               this.city = doc.data().city
               this.address = doc.data().address

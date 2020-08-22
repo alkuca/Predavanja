@@ -21,7 +21,7 @@
             </div>
             <div class="date-section">
                 <div class="date">
-                    <p>Date: {{ lecture.date_happening.t | moment }}</p>
+                    <p>Date: {{ lecture.date_happening | moment }}</p>
                     <p>People interested: {{ lecture.people_interested.length }}</p>
                 </div>
                 <router-link v-bind:to="{ name: 'lecture', params: {id: this.lecture.id}}">

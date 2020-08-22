@@ -32,7 +32,7 @@
                 <LecturesAccount v-if="lectures" :upcomingLectures="upcomingLectures" :attendedLectures="attendedLectures" :myLectures="myLectures"/>
                 <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture"/>
                 <SubscribedTopics v-if="topics" :subscribedTopics="currentUserProfile.subscribed_topics"/>
-                <PublishLecture v-if="publish"/>
+                <PublishLecture v-if="publish" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid"/>
                 <Groups v-if="groups"/>
                 <AccountSettings v-if="settings"/>
             </div>

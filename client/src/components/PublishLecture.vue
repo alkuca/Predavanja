@@ -6,7 +6,7 @@
                 <span v-if="step === 1">/ Name</span>
                 <span v-if="step === 2">/ Description</span>
                 <span v-if="step === 3">/ Location and Time</span>
-                <span v-if="step === 4">/ Notes</span>
+                <span v-if="step === 4">/ Instructions</span>
                 <span v-if="step === 5">/ Settings</span>
             </div>
             <div class="nav-buttons">
@@ -14,7 +14,7 @@
                     <img class="return-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" />
                 </button>
                 <button v-if="step !== totalSteps && !formSuccess" class="continue-button" v-on:click="nextStep">Next Step</button>
-                <button v-if="step === totalSteps && !formSuccess" class="continue-button" v-on:click="sendForm">Finish</button>
+                <button v-if="step === totalSteps && !formSuccess" class="continue-button" v-on:click="sendForm">Publish</button>
             </div>
         </div>
         <form>
@@ -22,7 +22,7 @@
                 <div class="step-content">
                     <div class="form-input">
                         <label for="LectureName">Lecture's Name:</label>
-                        <input id="LectureName" type="text" name="LectureName"/>
+                        <input id="LectureName" type="text" name="LectureName" v-model="newLecture.title"/>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="step-content">
                     <div class="form-input">
                         <label for="LectureDescription">Lecture's Description:</label>
-                        <textarea required class="textarea" id="LectureDescription" name="LectureDescription"/>
+                        <textarea required class="textarea" id="LectureDescription" name="LectureDescription" v-model="newLecture.description"/>
                     </div>
                 </div>
             </div>
@@ -38,62 +38,76 @@
                 <div class="step">
                     <div class="form-input form-input-left">
                         <label for="LectureCity">City:</label>
-                        <input id="LectureCity" type="text" name="LectureCity"/>
+                        <input id="LectureCity" type="text" name="LectureCity" v-model="newLecture.city"/>
                     </div>
                     <div class="form-input form-input-left">
                         <label for="LectureAddress">Address:</label>
-                        <input id="LectureAddress" type="text" name="LectureAddress"/>
+                        <input id="LectureAddress" type="text" name="LectureAddress" v-model="newLecture.address"/>
                     </div>
                     <div class="form-input form-input-left">
-                        <label for="LectureAddressNumber">Address Number:</label>
-                        <input id="LectureAddressNumber" type="text" name="LectureAddressNumber"/>
+                      <label for="LectureDate">Date:</label>
+                      <input id="LectureDate" type="date" name="LectureDate" v-model="newLecture.date_happening"/>
                     </div>
                     <div class="form-input form-input-left">
                         <label for="LectureTime">Start Time:</label>
-                        <input id="LectureTime" type="text" name="LectureTime"/>
+                        <input id="LectureTime" type="time" name="LectureTime" v-model="newLecture.time_starting"/>
                     </div>
                     <div class="form-input form-input-left">
                         <label for="LectureDuration">Duration(min):</label>
-                        <input id="LectureDuration" type="text" name="LectureDuration"/>
+                        <input id="LectureDuration" type="number" name="LectureDuration" v-model="newLecture.duration"/>
                     </div>
                 </div>
             </div>
             <div v-if="step === 4">
                 <div class="step-content">
                     <div class="form-input">
-                        <label for="LectureNotes">Lecture's Notes:</label>
-                        <textarea required class="textarea" id="LectureNotes" name="LectureNotes"/>
+                        <label for="LectureAdditionalInstructions">Additional instructions:</label>
+                        <textarea required class="textarea" id="LectureAdditionalInstructions" name="LectureAdditionalInstructions" v-model="newLecture.additional_instructions"/>
                     </div>
                 </div>
             </div>
             <div class="step" v-if="step === 5">
                 <label class="container noSelect">Public Lecture
-                    <input type="checkbox">
+                    <input type="checkbox" v-model="newLecture.public_lecture">
                     <span class="checkmark"></span>
                 </label>
                 <label class="container noSelect">Password protected
-                    <input type="checkbox">
+                    <input type="checkbox" v-model="newLecture.password_protected">
                     <span class="checkmark"></span>
                 </label>
-                <label class="container noSelect">Public Lecture
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
+                <div v-if="newLecture.password_protected" class="form-input form-input-left">
+                  <label for="password_protected">Password:</label>
+                  <input id="password_protected" type="password" name="password_protected" v-model="newLecture.password"/>
+                </div>
+                <label class="container noSelect">Group specific
+                  <input type="checkbox" v-model="newLecture.group_specific">
+                  <span class="checkmark"></span>
                 </label>
-                <label class="container noSelect">Public Lecture
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container noSelect">Public Lecture
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
+                <div v-if="newLecture.group_specific" class="select-box">
+                  <select>
+                    <option disabled value="">Select group</option>
+                    <option>Group 1</option>
+                    <option>Group 2</option>
+                    <option>Group 3</option>
+                  </select>
+                </div>
+                <label class="container noSelect">Nastavak?
+                  <input type="checkbox" >
+                  <span class="checkmark"></span>
                 </label>
                 <div class="select-box">
-                    <select>
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                        <option>Option 5</option>
+                    <select v-model="newLecture.category">
+                      <option disabled value="">Select category</option>
+                      <option>Art</option>
+                      <option>Business</option>
+                      <option>Economics</option>
+                      <option>Education</option>
+                      <option>Informatics</option>
+                      <option>Photography</option>
+                      <option>Psychology</option>
+                      <option>Music</option>
+                      <option>Chemistry</option>
+                      <option>Statistics</option>
                     </select>
                 </div>
             </div>
@@ -112,6 +126,9 @@
 </template>
 
 <script>
+
+    import firebase from "firebase";
+
     export default {
         name: "PublishLecture",
         data(){
@@ -119,19 +136,47 @@
                 step:1,
                 totalSteps:5,
                 formSuccess: false,
+                newLecture:{
+                  additional_instructions: "",
+                  title: "",
+                  address: "",
+                  author: this.currentUserProfile.firstName + " " + this.currentUserProfile.secondName,
+                  author_id: this.currentUserUid,
+                  city:"",
+                  category:"",
+                  date_created: Date.now(),
+                  date_happening:"",
+                  description:"",
+                  duration:0,
+                  is_completed:false,
+                  comments:[],
+                  notes:[],
+                  reviews:[],
+                  rating:0,
+                  time_starting:null,
+                  public_lecture:true,
+                  password_protected:false,
+                  group_specific:false,
+                  password:"",
+                  people_interested:[]
+                }
             }
         },
+        props: [
+          "currentUserProfile",
+          "currentUserUid"
+        ],
         methods:{
             nextStep(){
-                this.step++;
+                this.step ++;
             },
             prevStep(){
-                this.step--;
+                this.step --;
             },
             sendForm(){
                 this.formSuccess = true;
                 this.step = 0;
-                console.log("sendForm()")
+                firebase.firestore().collection("lectures").add(this.newLecture)
             }
         }
     }
@@ -254,7 +299,7 @@
         width:100%;
     }
     .form-input input{
-        margin-top:24px;
+        margin-top:15px;
         color:#676767;
         font-size: 17px;
         font-weight: bold;
@@ -358,12 +403,17 @@
     }
 
     .select-box{
-        margin: 30px 0;
+        margin: 10px 0 30px 0;
+    }
+    .default-label{
+      font-weight: bold;
+      color: #676767;
+      font-size: 17px;
     }
     .select-box select {
         color: #404040;
         padding: 10px 10px 10px 0;
-        width: 160px;
+        width: 200px;
         border: none;
         font-size: 16px;
         font-weight: bold;
@@ -386,6 +436,9 @@
         border-radius: 4px;
         outline: 0;
         cursor: pointer;
+    }
+    .disabled-checkbox{
+      opacity: 0.4;
     }
 
     @media screen and (max-width: 1400px) {
