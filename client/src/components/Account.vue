@@ -141,14 +141,15 @@
                           return { id: doc.id, ...doc.data() }
                         });
                         this.attendedLectures = this.allLectures.filter((x) => {
-                          return Object.values(!this.currentUserProfile.attended_lectures).indexOf(x.id) === -1;
+                          return Object.values(this.currentUserProfile.attended_lectures).indexOf(x.id) > -1;
                         });
                         this.upcomingLectures = this.allLectures.filter((x) => {
-                          return Object.values(!this.currentUserProfile.upcoming_lectures).indexOf(x.id) === -1;
+                          return Object.values(this.currentUserProfile.upcoming_lectures).indexOf(x.id) > -1;
                         });
                         this.myLectures = this.allLectures.filter((x) => {
-                          return Object.values(!this.currentUserToken.uid).indexOf(x.id) === -1;
+                          return this.currentUserToken.uid.indexOf(x.author_id)  > -1;
                         });
+                        console.log(this.myLectures)
                       })
                   .catch(
                       (error) => {

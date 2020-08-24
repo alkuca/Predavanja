@@ -70,6 +70,13 @@
                             firstName: this.input.firstName,
                             secondName: this.input.secondName,
                             username: this.input.username,
+                            following_lectures:[],
+                            is_lecturer:false,
+                            lectures_lectured:[],
+                            rating:0,
+                            subscribed_topics:[],
+                            upcoming_lectures:[],
+                            attended_lectures:[]
                           })
                           this.$router.push('home')
                         },
