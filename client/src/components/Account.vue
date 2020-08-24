@@ -6,7 +6,7 @@
                 <div class="section-left-container">
                     <div class="section-left">
                         <div class="lecturer-image-name">
-                            <img class="lecturer-image" src="../assets/profileImage.png" alt="lecturer"/>
+                            <img class="lecturer-image" src="../assets/profileImage.png" alt="lecturer" id="lecturer-image"/>
                             <h1>Adam Smith</h1>
                             <div class="user-status-container" v-on:click="isOpen = !isOpen">
                                 <p>Basic User</p>
@@ -155,11 +155,18 @@
                       (error) => {
                         console.log(error)
                       })
+            },
+            getUserImage(){
+              firebase.storage().ref(firebase.auth().currentUser.uid + '/profilePicture/ja.jpg').getDownloadURL().then(function(url) {
+                const img = document.getElementById('lecturer-image');
+                img.src = url;
+              });
             }
           },
       mounted(){
         this.getUserProfile();
         this.getAllLectures();
+        this.getUserImage();
       }
     }
 </script>

@@ -16,15 +16,22 @@
                 <button v-if="step === totalSteps && !formSuccess" class="continue-button" v-on:click="sendForm">Finish</button>
             </div>
         </div>
+      <progress v-if="step === 1" id="progress" :value="uploadValue" max="100" ></progress>
         <form>
             <div class="step-1" v-if="step === 1">
                 <div class="step-1-content">
                     <h1>Upload a photo of you</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.</p>
                     <div class="upload-container">
-                        <img class="upload-image" src="../assets/upload.svg" alt="upload"/>
+                      <img v-if="!picture" class="upload-image" src="../assets/upload.svg" alt="upload"/>
+                      <img v-if="picture" class="preview-image" :src="picture">
                     </div>
-                    <input type="file">
+                  <div>
+                    <input type="file" @change="previewImage" accept="image/*">
+                  </div>
+                    <div v-if="imageData!=null">
+                      <button v-if="this.uploadValue === 0" class="upload-button" @click="onUpload">Upload</button>
+                    </div>
                 </div>
             </div>
             <div class="step-2" v-if="step === 2">
@@ -89,13 +96,18 @@
 </template>
 
 <script>
+import firebase from 'firebase';
     export default {
         name: "BecomeLecturer",
         data(){
             return{
                 step:1,
                 totalSteps:4,
-                formSuccess: false
+                formSuccess: false,
+                imageData: null,
+                picture: null,
+                uploadValue: 0,
+                asd:""
             }
         },
         props: {
@@ -114,8 +126,29 @@
                 this.formSuccess = true;
                 this.step = 0;
                 console.log("sendForm()")
+            },
+            previewImage(event) {
+              this.uploadValue = 0;
+              this.picture = null;
+              this.imageData = event.target.files[0];
+            },
+            onUpload(e){
+              e.preventDefault()
+              this.picture = null;
+              const storageRef = firebase.storage().ref(firebase.auth().currentUser.uid + '/profilePicture/' + this.imageData.name).put(this.imageData);
+              storageRef.on(`state_changed`,snapshot => {
+                this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+                }, error => {
+                console.log(error.message)
+                  }, () => {
+                this.uploadValue = 100;
+                storageRef.snapshot.ref.getDownloadURL().then((url) => {
+                  this.picture = url;
+                    });
+                  }
+              );
             }
-        }
+          }
     }
 </script>
 
@@ -160,7 +193,7 @@
         display: flex;
         align-items: center;
         height: 100%;
-        padding: 80px 0 0 0;
+        padding: 60px 0 0 0;
     }
     .step-1-content h1{
         margin: 14px;
@@ -183,6 +216,10 @@
     }
     .upload-image{
         padding: 40px;
+        width:130px;
+    }
+    .preview-image{
+      width:130px;
     }
     .nav-buttons{
         height: 100%;
@@ -218,8 +255,7 @@
         transform-origin: 58% 36%;
     }
     .step-1-content input{
-        width: 176px;
-        margin: 10px 0 50px 0;
+        margin: 10px 0 40px 0;
     }
     .step-content{
         margin: 45px 40px 0 40px;
@@ -282,7 +318,33 @@
         outline: 0;
         cursor: pointer;
     }
-
+    .upload-button{
+      width: 130px;
+      height: 35px;
+      font-size: 14px;
+      border: none;
+      background: #4A50D9;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      margin: 0 20px 0 6px;
+      outline: 0;
+      cursor: pointer;
+    }
+    progress {
+      border-radius: 0;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      top:54px;
+    }
+    progress::-webkit-progress-bar {
+      background-color: transparent;
+      border-radius: 0;
+    }
+    progress::-webkit-progress-value {
+      background-color: blue;
+    }
     @media screen and (max-width: 1400px) {
         .step-1-content{
             padding: 30px 0 0 0;
