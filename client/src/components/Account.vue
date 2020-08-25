@@ -7,13 +7,14 @@
                     <div class="section-left">
                         <div class="lecturer-image-name">
                             <img class="lecturer-image" src="../assets/profileImage.png" alt="lecturer" id="lecturer-image"/>
-                            <h1>Adam Smith</h1>
+                            <h1>{{ currentUserProfile.firstName + " " + currentUserProfile.secondName }}</h1>
                             <div class="user-status-container" v-on:click="isOpen = !isOpen">
-                                <p>Basic User</p>
+                                <p>{{ currentUserProfile.is_lecturer ? "Lecturer" : "Basic User"}}</p>
                                 <img class="dropdown-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" v-bind:class="{rotate: isOpen}"/>
                             </div>
                             <div class="status-dropdown" v-bind:class="{toggled: isOpen}" v-on:click="isOpen = false">
-                                <a v-on:click="toggleBecomeLecturer">Become a Lecturer</a>
+                                <a v-if="!currentUserProfile.is_lecturer" v-on:click="toggleBecomeLecturer">Become a Lecturer</a>
+                                <a v-if="currentUserProfile.is_lecturer" v-on:click="toggleBecomeLecturer">Update Profile</a>
                                 <a v-on:click="toggleSettings">Account Settings</a>
                             </div>
                         </div>
@@ -30,7 +31,7 @@
             </div>
             <div class="section-right">
                 <LecturesAccount v-if="lectures" :upcomingLectures="upcomingLectures" :attendedLectures="attendedLectures" :myLectures="myLectures"/>
-                <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture"/>
+                <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid"/>
                 <SubscribedTopics v-if="topics" :subscribedTopics="currentUserProfile.subscribed_topics"/>
                 <PublishLecture v-if="publish" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid"/>
                 <Groups v-if="groups"/>
@@ -157,7 +158,7 @@
                       })
             },
             getUserImage(){
-              firebase.storage().ref(firebase.auth().currentUser.uid + '/profilePicture/ja.jpg').getDownloadURL().then(function(url) {
+              firebase.storage().ref(firebase.auth().currentUser.uid + '/profilePicture/profile' ).getDownloadURL().then(url => {
                 const img = document.getElementById('lecturer-image');
                 img.src = url;
               });
@@ -196,6 +197,8 @@
         margin-bottom:15px;
         width:100%;
         border-radius: 50%;
+        max-width: 250px;
+        max-height: 250px;
     }
     .lecturer-image-name h1{
         font-size:19px;

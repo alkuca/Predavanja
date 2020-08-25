@@ -24,7 +24,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.</p>
                     <div class="upload-container">
                       <img v-if="!picture" class="upload-image" src="../assets/upload.svg" alt="upload"/>
-                      <img v-if="picture" class="preview-image" :src="picture">
+                      <img v-if="picture" class="preview-image" :src="picture" alt="preview">
                     </div>
                   <div>
                     <input type="file" @change="previewImage" accept="image/*">
@@ -38,19 +38,19 @@
                 <div class="step-content">
                     <div class="form-input">
                         <label for="firstName">First Name:</label>
-                        <input id="firstName" type="text" name="firstName"/>
+                        <input id="firstName" type="text" name="firstName" v-model="updateProfile.firstName"/>
                     </div>
                     <div class="form-input">
                         <label for="secondName">Second Name:</label>
-                        <input id="secondName" type="text" name="secondName"/>
+                        <input id="secondName" type="text" name="secondName" v-model="updateProfile.secondName"/>
                     </div>
                     <div class="form-input">
                         <label for="address">Address:</label>
-                        <input id="address" type="text" name="address"/>
+                        <input id="address" type="text" name="address" v-model="updateProfile.address"/>
                     </div>
                     <div class="form-input">
                         <label for="phoneNumber">Phone number:</label>
-                        <input id="phoneNumber" type="text" name="phoneNumber"/>
+                        <input id="phoneNumber" type="text" name="phoneNumber" v-model="updateProfile.phoneNumber"/>
                     </div>
                 </div>
             </div>
@@ -58,15 +58,15 @@
                 <div class="step-content">
                     <div class="form-input">
                         <label for="highSchool">High School:</label>
-                        <input id="highSchool" type="text" name="highSchool"/>
+                        <input id="highSchool" type="text" name="highSchool" v-model="updateProfile.highSchool"/>
                     </div>
                     <div class="form-input">
                         <label for="university">University:</label>
-                        <input id="university" type="text" name="university"/>
+                        <input id="university" type="text" name="university" v-model="updateProfile.university"/>
                     </div>
                     <div class="form-input">
                         <label for="achievements">Other Academic Achievements:</label>
-                        <textarea required id="achievements" name="achievements"/>
+                        <textarea required id="achievements" name="achievements" v-model="updateProfile.achievements"/>
                     </div>
                 </div>
             </div>
@@ -74,22 +74,27 @@
                 <div class="step-content">
                     <div class="form-input">
                         <label for="currentEmployment">Current Employment:</label>
-                        <input id="currentEmployment" type="text" name="currentEmployment"/>
+                        <input id="currentEmployment" type="text" name="currentEmployment" v-model="updateProfile.currentEmployment"/>
                     </div>
                     <div class="form-input">
                         <label for="hobbies">Hobbies:</label>
-                        <input id="hobbies" type="text" name="hobbies" placeholder="Swimming, Bowling..."/>
+                        <input id="hobbies" type="text" name="hobbies" placeholder="Swimming, Bowling..." v-model="updateProfile.hobbies"/>
                     </div>
                 </div>
             </div>
         </form>
-        <div v-if="formSuccess">
-            <div class="step-1-content">
-                <h1>Congratulations</h1>
-                <h1>You successfully became a Lecturer</h1>
-                <p>You are ready to publish your first Lecture</p>
-                <button v-on:click="togglePublishLecture" class="publish-button">Publish Lecture</button>
-            </div>
+        <div v-if="formSuccess && !currentUserProfile.is_lecturer">
+          <div class="step-1-content">
+            <h1>Congratulations</h1>
+            <h1>You successfully became a Lecturer</h1>
+            <p>You are ready to publish your first Lecture</p>
+            <button v-on:click="togglePublishLecture" class="publish-button">Publish Lecture</button>
+          </div>
+        </div>
+        <div v-if="formSuccess && currentUserProfile.is_lecturer">
+          <div class="step-1-content">
+            <h1>You successfully changed your profile Information</h1>
+          </div>
         </div>
         <p class="steps-counter">step {{step}} of {{totalSteps}}</p>
     </div>
@@ -107,14 +112,24 @@ import firebase from 'firebase';
                 imageData: null,
                 picture: null,
                 uploadValue: 0,
-                asd:""
+                updateProfile:{
+                  firstName:this.currentUserProfile.firstName,
+                  secondName:this.currentUserProfile.secondName,
+                  address:this.currentUserProfile.address,
+                  phoneNumber:this.currentUserProfile.phoneNumber,
+                  highSchool:this.currentUserProfile.highSchool,
+                  university:this.currentUserProfile.university,
+                  achievements:this.currentUserProfile.achievements,
+                  currentEmployment:this.currentUserProfile.currentEmployment,
+                  hobbies:this.currentUserProfile.hobbies
+                }
             }
         },
-        props: {
-            togglePublishLecture: {
-                type: Function
-            }
-        },
+        props: [
+          "togglePublishLecture",
+          "currentUserProfile",
+          "currentUserUid"
+        ],
         methods:{
             nextStep(){
                 this.step++;
@@ -125,7 +140,20 @@ import firebase from 'firebase';
             sendForm(){
                 this.formSuccess = true;
                 this.step = 0;
-                console.log("sendForm()")
+
+                let userRef = firebase.firestore().collection("users").doc(this.currentUserUid);
+                return userRef.update({
+                  firstName: this.updateProfile.firstName,
+                  secondName: this.updateProfile.secondName,
+                  address: this.updateProfile.address,
+                  phoneNumber: this.updateProfile.phoneNumber,
+                  highSchool: this.updateProfile.highSchool,
+                  university: this.updateProfile.university,
+                  achievements: this.updateProfile.achievements,
+                  currentEmployment: this.updateProfile.currentEmployment,
+                  hobbies: this.updateProfile.hobbies,
+                  is_lecturer: true
+                })
             },
             previewImage(event) {
               this.uploadValue = 0;
@@ -135,7 +163,7 @@ import firebase from 'firebase';
             onUpload(e){
               e.preventDefault()
               this.picture = null;
-              const storageRef = firebase.storage().ref(firebase.auth().currentUser.uid + '/profilePicture/' + this.imageData.name).put(this.imageData);
+              const storageRef = firebase.storage().ref(firebase.auth().currentUser.uid + '/profilePicture/' + "profile").put(this.imageData);
               storageRef.on(`state_changed`,snapshot => {
                 this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
                 }, error => {
