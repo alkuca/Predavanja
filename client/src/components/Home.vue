@@ -31,7 +31,7 @@
               currentUserToken: "",
               currentUserProfile: "",
               followingLectures:[],
-              upcomingLectures:[]
+              upcomingLectures:[],
             }
         },
         methods: {
@@ -61,11 +61,12 @@
                          return data
                        });
                         this.followingLectures = this.allLectures.filter((x) => {
-                          return Object.values(!this.currentUserProfile.following_lectures).indexOf(x.id) === -1;
+                          return Object.values(this.currentUserProfile.subscribed_topics).indexOf(x.category) > -1;
                         });
                         this.upcomingLectures = this.allLectures.filter((x) => {
-                          return Object.values(!this.currentUserProfile.upcoming_lectures).indexOf(x.id) === -1;
+                          return Object.values(this.currentUserProfile.upcoming_lectures).indexOf(x.id) > -1;
                         });
+                        console.log(this.followingLectures)
                      })
                   .catch(
                       (error) => {

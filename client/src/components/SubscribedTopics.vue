@@ -33,7 +33,7 @@
         data() {
             return {
                 checkedTopics: null,
-                allTopics: ["Ekonomija", "Matematika", "Informatika", "Programiranje", "Blockchain", "Marketing", "Facebook Marketing"],
+                allTopics: ["Art", "Business", "Economics", "Education", "Informatics", "Photography", "Psychology", "Music", "Chemistry", "Statistics"],
                 editToggled: false
             }
         },

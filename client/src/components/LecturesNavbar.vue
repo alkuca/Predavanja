@@ -5,19 +5,21 @@
                 <a class="following-lectures" v-on:click="lectureToggle = 'following'" v-bind:class="{linkActive: lectureToggle === 'following'}">Following Lectures</a>
                 <a class="all-lectures" v-on:click="lectureToggle = 'all'" v-bind:class="{linkActive: lectureToggle === 'all'}">All Lectures</a>
                 <a class="upcoming-lectures" v-on:click="lectureToggle = 'upcoming'" v-bind:class="{linkActive: lectureToggle === 'upcoming'}">Upcoming</a>
-                <div class="underline" v-bind:class="{all: lectureToggle === 'all', following: lectureToggle === 'following', upcoming: lectureToggle === 'upcoming' }" />
+                <div class="underline" v-bind:class="{all: lectureToggle === 'all', following: lectureToggle === 'following', upcoming: lectureToggle === 'upcoming' }"/>
+                <!--
                 <div class="category-menu" v-on:click="isOpen = !isOpen">
                     <p>Category</p>
                     <img class="dropdown-arrow" src="../assets/nav-arrow.svg" alt="nav arrow" v-bind:class="{rotate: isOpen}" />
                     <div class="category-menu-dropdown" v-bind:class="{toggled: isOpen}">
                         <a>Statistics</a>
-                        <a>Physics</a>
+                        <a >Physics</a>
                         <a>Technology</a>
                         <a>Marketing</a>
                         <a>Biology</a>
                         <a>Mathematics</a>
                     </div>
                 </div>
+                -->
             </div>
         </nav>
     </div>
@@ -29,12 +31,17 @@
         data(){
             return{
                 isOpen:false,
-                lectureToggle:"following"
+                lectureToggle:"following",
+                categoryToggle:""
             }
         },
         methods: {
             emitToParent () {
                 this.$emit('childToParent', this.lectureToggle)
+            },
+            emitCategoryToParent(e) {
+              this.categoryToggle = e.target.text
+              this.$emit('categoryToParent', this.categoryToggle)
             }
         }
     }

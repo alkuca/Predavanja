@@ -1,7 +1,7 @@
 <template>
     <div class="inner-container">
         <h1>Select topics</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.</p>
+        <p>Lectures with the selected categories will be displayed on your home screen under "Following Lectures"</p>
         <div class="topics-container">
             <ul>
                 <li v-for="topic in allTopics" v-bind:key="topic" @click="handleSelectItem(topic)">

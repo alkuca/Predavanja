@@ -11,7 +11,7 @@
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
                 <div class="profile-menu-image-container">
                     <img src="../assets/profileImage.png" alt="profile image"/>
-                    <div class="circle">
+                    <div v-if="!clearNotifications" class="circle">
                         <span>3</span>
                     </div>
                 </div>
@@ -21,9 +21,9 @@
                 <div class="dropdown-section-one">
                     <img src="../assets/profileImage.png" alt="profile image"/>
                     <div class="user-details">
-                        <p class="name">{{ this.currentUserProfile.firstName + " " + this.currentUserProfile.secondName }}</p>
-                        <p class="username">{{ this.currentUserProfile.username }}</p>
-                        <p class="user-type">Basic User</p>
+                        <p class="name">{{ currentUserProfile.firstName + " " + currentUserProfile.secondName }}</p>
+                        <p class="username">{{ currentUserProfile.username }}</p>
+                        <p class="user-type">{{ currentUserProfile.is_lecturer ? "Lecturer" : "Basic User" }}</p>
                     </div>
                 </div>
                 <div class="dropdown-section-two">
@@ -34,18 +34,19 @@
                         <router-link to="/account" class="nav-logo">Profile</router-link>
                     </div>
                     <div class="line"/>
-
                 </div>
                 <div class="dropdown-section-three">
-                    <Notification/>
-                    <Notification/>
-                    <Notification/>
+                    <div v-if="!clearNotifications">
+                      <Notification/>
+                      <Notification/>
+                      <Notification/>
+                    </div>
                     <div class="clear-all-container">
                       <div class="dropdown-link logout">
                         <img src="../assets/logout.svg" alt="logout icon"/>
                         <button v-on:click=logout class="nav-logo">Log Out</button>
                       </div>
-                        <button>clear all</button>
+                        <button v-on:click="clearAllNotifications">clear all</button>
                     </div>
                 </div>
             </div>
@@ -64,7 +65,8 @@
             return{
               isOpen: false,
               currentUserToken: "",
-              currentUserProfile: ""
+              currentUserProfile: "",
+              clearNotifications: false
             }
         },
         methods: {
@@ -72,18 +74,20 @@
                 firebase.auth().signOut().then(() => {
                     this.$router.push('login')
                 })
+            },
+            clearAllNotifications(){
+              this.clearNotifications = true
             }
         },
         created() {
          this.currentUserToken = firebase.auth().currentUser;
-
           firebase.firestore().collection("users").doc(this.currentUserToken.uid).get()
               .then(
-                  (docRef) => {
+                  docRef => {
                     this.currentUserProfile = docRef.data();
                   })
               .catch(
-                  (error) => {
+                  error => {
                     console.log(error)
                   })
        }

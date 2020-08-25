@@ -3,7 +3,7 @@
         <div class="section-left">
             <div class="lecturer-info">
                 <div class="lecturer-image-name">
-                    <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
+                    <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer" id="lecturer-image"/>
                     <img class="star" src="../assets/star.png" alt="star"/>
                     <h1>{{ lecture.author }}</h1>
                 </div>
@@ -54,12 +54,24 @@ import firebase from "firebase";
           return moment(date).format('MMMM Do YYYY');
         }
       },
+      methods:{
+        getAuthorProfile(){
+          firebase.firestore().collection("users").doc(this.lecture.author_id).get()
+              .then(doc => {
+                this.lecturesLectured = doc.data().lectures_lectured
+                this.rating = doc.data().rating;
+              })
+        },
+        getAuthorImage(){
+          firebase.storage().ref(this.lecture.author_id + '/profilePicture/profile' ).getDownloadURL().then(url => {
+            const img = document.getElementById('lecturer-image');
+            img.src = url;
+          });
+        }
+      },
       created() {
-        firebase.firestore().collection("users").doc(this.lecture.author_id).get()
-        .then(doc => {
-          this.lecturesLectured = doc.data().lectures_lectured
-          this.rating = doc.data().rating;
-        })
+        this.getAuthorProfile();
+        this.getAuthorImage()
       }
     }
 </script>
