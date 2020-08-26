@@ -2,7 +2,7 @@
     <div class="login-page">
         <nav>
             <div class="top-left-title">
-                <h1>Predavanja</h1>
+              <img src="../assets/logoLecturityWhite.svg" class="nav-logo" alt="navbar logo"/>
             </div>
             <div class="top-right-button">
                 <router-link to="/register">
@@ -12,7 +12,7 @@
         </nav>
         <div class="login-form-container">
             <div class="logo-container">
-                <img src="../assets/logo.svg" alt="logo"/>
+                <img src="../assets/LecturityLogoBlue.svg" alt="logo"/>
             </div>
             <div class="login-form">
                 <form v-on:submit.prevent="login()">
@@ -96,6 +96,10 @@
         justify-content: center;
         align-items: center;
         position: relative;
+    }
+    .nav-logo{
+      width: 180px;
+      margin: 20px 0;
     }
     .form-input{
         margin:0 0 35px 0;

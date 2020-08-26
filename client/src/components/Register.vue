@@ -2,7 +2,7 @@
     <div class="register-page">
         <nav>
             <div class="top-left-title">
-                <h1>Predavanja</h1>
+                <img src="../assets/logoLecturityWhite.svg" class="nav-logo" alt="navbar logo"/>
             </div>
             <div class="top-right-button">
                 <router-link to="/login">
@@ -12,7 +12,7 @@
         </nav>
         <div class="register-form-container">
             <div class="logo-container">
-                <img src="../assets/logo.svg" alt="logo"/>
+                <img src="../assets/LecturityLogoBlue.svg" alt="logo"/>
             </div>
             <div class="register-form">
                 <form v-on:submit.prevent="register()">
@@ -153,6 +153,10 @@
     }
     .register-form form{
         width:70%
+    }
+    .nav-logo{
+      width: 180px;
+      margin: 20px 0;
     }
     .form-input input{
         width:100%;

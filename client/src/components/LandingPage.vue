@@ -1,7 +1,7 @@
 <template>
     <div class="landing-page">
         <nav>
-            <h1>Lorem</h1>
+            <img src="../assets/LecturityLogoBlue.svg" class="nav-logo" alt="navbar logo"/>
             <div class="nav-links">
                 <router-link to="/login" class="login" tag="button">Login</router-link>
             </div>
@@ -586,7 +586,10 @@
     .tablet-image{
         width:90%;
     }
-
+    .nav-logo{
+      width: 180px;
+      margin: 20px 0;
+    }
     @media screen and (max-width: 1400px) {
         .small-title{
             font-size: 17px;

@@ -1,7 +1,7 @@
 <template>
     <header>
         <router-link to="/home" class="nav-logo">
-            <img src="../assets/logoWhite.svg" alt="navbar logo"/>
+            <img src="../assets/logoLecturityWhite.svg" alt="navbar logo"/>
         </router-link>
         <nav>
             <ul class="navbar-links">
@@ -126,7 +126,7 @@
         margin-right:auto;
     }
      .nav-logo img{
-         width:150px;
+         width:140px;
      }
     .navbar-links{
         list-style: none;
