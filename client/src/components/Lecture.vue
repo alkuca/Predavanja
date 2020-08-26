@@ -23,9 +23,14 @@
                             <p>{{  lecture.description }}</p>
                         </div>
                         <div class="date-countdown">
-                            <div>
-                                <h1>{{ timeCountdown }} until lecture starts</h1>
+                            <div v-if="!lectureCompleted">
+                                <h1>{{  timeCountdown }} until lecture starts</h1>
                                 <p>{{ peopleInterested.length }} People are interested</p>
+                            </div>
+                            <div class="complete-section" v-if="lectureCompleted">
+                              <h1 class="complete-text">LECTURE COMPLETED</h1>
+                              <p>{{ peopleInterested.length }} People attended this lecture</p>
+                              <button v-if="attended_lectures.includes(this.$route.params.id)" class="reward-button">COLLECT REWARD</button>
                             </div>
                         </div>
                     </div>
@@ -40,7 +45,7 @@
                                     <a v-on:click="toggleComments" v-bind:class="{linkActive: commentsToggle}">Comments</a>
                                     <a v-on:click="toggleReviews" v-bind:class="{linkActive: reviewsToggle}">Reviews</a>
                                 </div>
-                                <button v-on:click="addToUpcoming" v-bind:class="{ disabled: this.upcoming_lectures.indexOf(this.$route.params.id) > -1 }"
+                                <button v-if="!lectureCompleted" v-on:click="addToUpcoming" v-bind:class="{ disabled: upcoming_lectures.includes(this.$route.params.id) }"
                                         class="interested-button">Interested</button>
                             </div>
                         </nav>
@@ -53,8 +58,8 @@
                                     <p>Location: {{ address }}</p>
                                     <p>City: {{ city }}</p>
                                     <p>Additional instructions: {{ additionalInstructions }}</p>
-                                    <div class="interested-button-mobile">
-                                        <button v-on:click="addToUpcoming" v-bind:class="{ disabled: upcoming_lectures.indexOf(this.$route.params.id) > -1 }">Interested</button>
+                                    <div v-if="!lectureCompleted" class="interested-button-mobile">
+                                        <button v-on:click="addToUpcoming" v-bind:class="{ disabled: upcoming_lectures.includes(this.$route.params.id)}">Interested</button>
                                     </div>
                                 </div>
                             </transition>
@@ -102,7 +107,8 @@
               notesToggle:false,
               commentsToggle:false,
               reviewsToggle:false,
-              upcoming_lectures:"",
+              upcoming_lectures:[],
+              attended_lectures:[],
               lecture:"",
               lecturesLectured: "0",
               rating: "0.0",
@@ -119,6 +125,7 @@
               reviews:[],
               firstName: "",
               secondName: "",
+              lectureCompleted : false
             }
         },
         methods:{
@@ -147,19 +154,42 @@
                 this.reviewsToggle = true;
             },
             calculateTime(){
-              let time_now  = "16/08/2020 18:00:00";
-              let time_then = "18/08/2020 14:20:32";
+              let time_now  = moment(Date.now()).format("YYYY-MM-DD HH:mm");
+              let time_happening = this.dateHappening + " " + this.timeStarting;
 
-              let ms = moment(time_then,"DD/MM/YYYY HH:mm:ss").diff(moment(time_now,"DD/MM/YYYY HH:mm:ss"));
+              let ms = moment(time_happening,"YYYY-MM-DD HH:mm:ss").diff(moment(time_now,"YYYY-MM-DD HH:mm:ss"));
               let d = moment.duration(ms);
               this.timeCountdown = Math.floor(d.asHours())+ " hours and " + moment.utc(ms).format("mm") + " minutes";
+
+              this.checkIfLectureCompleted(time_now,time_happening)
+              this.checkIfUserAttendedLecture()
+            },
+            checkIfLectureCompleted(time_now, time_happening){
+              if(time_now > time_happening){
+                this.lectureCompleted = true;
+              }
             },
             addToUpcoming(){
               let userRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid)
               userRef.update({
                 upcoming_lectures: firebase.firestore.FieldValue.arrayUnion(this.$route.params.id)
               });
+              let lectureRef = firebase.firestore().collection("lectures").doc(this.$route.params.id)
+              lectureRef.update({
+                people_interested: firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser.uid)
+              });
+              this.peopleInterested.push(firebase.auth().currentUser.uid)
               this.upcoming_lectures.push(this.$route.params.id)
+            },
+            checkIfUserAttendedLecture(){
+              let userId = firebase.auth().currentUser.uid;
+              if(Object.values(this.peopleInterested.indexOf(userId)) > -1 && this.lectureCompleted === true){
+                let userRef = firebase.firestore().collection("users").doc(userId)
+                userRef.update({
+                  attended_lectures: firebase.firestore.FieldValue.arrayUnion(this.$route.params.id)
+                });
+                this.attended_lectures.push(this.$route.params.id)
+              }
             }
         },
       filters: {
@@ -192,10 +222,13 @@
         firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
             .then(doc => {
               this.upcoming_lectures = doc.data().upcoming_lectures
+              this.attendedLectures = doc.data().attended_lectures
               this.firstName = doc.data().firstName
               this.secondName = doc.data().secondName
             })
-        this.calculateTime();
+            .then(
+                this.calculateTime
+            )
       }
     }
 </script>
@@ -407,6 +440,16 @@
     .disabled{
       pointer-events: none;
       opacity: 0.4;
+    }
+    .complete-section button{
+      color:white;
+      background: #00cf49;
+      border:0;
+      padding:12px 20px;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 3px;
+      margin-top: 5px;
     }
 
     @media screen and (max-width: 1600px) {
