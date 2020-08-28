@@ -10,7 +10,7 @@
             </ul>
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
                 <div class="profile-menu-image-container">
-                    <img src="../assets/profileImage.png" alt="profile image"/>
+                    <img :src=profileImage alt="profile image"/>
                     <div v-if="!clearNotifications" class="circle">
                         <span>3</span>
                     </div>
@@ -19,7 +19,7 @@
             </div>
             <div class="profile-menu-dropdown" v-bind:class="{toggled: isOpen}">
                 <div class="dropdown-section-one">
-                    <img src="../assets/profileImage.png" alt="profile image"/>
+                    <img :src=profileImage alt="profile image"/>
                     <div class="user-details">
                         <p class="name">{{ currentUserProfile.firstName + " " + currentUserProfile.secondName }}</p>
                         <p class="username">{{ currentUserProfile.username }}</p>
@@ -27,6 +27,7 @@
                     </div>
                 </div>
                 <div class="dropdown-section-two">
+                    <p class="balance">Balance: 0.00000000 ETH</p>
                     <div class="dropdown-link only-mobile">
                         <router-link to="/account" class="nav-logo">Home</router-link>
                     </div>
@@ -44,7 +45,7 @@
                     <div class="clear-all-container">
                       <div class="dropdown-link logout">
                         <img src="../assets/logout.svg" alt="logout icon"/>
-                        <button v-on:click=logout class="nav-logo">Log Out</button>
+                        <button v-on:click=logout class="nav-logo">{{ loading ? "Loading" : "Log Out"}}</button>
                       </div>
                         <button v-on:click="clearAllNotifications">clear all</button>
                     </div>
@@ -66,17 +67,25 @@
               isOpen: false,
               currentUserToken: "",
               currentUserProfile: "",
-              clearNotifications: false
+              clearNotifications: false,
+              loading:false,
+              profileImage:""
             }
         },
         methods: {
             logout(){
+              this.loading = true;
                 firebase.auth().signOut().then(() => {
                     this.$router.push('login')
                 })
             },
             clearAllNotifications(){
               this.clearNotifications = true
+            },
+            getUserProfileImage(){
+              firebase.storage().ref(this.currentUserToken.uid + '/profilePicture/profile' ).getDownloadURL().then(url => {
+                this.profileImage = url;
+              });
             }
         },
         created() {
@@ -90,6 +99,7 @@
                   error => {
                     console.log(error)
                   })
+          this.getUserProfileImage()
        }
     }
 </script>
@@ -295,7 +305,11 @@
      .circle span{
         font-weight: bold;
         color:white;
-         font-size: 12px;
+        font-size: 12px;
+     }
+     .balance{
+       color:white;
+       font-weight: bold;
      }
 
      @media screen and (max-width: 650px) {
@@ -339,6 +353,10 @@
          }
          .dropdown-section-one{
              padding: 15px 20px;
+         }
+         .balance{
+           padding: 10px 0;
+           margin-left: 15px;
          }
 
      }

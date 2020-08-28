@@ -34,7 +34,10 @@
                     <div class="form-input">
                         <input id="password2" type="password" name="password2" v-model="input.password2" placeholder="Repeat Password" />
                     </div>
-                    <button type="submit" class="register-button">Register</button>
+                    <button v-if="!loading" type="submit" class="register-button">Register</button>
+                    <button v-if="loading" class="register-button">
+                      <img class="login-loader" v-if="loading" src="../assets/buttonLoader.gif" alt="loader"/>
+                    </button>
                 </form>
             </div>
         </div>
@@ -55,11 +58,13 @@
                     email: "",
                     password: "",
                     password2:""
-                }
+                },
+              loading: false
             }
         },
         methods: {
             register() {
+              this.loading = true;
               if(this.input.password !== this.input.password2){
                 alert("passwords dont match")
               }else{
@@ -82,6 +87,7 @@
                         },
                         err => {
                           console.log(err.message);
+                          this.loading = false;
                         });
               }
             }
@@ -189,6 +195,9 @@
         display: flex;
         justify-content: space-between;
         padding: 0 50px;
+    }
+    .login-loader{
+      width:100px;
     }
 
     @media screen and (max-width: 580px) {

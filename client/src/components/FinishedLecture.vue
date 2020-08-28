@@ -45,6 +45,7 @@ a{
 }
 .title{
   padding: 0 30px;
+  width: 30%;
 }
 .rating{
   padding: 0 30px;

@@ -40,6 +40,8 @@
     }
     .title{
         padding: 0 30px;
+        width: 30%;
+        word-wrap: break-word
     }
     .rating{
         padding: 0 30px;

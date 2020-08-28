@@ -22,7 +22,10 @@
                     <div class="form-input">
                         <input id="password" type="password" name="password" v-model="input.password" placeholder="Password" />
                     </div>
-                    <button type="submit" class="login-button">Login</button>
+                    <button v-if="!loading" type="submit" class="login-button">Login</button>
+                    <button v-if="loading" class="login-button">
+                      <img class="login-loader" v-if="loading" src="../assets/buttonLoader.gif" alt="loader"/>
+                    </button>
                 </form>
             </div>
         </div>
@@ -39,18 +42,20 @@
                 input: {
                     email: "",
                     password: ""
-                }
+                },
+                loading: false
             }
         },
         methods: {
             login() {
+              this.loading = true;
                 firebase.auth().signInWithEmailAndPassword(this.input.email, this.input.password)
-                    .then(user => {
-                            console.log(user)
+                    .then( () => {
                             this.$router.push('home')
                         },
                         err => {
                             console.log(err.message);
+                            this.loading = false;
                         });
             }
         }
@@ -157,6 +162,9 @@
         display: flex;
         justify-content: space-between;
         padding: 0 50px;
+    }
+    .login-loader{
+      width:100px;
     }
 
     @media screen and (max-width: 580px) {

@@ -47,6 +47,9 @@
     .upcoming-lecture p{
         padding: 0 30px;
     }
+    .title{
+      width: 30%;
+    }
     .lecturer{
         display: flex;
         padding: 0 30px;

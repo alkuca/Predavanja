@@ -1,16 +1,18 @@
 <template>
     <div>
         <Navbar/>
-        <div class="lecture-container">
+        <div v-if="!loaded" class="loader-container">
+          <img src="../assets/loaderWhiteBg.gif" alt="loader"/>
+        </div>
+        <div v-if="loaded" class="lecture-container">
             <div class="lecture-inner-container">
                 <div class="section-top">
                     <div class="top-left">
                         <div class="lecturer-info">
                             <div class="lecturer-image-name">
-                                <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
+                                <img class="lecturer-image" :src=authorImage alt="lecturer"/>
                                 <h1>{{ lecture.author }}</h1>
                             </div>
-                            <div class="white-line"/>
                             <div class="lecturer-details">
                                 <p>Lectures lectured: {{ lecturesLectured.length}}</p>
                                 <p>Rating {{ rating }}/5</p>
@@ -125,7 +127,9 @@
               reviews:[],
               firstName: "",
               secondName: "",
-              lectureCompleted : false
+              lectureCompleted : false,
+              loaded : false,
+              authorImage:  ""
             }
         },
         methods:{
@@ -190,6 +194,46 @@
                 });
                 this.attended_lectures.push(this.$route.params.id)
               }
+              this.loaded = true;
+            },
+            getAuthorImage(){
+              firebase.storage().ref(this.lecture.author_id + '/profilePicture/profile' ).getDownloadURL().then(url => {
+                this.authorImage = url;
+                console.log(this.lecture.author_id)
+              });
+            },
+            getLectureData(){
+              firebase.firestore().collection("lectures").doc(this.$route.params.id).get()
+                  .then(doc => {
+                    this.lecture = doc.data()
+                    this.dateHappening = doc.data().date_happening
+                    this.duration = doc.data().duration
+                    this.city = doc.data().city
+                    this.address = doc.data().address
+                    this.location = doc.data().location
+                    this.additionalInstructions = doc.data().additional_instructions
+                    this.timeStarting = doc.data().time_starting
+                    this.peopleInterested = doc.data().people_interested
+                    this.notes = doc.data().notes
+                    this.reviews = doc.data().reviews
+                    this.comments = doc.data().comments
+
+                    firebase.firestore().collection("users").doc(this.lecture.author_id).get()
+                        .then(doc => {
+                          this.lecturesLectured = doc.data().lectures_lectured
+                          this.rating = doc.data().rating;
+                        })
+                    this.getAuthorImage();
+                  })
+            },
+            getAuthorData(){
+              firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+                  .then(doc => {
+                    this.upcoming_lectures = doc.data().upcoming_lectures
+                    this.attendedLectures = doc.data().attended_lectures
+                    this.firstName = doc.data().firstName
+                    this.secondName = doc.data().secondName
+                  })
             }
         },
       filters: {
@@ -198,37 +242,9 @@
         }
       },
       created() {
-        firebase.firestore().collection("lectures").doc(this.$route.params.id).get()
-            .then(doc => {
-              this.lecture = doc.data()
-              this.dateHappening = doc.data().date_happening
-              this.duration = doc.data().duration
-              this.city = doc.data().city
-              this.address = doc.data().address
-              this.location = doc.data().location
-              this.additionalInstructions = doc.data().additional_instructions
-              this.timeStarting = doc.data().time_starting
-              this.peopleInterested = doc.data().people_interested
-              this.notes = doc.data().notes
-              this.reviews = doc.data().reviews
-              this.comments = doc.data().comments
-
-              firebase.firestore().collection("users").doc(this.lecture.author_id).get()
-                  .then(doc => {
-                    this.lecturesLectured = doc.data().lectures_lectured
-                    this.rating = doc.data().rating;
-                  })
-            })
-        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
-            .then(doc => {
-              this.upcoming_lectures = doc.data().upcoming_lectures
-              this.attendedLectures = doc.data().attended_lectures
-              this.firstName = doc.data().firstName
-              this.secondName = doc.data().secondName
-            })
-            .then(
-                this.calculateTime
-            )
+        this.getLectureData();
+        this.getAuthorData();
+        this.calculateTime();
       }
     }
 </script>
@@ -291,7 +307,8 @@
     }
     .lecturer-image-name img{
         margin-bottom:10px;
-        width:100%;
+        width:175px;
+        max-height: 175px;
     }
     .lecturer-image-name h1{
         font-size:17px;
@@ -300,11 +317,6 @@
     }
     .lecturer-details p{
         margin: 13px 7px;
-    }
-    .white-line{
-        background: #646BF2;
-        height:1px;
-        width:80%;
     }
     .lecturer-details{
         color:white;
@@ -451,6 +463,22 @@
       border-radius: 3px;
       margin-top: 5px;
     }
+    .loader-container{
+      width: 100%;
+      height: 100vh;
+      background: white;
+      top: 60px;
+      z-index: 100;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-container img{
+      width: 220px;
+      margin-top:-60px;
+    }
 
     @media screen and (max-width: 1600px) {
         .section-bottom-content{
@@ -461,6 +489,12 @@
     @media screen and (max-width: 1400px) {
         .lecture-text h1{
             font-size: 20px;
+        }
+        .lecture-text{
+          margin: 10px 25px;
+        }
+        .date-countdown{
+          margin: 10px 25px 15px 25px;
         }
         .lecture-text p{
             font-size: 12px;
@@ -475,7 +509,8 @@
             font-size: 11px;
         }
         .lecturer-image-name img{
-            width:53%;
+            width:100px;
+            max-height: 100px;
         }
         .section-bottom-container p{
             font-size: 14px;
@@ -503,7 +538,8 @@
     }
     @media screen and (max-width: 1100px) {
         .lecturer-image-name img{
-            width:75%;
+            width:125px;
+            max-height: 125px;
         }
         .lecturer-image-name h1{
             font-size: 16px;
@@ -593,7 +629,7 @@
             margin: 30px 0 10px 0;
         }
         .lecturer-info{
-            height: 95%;
+            height: 100%;
         }
         .top-right{
             align-self: center;
@@ -606,9 +642,6 @@
         }
         .interested-button{
             display: none;
-        }
-        .lecturer-image-name img{
-            width:60%;
         }
         .nav-container{
             padding: 0 5px;

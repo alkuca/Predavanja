@@ -6,7 +6,7 @@
                 <span v-if="editToggled">/ Edit</span>
             </div>
             <div class="nav-buttons">
-                <button v-on:click="toggleEdit" v-if="!editToggled" class="edit-button">Edit</button>
+                <button v-on:click="toggleEdit" v-if="!editToggled" class="edit-button">{{ subscribedTopics.length === 0 ? "Select" : "Edit"}}</button>
                 <button class="return-button" v-if="editToggled" v-on:click="toggleEdit">
                     <img class="return-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" />
                 </button>
@@ -88,8 +88,8 @@
         height:35px;
         font-size: 14px;
         border: 3px solid #4A50D9;
-        background:white;
-        color:#4A50D9;
+        background:#4A50D9;
+        color:white;
         font-weight: bold;
         border-radius: 3px;
         margin: 0 20px 0 6px;
@@ -97,10 +97,8 @@
         cursor: pointer;
     }
     .edit-button:hover{
-        border: 3px solid #4A50D9;
+        opacity: 0.9;
         transition: 0.1s;
-        background:#4A50D9;
-        color:white;
     }
     .save-button{
         width:120px;

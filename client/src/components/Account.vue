@@ -69,6 +69,7 @@
                 allLectures:[],
                 attendedLectures:[],
                 upcomingLectures:[],
+                followingLectures:[],
                 myLectures:[]
             }
         },
@@ -128,6 +129,9 @@
                   .then(
                       (docRef) => {
                         this.currentUserProfile = docRef.data();
+                        if(this.currentUserProfile.subscribed_topics.length === 0){
+                          this.toggleTopics();
+                        }
                       })
                   .catch(
                       (error) => {
@@ -150,7 +154,6 @@
                         this.myLectures = this.allLectures.filter((x) => {
                           return this.currentUserToken.uid.indexOf(x.author_id)  > -1;
                         });
-                        console.log(this.myLectures)
                       })
                   .catch(
                       (error) => {

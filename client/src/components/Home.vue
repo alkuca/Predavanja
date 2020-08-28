@@ -2,15 +2,27 @@
     <div>
         <Navbar/>
         <LecturesNavbar v-on:childToParent="onChildClick"/>
+        <div v-if="!loaded" class="loader-container">
+          <img src="../assets/loaderWhiteBg.gif" alt="loader"/>
+        </div>
         <div class="lectures-container">
-          <div class="lectures" v-if="lectureNavToggle === 'following'">
-            <LectureCard v-for="lecture in followingLectures" :key="lecture.id" :lecture="lecture"/>
-          </div>
-          <div class="lectures" v-if="lectureNavToggle === 'all'">
-            <LectureCard v-for="lecture in allLectures" :key="lecture.id" :lecture="lecture"/>
-          </div>
-          <div class="lectures" v-if="lectureNavToggle === 'upcoming'">
-            <LectureCard v-for="lecture in upcomingLectures" :key="lecture.id" :lecture="lecture"/>
+          <div v-if="loaded">
+            <div v-if="currentUserProfile.subscribed_topics.length === 0 && lectureNavToggle === 'following'" class="center-screen">
+              <h1>Subscribe to your favorite topics to get recommended lectures</h1>
+              <router-link to="/account" tag="button">Subscribe Now</router-link>
+            </div>
+            <div v-if="upcomingLectures.length === 0 && lectureNavToggle === 'upcoming'" class="center-screen">
+              <h1>Lectures you show interest in will appear here</h1>
+            </div>
+            <div class="lectures" v-if="lectureNavToggle === 'following'">
+              <LectureCard v-for="lecture in followingLectures" :key="lecture.id" :lecture="lecture"/>
+            </div>
+            <div class="lectures" v-if="lectureNavToggle === 'all'">
+              <LectureCard v-for="lecture in allLectures" :key="lecture.id" :lecture="lecture"/>
+            </div>
+            <div class="lectures" v-if="lectureNavToggle === 'upcoming'">
+              <LectureCard v-for="lecture in upcomingLectures" :key="lecture.id" :lecture="lecture"/>
+            </div>
           </div>
         </div>
     </div>
@@ -32,6 +44,7 @@
               currentUserProfile: "",
               followingLectures:[],
               upcomingLectures:[],
+              loaded:false
             }
         },
         methods: {
@@ -66,7 +79,7 @@
                         this.upcomingLectures = this.allLectures.filter((x) => {
                           return Object.values(this.currentUserProfile.upcoming_lectures).indexOf(x.id) > -1;
                         });
-                        console.log(this.followingLectures)
+                        this.loaded = true
                      })
                   .catch(
                       (error) => {
@@ -88,6 +101,57 @@
         flex-wrap: wrap;
         padding:0 25px;
         position: relative;
+    }
+    .loader-container{
+      width: 100%;
+      height: 100vh;
+      background: white;
+      top: 60px;
+      z-index: 100;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-container img{
+      width: 220px;
+      margin-top:-60px;
+    }
+    .center-screen{
+      margin: auto;
+      top:0;
+      bottom: 0;
+      left:0;
+      right:0;
+      position: absolute;
+      height:300px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding:0 20px;
+    }
+    .center-screen h1{
+      font-size: 18px;
+      text-align: center;
+      line-height: 23px;
+    }
+    .center-screen button{
+      font-size: 17px;
+      margin-top:12px;
+      padding: 12px 18px;
+      background:#2E34CC;
+      color:white;
+      font-weight: bold;
+      border:0;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .center-screen button:hover{
+      opacity: 0.9;
+      transition: 0.2s;
     }
     @media screen and (max-width: 1400px) {
         .lectures{

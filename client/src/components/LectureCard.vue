@@ -3,7 +3,7 @@
         <div class="section-left">
             <div class="lecturer-info">
                 <div class="lecturer-image-name">
-                    <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer" id="lecturer-image"/>
+                    <img class="lecturer-image" :src=authorImage alt="lecturer"/>
                     <img class="star" src="../assets/star.png" alt="star"/>
                     <h1>{{ lecture.author }}</h1>
                 </div>
@@ -41,7 +41,8 @@ import firebase from "firebase";
       data(){
         return{
           lecturesLectured: "0",
-          rating: "0.0"
+          rating: "0.0",
+          authorImage:""
         }
       },
       props:{
@@ -64,8 +65,7 @@ import firebase from "firebase";
         },
         getAuthorImage(){
           firebase.storage().ref(this.lecture.author_id + '/profilePicture/profile' ).getDownloadURL().then(url => {
-            const img = document.getElementById('lecturer-image');
-            img.src = url;
+            this.authorImage = url;
           });
         }
       },
@@ -113,7 +113,9 @@ import firebase from "firebase";
     }
     .lecturer-image{
         margin-bottom:10px;
-        width: 90%;
+        max-height: 160px;
+        height: auto;
+        border-radius: 5px;
     }
     .lecturer-image-name h1{
         font-size:17px;
@@ -190,7 +192,7 @@ import firebase from "firebase";
             font-size: 15px;
         }
         .lecturer-image {
-            width: 80%;
+            max-height: 125px;
         }
         .lecture-text h1 {
             font-size: 22px;
@@ -242,6 +244,9 @@ import firebase from "firebase";
         }
         .lecturer-image-name h1{
             font-size: 14px;
+        }
+        .lecturer-image{
+          max-height: 110px;
         }
         .lecture-text h1 {
             font-size: 19px;
