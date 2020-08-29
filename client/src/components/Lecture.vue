@@ -187,7 +187,7 @@
             },
             checkIfUserAttendedLecture(){
               let userId = firebase.auth().currentUser.uid;
-              if(Object.values(this.peopleInterested.indexOf(userId)) > -1 && this.lectureCompleted === true){
+              if(this.peopleInterested.includes(userId) && this.lectureCompleted === true){
                 let userRef = firebase.firestore().collection("users").doc(userId)
                 userRef.update({
                   attended_lectures: firebase.firestore.FieldValue.arrayUnion(this.$route.params.id)
@@ -199,7 +199,6 @@
             getAuthorImage(){
               firebase.storage().ref(this.lecture.author_id + '/profilePicture/profile' ).getDownloadURL().then(url => {
                 this.authorImage = url;
-                console.log(this.lecture.author_id)
               });
             },
             getLectureData(){
@@ -224,6 +223,7 @@
                           this.rating = doc.data().rating;
                         })
                     this.getAuthorImage();
+                    this.calculateTime();
                   })
             },
             getAuthorData(){
@@ -244,7 +244,6 @@
       created() {
         this.getLectureData();
         this.getAuthorData();
-        this.calculateTime();
       }
     }
 </script>

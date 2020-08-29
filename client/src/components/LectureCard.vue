@@ -3,7 +3,7 @@
         <div class="section-left">
             <div class="lecturer-info">
                 <div class="lecturer-image-name">
-                    <img class="lecturer-image" :src=authorImage alt="lecturer"/>
+                    <img v-if="authorImage" class="lecturer-image" :src=authorImage alt="lecturer"/>
                     <img class="star" src="../assets/star.png" alt="star"/>
                     <h1>{{ lecture.author }}</h1>
                 </div>

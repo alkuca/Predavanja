@@ -10,7 +10,8 @@
             </ul>
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
                 <div class="profile-menu-image-container">
-                    <img :src=profileImage alt="profile image"/>
+                    <img v-if="profileImage" :src=profileImage alt="profile image"/>
+                    <img v-if="!profileImage" src="../assets/profileImage.png" alt="profile image"/>
                     <div v-if="!clearNotifications" class="circle">
                         <span>3</span>
                     </div>
@@ -19,7 +20,8 @@
             </div>
             <div class="profile-menu-dropdown" v-bind:class="{toggled: isOpen}">
                 <div class="dropdown-section-one">
-                    <img :src=profileImage alt="profile image"/>
+                    <img v-if="profileImage" :src=profileImage alt="profile image" />
+                    <img v-if="!profileImage" src="../assets/profileImage.png" alt="profile image"/>
                     <div class="user-details">
                         <p class="name">{{ currentUserProfile.firstName + " " + currentUserProfile.secondName }}</p>
                         <p class="username">{{ currentUserProfile.username }}</p>

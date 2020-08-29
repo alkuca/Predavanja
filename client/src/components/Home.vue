@@ -73,6 +73,9 @@
                          data.id = doc.id;
                          return data
                        });
+                        this.allLectures =  this.allLectures.filter(function(x) {
+                          return x.is_completed === false;
+                        });
                         this.followingLectures = this.allLectures.filter((x) => {
                           return Object.values(this.currentUserProfile.subscribed_topics).indexOf(x.category) > -1;
                         });

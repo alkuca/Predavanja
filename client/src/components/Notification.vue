@@ -5,7 +5,7 @@
         </div>
         <div class="notification-text">
             <p class="notification-lecture">Functional Programing</p>
-            <p class="notification-type">New comment</p>
+            <p class="notification-type">Collect your Reward</p>
         </div>
     </div>
 </template>

@@ -174,9 +174,13 @@
                 this.step --;
             },
             sendForm(){
+              if(this.title && this.address && this.category && this.duration > 0 && this.time_starting && this.date_happening){
                 this.formSuccess = true;
                 this.step = 0;
                 firebase.firestore().collection("lectures").add(this.newLecture)
+              }else{
+                alert("some fields are missing")
+              }
             }
         }
     }

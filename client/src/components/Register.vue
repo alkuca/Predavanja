@@ -2,7 +2,9 @@
     <div class="register-page">
         <nav>
             <div class="top-left-title">
+              <router-link to="/">
                 <img src="../assets/logoLecturityWhite.svg" class="nav-logo" alt="navbar logo"/>
+              </router-link>
             </div>
             <div class="top-right-button">
                 <router-link to="/login">
