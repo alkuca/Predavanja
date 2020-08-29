@@ -33,7 +33,7 @@
                 <LecturesAccount v-if="lectures" :upcomingLectures="upcomingLectures" :attendedLectures="attendedLectures" :myLectures="myLectures"/>
                 <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid"/>
                 <SubscribedTopics v-if="topics" :subscribedTopics="currentUserProfile.subscribed_topics"/>
-                <PublishLecture v-if="publish" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid"/>
+                <PublishLecture v-if="publish" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid" v-on:childToParent="onChildClick"/>
                 <Groups v-if="groups"/>
                 <AccountSettings v-if="settings"/>
             </div>
@@ -70,7 +70,8 @@
                 attendedLectures:[],
                 upcomingLectures:[],
                 followingLectures:[],
-                myLectures:[]
+                myLectures:[],
+                lecturePosted:false
             }
         },
         methods:{
@@ -165,7 +166,10 @@
                 const img = document.getElementById('lecturer-image');
                 img.src = url;
               });
-            }
+            },
+          onChildClick() {
+            this.toggleLectures()
+            },
           },
       mounted(){
         this.getUserProfile();

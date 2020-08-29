@@ -67,6 +67,7 @@
                             </transition>
                             <transition name="fade">
                                 <div v-if="notesToggle" class="section-bottom-container">
+                                    <AddNote :notes="notes" :first-name="firstName" :second-name="secondName"/>
                                     <LectureNote v-for="note in notes" :key="note.uid" :note="note"/>
                                 </div>
                             </transition>
@@ -77,8 +78,8 @@
                                 </div>
                             </transition>
                             <transition name="fade">
-                                <div v-if="reviewsToggle" class="section-bottom-container">
-                                    <AddReview :reviews="reviews" :first-name="firstName" :second-name="secondName"/>
+                                <div v-if="reviewsToggle" class="section-bottom-container" v-bind:class="{disabled : !lectureCompleted}">
+                                    <AddReview v-if="currentUserId !== authorId" :reviews="reviews" :first-name="firstName" :second-name="secondName"/>
                                     <LectureReview v-for="review in reviews" :key="review.uid" :review="review"/>
                                 </div>
                             </transition>
@@ -99,10 +100,11 @@
     import AddReview from "./AddReview";
     import firebase from "firebase";
     import moment from 'moment'
+    import AddNote from "@/components/AddNote";
 
     export default {
         name: "Lecture",
-        components: {AddReview, AddComment, LectureReview, LectureComment, LectureNote, Navbar},
+        components: {AddNote, AddReview, AddComment, LectureReview, LectureComment, LectureNote, Navbar},
         data(){
             return{
               detailsToggle:true,
@@ -112,7 +114,7 @@
               upcoming_lectures:[],
               attended_lectures:[],
               lecture:"",
-              lecturesLectured: "0",
+              lecturesLectured: [],
               rating: "0.0",
               timeCountdown: "",
               dateHappening: "",
@@ -129,7 +131,9 @@
               secondName: "",
               lectureCompleted : false,
               loaded : false,
-              authorImage:  ""
+              authorImage:  "",
+              authorId : "",
+              currentUserId : ""
             }
         },
         methods:{
@@ -171,6 +175,16 @@
             checkIfLectureCompleted(time_now, time_happening){
               if(time_now > time_happening){
                 this.lectureCompleted = true;
+
+                let lectureRef = firebase.firestore().collection("lectures").doc(this.$route.params.id)
+                lectureRef.update({
+                  is_completed: true
+                });
+
+                let userRef = firebase.firestore().collection("users").doc(this.lecture.author_id);
+                return userRef.update({
+                  lectures_lectured: firebase.firestore.FieldValue.arrayUnion(this.$route.params.id)
+                })
               }
             },
             addToUpcoming(){
@@ -216,6 +230,8 @@
                     this.notes = doc.data().notes
                     this.reviews = doc.data().reviews
                     this.comments = doc.data().comments
+                    this.authorId = doc.data().author_id
+                    this.currentUserId = firebase.auth().currentUser.uid
 
                     firebase.firestore().collection("users").doc(this.lecture.author_id).get()
                         .then(doc => {

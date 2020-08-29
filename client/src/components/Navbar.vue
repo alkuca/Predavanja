@@ -49,7 +49,7 @@
                         <img src="../assets/logout.svg" alt="logout icon"/>
                         <button v-on:click=logout class="nav-logo">{{ loading ? "Loading" : "Log Out"}}</button>
                       </div>
-                        <button v-on:click="clearAllNotifications">clear all</button>
+                        <button v-if="!clearNotifications" v-on:click="clearAllNotifications">clear all</button>
                     </div>
                 </div>
             </div>

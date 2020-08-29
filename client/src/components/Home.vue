@@ -11,8 +11,9 @@
               <h1>Subscribe to your favorite topics to get recommended lectures</h1>
               <router-link to="/account" tag="button">Subscribe Now</router-link>
             </div>
-            <div v-if="upcomingLectures.length === 0 && lectureNavToggle === 'upcoming'" class="center-screen">
+            <div v-if="upcomingLectures.length === 0 && lectureNavToggle === 'upcoming'" class="upcoming-empty">
               <h1>Lectures you show interest in will appear here</h1>
+              <img class="interested-img" src="../assets/place.png" alt="star"/>
             </div>
             <div class="lectures" v-if="lectureNavToggle === 'following'">
               <LectureCard v-for="lecture in followingLectures" :key="lecture.id" :lecture="lecture"/>
@@ -73,7 +74,7 @@
                          data.id = doc.id;
                          return data
                        });
-                        this.allLectures =  this.allLectures.filter(function(x) {
+                        this.allLectures =  this.allLectures.filter( x => {
                           return x.is_completed === false;
                         });
                         this.followingLectures = this.allLectures.filter((x) => {
@@ -128,8 +129,8 @@
       left:0;
       right:0;
       position: absolute;
-      height:300px;
-      width: 300px;
+      height:400px;
+      width: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -156,15 +157,52 @@
       opacity: 0.9;
       transition: 0.2s;
     }
+    .upcoming-empty{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 5%;
+      margin: 0 20%;
+    }
+    .upcoming-empty h1{
+      font-size: 21px;
+      text-align: center;
+    }
+    .interested-img{
+      border-radius: 13px;
+      height: auto;
+      width: 50%;
+      margin-top:15px;
+      box-shadow: 4px 4px 11px rgba(0, 0, 0, 0.3);
+    }
     @media screen and (max-width: 1400px) {
         .lectures{
             padding: 0 40px;
             margin-top: 0;
         }
+        .interested-img{
+          width: 70%;
+        }
+    }
+    @media screen and (max-width: 1050px) {
+      .interested-img{
+        width: 100%;
+      }
+
     }
     @media screen and (max-width: 650px) {
         .lectures{
             padding: 0 15px;
+        }
+        .upcoming-empty h1{
+          font-size: 17px;
+          text-align: center;
+        }
+        .interested-img{
+          width: 100%;
+        }
+        .upcoming-empty{
+          margin: 0 30px;
         }
     }
 </style>

@@ -117,7 +117,7 @@
                 <h1>Congratulations</h1>
                 <h1>You successfully Published a Lecture</h1>
                 <router-link to="/lecture">
-                    <button class="view-lecture-button">View Lecture</button>
+                    <button class="view-lecture-button" v-on:click="emitToParent">View Lecture</button>
                 </router-link>
             </div>
         </div>
@@ -181,7 +181,10 @@
               }else{
                 alert("some fields are missing")
               }
-            }
+            },
+          emitToParent () {
+            this.$emit('childToParent')
+          },
         }
     }
 </script>

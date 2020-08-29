@@ -40,7 +40,7 @@ import firebase from "firebase";
       name: "LectureCard",
       data(){
         return{
-          lecturesLectured: "0",
+          lecturesLectured: [],
           rating: "0.0",
           authorImage:""
         }
