@@ -13,14 +13,17 @@
                 <button class="return-button" v-if="step !== 1 && !formSuccess" v-on:click="prevStep">
                     <img class="return-arrow" src="../assets/navbarArrow.svg" alt="navbar arrow" />
                 </button>
-                <button v-if="step !== totalSteps && !formSuccess" class="continue-button" v-on:click="nextStep">Next Step</button>
+                <button v-if="step !== totalSteps && !formSuccess && currentUserProfile.is_lecturer" class="continue-button" v-on:click="nextStep">Next Step</button>
                 <button v-if="step === totalSteps && !formSuccess" class="continue-button" v-on:click="sendForm">Publish</button>
             </div>
         </div>
         <form>
             <div v-if="step === 1">
                 <div class="step-content">
-                    <div class="form-input">
+                  <div v-if="!currentUserProfile.is_lecturer">
+                    <h1>You need to be a lecturer to publish lectures</h1>
+                  </div>
+                    <div v-if="currentUserProfile.is_lecturer" class="form-input">
                         <label for="LectureName">Lecture's Name:</label>
                         <input id="LectureName" type="text" name="LectureName" v-model="newLecture.title"/>
                     </div>

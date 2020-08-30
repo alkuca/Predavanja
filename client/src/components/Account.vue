@@ -31,7 +31,7 @@
             </div>
             <div class="section-right">
                 <LecturesAccount v-if="lectures" :upcomingLectures="upcomingLectures" :attendedLectures="attendedLectures" :myLectures="myLectures"/>
-                <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid"/>
+                <BecomeLecturer v-if="becomeLecturer" :togglePublishLecture="togglePublishLecture" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid" :getUserImage="getUserImage"/>
                 <SubscribedTopics v-if="topics" :subscribedTopics="currentUserProfile.subscribed_topics"/>
                 <PublishLecture v-if="publish" :currentUserProfile="currentUserProfile" :currentUserUid="currentUserToken.uid" v-on:childToParent="onChildClick"/>
                 <Groups v-if="groups"/>

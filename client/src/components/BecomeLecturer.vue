@@ -83,17 +83,12 @@
                 </div>
             </div>
         </form>
-        <div v-if="formSuccess && !currentUserProfile.is_lecturer">
+        <div v-if="formSuccess && currentUserProfile.is_lecturer">
           <div class="step-1-content">
             <h1>Congratulations</h1>
             <h1>You successfully became a Lecturer</h1>
             <p>You are ready to publish your first Lecture</p>
             <button v-on:click="togglePublishLecture" class="publish-button">Publish Lecture</button>
-          </div>
-        </div>
-        <div v-if="formSuccess && currentUserProfile.is_lecturer">
-          <div class="step-1-content">
-            <h1>You successfully changed your profile Information</h1>
           </div>
         </div>
         <p class="steps-counter">step {{step}} of {{totalSteps}}</p>
@@ -128,7 +123,8 @@ import firebase from 'firebase';
         props: [
           "togglePublishLecture",
           "currentUserProfile",
-          "currentUserUid"
+          "currentUserUid",
+          "getUserImage"
         ],
         methods:{
             nextStep(){
@@ -142,7 +138,7 @@ import firebase from 'firebase';
                 this.step = 0;
 
                 let userRef = firebase.firestore().collection("users").doc(this.currentUserUid);
-                return userRef.update({
+                userRef.update({
                   firstName: this.updateProfile.firstName,
                   secondName: this.updateProfile.secondName,
                   address: this.updateProfile.address,
@@ -154,6 +150,8 @@ import firebase from 'firebase';
                   hobbies: this.updateProfile.hobbies,
                   is_lecturer: true
                 })
+                this.getUserImage();
+                this.currentUserProfile.is_lecturer = true;
             },
             previewImage(event) {
               this.uploadValue = 0;

@@ -67,7 +67,7 @@
                             </transition>
                             <transition name="fade">
                                 <div v-if="notesToggle" class="section-bottom-container">
-                                    <AddNote :notes="notes" :first-name="firstName" :second-name="secondName"/>
+                                    <AddNote v-if="currentUserId === authorId" :notes="notes" :first-name="firstName" :second-name="secondName"/>
                                     <LectureNote v-for="note in notes" :key="note.uid" :note="note"/>
                                 </div>
                             </transition>
