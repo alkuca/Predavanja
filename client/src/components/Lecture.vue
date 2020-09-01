@@ -55,8 +55,9 @@
                                     <a v-on:click="toggleComments" v-bind:class="{linkActive: commentsToggle}">Comments</a>
                                     <a v-on:click="toggleReviews" v-bind:class="{linkActive: reviewsToggle}">Reviews</a>
                                 </div>
-                                <button v-if="!lectureCompleted" v-on:click="addToUpcoming" v-bind:class="{ disabled: upcoming_lectures.includes(this.$route.params.id) }"
-                                        class="interested-button">Interested</button>
+                                <button v-if="!lectureCompleted && !upcoming_lectures.includes(this.$route.params.id)" v-on:click="addToUpcoming" class="interested-button">Add to Upcoming</button>
+                                <button v-if="!lectureCompleted && upcoming_lectures.includes(this.$route.params.id)" v-on:click="removeFromUpcoming"
+                                        class="not-interested-button">Remove from Upcoming</button>
                             </div>
                         </nav>
                         <div class="section-bottom-content">
@@ -68,8 +69,11 @@
                                     <p>Location: {{ address }}</p>
                                     <p>City: {{ city }}</p>
                                     <p>Additional instructions: {{ additionalInstructions }}</p>
-                                    <div v-if="!lectureCompleted" class="interested-button-mobile">
-                                        <button v-on:click="addToUpcoming" v-bind:class="{ disabled: upcoming_lectures.includes(this.$route.params.id)}">Interested</button>
+                                    <div v-if="!lectureCompleted && !upcoming_lectures.includes(this.$route.params.id)" class="interested-button-mobile">
+                                        <button v-on:click="addToUpcoming">Add to Upcoming</button>
+                                    </div>
+                                    <div v-if="!lectureCompleted && upcoming_lectures.includes(this.$route.params.id)" class="not-interested-button-mobile">
+                                      <button v-on:click="removeFromUpcoming">Remove from Upcoming</button>
                                     </div>
                                 </div>
                             </transition>
@@ -214,6 +218,18 @@
               });
               this.peopleInterested.push(firebase.auth().currentUser.uid)
               this.upcoming_lectures.push(this.$route.params.id)
+            },
+            removeFromUpcoming(){
+              let userRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid)
+              userRef.update({
+                upcoming_lectures: firebase.firestore.FieldValue.arrayRemove(this.$route.params.id)
+              });
+              let lectureRef = firebase.firestore().collection("lectures").doc(this.$route.params.id)
+              lectureRef.update({
+                people_interested: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.uid)
+              });
+              this.peopleInterested = this.peopleInterested.filter(item => item !== firebase.auth().currentUser.uid)
+              this.upcoming_lectures = this.upcoming_lectures.filter(item => item !== this.$route.params.id)
             },
             checkIfUserAttendedLecture(){
               let userId = firebase.auth().currentUser.uid;
@@ -470,14 +486,30 @@
         border:none;
         font-weight: bold;
         font-size:14px;
-        height:35px;
-        width:120px;
+        height:38px;
+        width: 145px;
         align-self: center;
         cursor: pointer;
     }
     .interested-button:hover{
         opacity: 0.9;
         transition: 0.2s;
+    }
+    .not-interested-button{
+      background: #e64141;
+      color:white;
+      border-radius: 4px;
+      border:none;
+      font-weight: bold;
+      font-size:14px;
+      height:38px;
+      width: 185px;
+      align-self: center;
+      cursor: pointer;
+    }
+    .not-interested-button:hover{
+      opacity: 0.9;
+      transition: 0.2s;
     }
     .interested-button-mobile button{
         background: #4A50D9;
@@ -491,6 +523,19 @@
     }
     .interested-button-mobile{
         display: none;
+    }
+    .not-interested-button-mobile button{
+      background: #e64141;
+      color:white;
+      border-radius: 4px;
+      border:none;
+      font-weight: bold;
+      font-size:15px;
+      height:35px;
+      width:100%;
+    }
+    .not-interested-button-mobile{
+      display: none;
     }
 
     .linkActive{
@@ -595,8 +640,13 @@
         }
         .interested-button{
             font-size:13px;
-            height:33px;
-            width:95px;
+            height:34px;
+            width:135px;
+        }
+        .not-interested-button{
+          font-size:13px;
+          height:35px;
+          width: 168px;
         }
     }
     @media screen and (max-width: 1100px) {
@@ -706,6 +756,9 @@
         .interested-button{
             display: none;
         }
+        .not-interested-button{
+          display: none;
+        }
         .nav-container{
             padding: 0 5px;
             justify-content: center;
@@ -722,6 +775,9 @@
         }
         .interested-button-mobile{
             display: initial;
+        }
+        .not-interested-button-mobile{
+          display: initial;
         }
     }
 </style>
