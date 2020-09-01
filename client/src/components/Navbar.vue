@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="dropdown-section-two">
-                    <p class="balance">Balance: 0.00000000 ETH</p>
+                    <WalletAccount/>
                     <div class="dropdown-link only-mobile">
                         <router-link to="/account" class="nav-logo">Home</router-link>
                     </div>
@@ -61,9 +61,10 @@
 <script>
     import firebase from 'firebase';
     import Notification from "./Notification";
+    import WalletAccount from "@/components/WalletAccount";
     export default {
         name: "Navbar",
-        components: {Notification},
+        components: {WalletAccount, Notification},
         data(){
             return{
               isOpen: false,
@@ -308,10 +309,6 @@
         font-weight: bold;
         color:white;
         font-size: 12px;
-     }
-     .balance{
-       color:white;
-       font-weight: bold;
      }
 
      @media screen and (max-width: 650px) {

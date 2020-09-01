@@ -12,8 +12,14 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import firebase from "firebase";
 import "./components/firebaseInit"
+import Vuex from 'vuex'
+import drizzleVuePlugin from '@drizzle/vue-plugin'
+import drizzleOptions from './drizzleOptions'
 
 Vue.use(VueRouter);
+Vue.use(Vuex)
+const store = new Vuex.Store({state: {}});
+Vue.use(drizzleVuePlugin, {store, drizzleOptions})
 
 Vue.config.productionTip = false;
 
@@ -67,6 +73,7 @@ firebase.auth().onAuthStateChanged(function() {
       AOS.init({disable: 'mobile'})
     },
     router,
+    store,
     render: h => h(App),
   }).$mount('#app');
 })

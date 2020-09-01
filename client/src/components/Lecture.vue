@@ -32,7 +32,15 @@
                             <div class="complete-section" v-if="lectureCompleted">
                               <h1 class="complete-text">LECTURE COMPLETED</h1>
                               <p>{{ peopleInterested.length }} People attended this lecture</p>
-                              <button v-if="attended_lectures.includes(this.$route.params.id)" class="reward-button">COLLECT REWARD</button>
+                              <div v-if="!rewards_collected.includes(this.$route.params.id) && attended_lectures.includes(this.$route.params.id)"
+                                   class="reward-container" v-on:click="limitReward">
+                                <drizzle-contract-form
+                                    contractName="CollectReward"
+                                    method="set"
+                                    id="collectButton"
+                                />
+                                <span>+ 250</span>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -101,18 +109,25 @@
     import firebase from "firebase";
     import moment from 'moment'
     import AddNote from "@/components/AddNote";
+    import { mapGetters } from 'vuex';
 
     export default {
         name: "Lecture",
-        components: {AddNote, AddReview, AddComment, LectureReview, LectureComment, LectureNote, Navbar},
+        components: { AddNote, AddReview, AddComment, LectureReview, LectureComment, LectureNote, Navbar},
+        computed: {
+          ...mapGetters('drizzle',['drizzleInstance', "isDrizzleInitialized"]),
+          ...mapGetters('accounts', ['activeAccount', 'activeBalance'])
+        },
         data(){
             return{
+              hover:false,
               detailsToggle:true,
               notesToggle:false,
               commentsToggle:false,
               reviewsToggle:false,
               upcoming_lectures:[],
               attended_lectures:[],
+              rewards_collected:[],
               lecture:"",
               lecturesLectured: [],
               rating: "0.0",
@@ -133,7 +148,8 @@
               loaded : false,
               authorImage:  "",
               authorId : "",
-              currentUserId : ""
+              currentUserId : "",
+              value:''
             }
         },
         methods:{
@@ -160,6 +176,7 @@
                 this.notesToggle = false;
                 this.commentsToggle = false;
                 this.reviewsToggle = true;
+
             },
             calculateTime(){
               let time_now  = moment(Date.now()).format("YYYY-MM-DD HH:mm");
@@ -180,7 +197,6 @@
                 lectureRef.update({
                   is_completed: true
                 });
-
                 let userRef = firebase.firestore().collection("users").doc(this.lecture.author_id);
                 return userRef.update({
                   lectures_lectured: firebase.firestore.FieldValue.arrayUnion(this.$route.params.id)
@@ -247,10 +263,24 @@
                   .then(doc => {
                     this.upcoming_lectures = doc.data().upcoming_lectures
                     this.attendedLectures = doc.data().attended_lectures
+                    this.rewards_collected = doc.data().rewards_collected
                     this.firstName = doc.data().firstName
                     this.secondName = doc.data().secondName
                   })
-            }
+            },
+          styleCollectButton(){
+            const c = document.getElementById("collectButton")
+            c.children[0].style.cssText = "font-weight:bold; color:white; background: #00c1cf;" +
+                " border:0; border-radius: 3px; padding: 12px; font-size: 16px; cursor:pointer;";
+            c.children[0].innerHTML = "Collect Reward"
+          },
+          limitReward(){
+            let userRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid);
+            this.rewards_collected.push(this.$route.params.id)
+            return userRef.update({
+              rewards_collected: firebase.firestore.FieldValue.arrayUnion(this.$route.params.id)
+            })
+          }
         },
       filters: {
         moment: function (date) {
@@ -260,6 +290,11 @@
       created() {
         this.getLectureData();
         this.getAuthorData();
+      },
+      updated() {
+          if(this.isDrizzleInitialized && !this.rewards_collected.includes(this.$route.params.id) && this.attended_lectures.includes(this.$route.params.id)){
+            this.styleCollectButton();
+          }
       }
     }
 </script>
@@ -362,7 +397,7 @@
     }
     .date-countdown h1{
         color:white;
-        font-size: 22px;
+        font-size: 20px;
         font-weight: bold;
     }
     .date-countdown p{
@@ -457,6 +492,7 @@
     .interested-button-mobile{
         display: none;
     }
+
     .linkActive{
         border-bottom: 2px solid #46497E !important;
     }
@@ -493,6 +529,18 @@
     .loader-container img{
       width: 220px;
       margin-top:-60px;
+    }
+    .reward-container{
+      position: relative;
+      display: flex;
+    }
+    .reward-container span{
+      font-weight: bold;
+      color: #00e4f5;
+      margin: auto;
+      font-size: 20px;
+      pointer-events: none;
+      padding-left: 5px;
     }
 
     @media screen and (max-width: 1600px) {
