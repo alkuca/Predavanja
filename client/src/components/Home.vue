@@ -13,7 +13,7 @@
             </div>
             <div v-if="upcomingLectures.length === 0 && lectureNavToggle === 'upcoming'" class="upcoming-empty">
               <h1>Lectures you show interest in will appear here</h1>
-              <img class="interested-img" src="../assets/place.png" alt="star"/>
+              <img class="interested-img" src="../assets/place.png" alt="interested"/>
             </div>
             <div class="lectures" v-if="lectureNavToggle === 'following'">
               <LectureCard v-for="lecture in followingLectures" :key="lecture.id" :lecture="lecture"/>
@@ -99,6 +99,7 @@
 </script>
 
 <style scoped>
+
     .lectures{
         margin-top:5px;
         display: flex;
@@ -173,7 +174,7 @@
       height: auto;
       width: 50%;
       margin-top:15px;
-      box-shadow: 4px 4px 11px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 13px rgba(0, 0, 0, 0.30);
     }
     @media screen and (max-width: 1400px) {
         .lectures{

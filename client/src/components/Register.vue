@@ -83,7 +83,9 @@
                             rating:0,
                             subscribed_topics:[],
                             upcoming_lectures:[],
-                            attended_lectures:[]
+                            attended_lectures:[],
+                            author_of:[],
+                            rewards_collected:[],
                           })
                           this.$router.push('home')
                         },

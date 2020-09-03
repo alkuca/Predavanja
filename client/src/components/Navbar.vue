@@ -39,7 +39,7 @@
                     <div class="line"/>
                 </div>
                 <div class="dropdown-section-three">
-                    <div v-if="!clearNotifications">
+                    <div class="notification-container" v-if="!clearNotifications">
                       <Notification/>
                       <Notification/>
                       <Notification/>
@@ -223,8 +223,10 @@
         background:#2F35B5;
     }
      .dropdown-section-three{
-         padding:15px 30px;
          background:#4A50D9;
+     }
+     .notification-container{
+       padding:15px 30px 4px 30px;
      }
      .dropdown-link{
          display: flex;
@@ -284,14 +286,17 @@
      .clear-all-container{
          display: flex;
          justify-content: space-between;
+         padding: 15px 30px 15px 30px;
+         background: #262899;
      }
      .clear-all-container button{
         border:0;
         background: transparent;
         font-weight: bold;
         color:#DFE0FF;
+        font-size: 14px;
         cursor: pointer;
-         outline: 0;
+        outline: 0;
      }
      .circle{
          position: absolute;
@@ -309,6 +314,10 @@
         font-weight: bold;
         color:white;
         font-size: 12px;
+     }
+     .logout img{
+       margin-right: 4px;
+       margin-top:2px;
      }
 
      @media screen and (max-width: 650px) {

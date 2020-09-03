@@ -118,10 +118,7 @@
         <div v-if="formSuccess">
             <div class="step-content">
                 <h1>Congratulations</h1>
-                <h1>You successfully Published a Lecture</h1>
-                <router-link to="/lecture">
-                    <button class="view-lecture-button" v-on:click="emitToParent">View Lecture</button>
-                </router-link>
+                <h1>You successfully Published the {{ this.newLecture.title }} Lecture</h1>
             </div>
         </div>
         <p class="steps-counter">step {{step}} of {{totalSteps}}</p>
@@ -177,7 +174,7 @@
                 this.step --;
             },
             sendForm(){
-              if(this.title && this.address && this.category && this.duration > 0 && this.time_starting && this.date_happening){
+              if(this.newLecture.title && this.newLecture.address && this.newLecture.category && this.newLecture.duration > 0 && this.newLecture.time_starting && this.newLecture.date_happening){
                 this.formSuccess = true;
                 this.step = 0;
                 firebase.firestore().collection("lectures").add(this.newLecture)

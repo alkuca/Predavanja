@@ -6,7 +6,10 @@
                 <div class="section-left-container">
                     <div class="section-left">
                         <div class="lecturer-image-name">
-                            <img class="lecturer-image" src="../assets/profileImage.png" alt="lecturer" id="lecturer-image"/>
+                            <img v-if="!imageLoaded" class="lecturer-image lower-opacity"  src="../assets/profileImage.png" alt="placeholder-image"/>
+                            <transition name="fade" appear>
+                              <img v-if="profileImage" class="lecturer-image" :src="profileImage" alt="profile" @load="onImgLoad"/>
+                            </transition>
                             <h1>{{ currentUserProfile.firstName + " " + currentUserProfile.secondName }}</h1>
                             <div class="user-status-container" v-on:click="isOpen = !isOpen">
                                 <p>{{ currentUserProfile.is_lecturer ? "Lecturer" : "Basic User"}}</p>
@@ -71,7 +74,9 @@
                 upcomingLectures:[],
                 followingLectures:[],
                 myLectures:[],
-                lecturePosted:false
+                lecturePosted:false,
+                profileImage:"",
+                imageLoaded:false
             }
         },
         methods:{
@@ -163,13 +168,15 @@
             },
             getUserImage(){
               firebase.storage().ref(firebase.auth().currentUser.uid + '/profilePicture/profile' ).getDownloadURL().then(url => {
-                const img = document.getElementById('lecturer-image');
-                img.src = url;
+                this.profileImage = url;
               });
             },
-          onChildClick() {
-            this.toggleLectures()
-            },
+            onChildClick() {
+              this.toggleLectures()
+              },
+            onImgLoad () {
+              this.imageLoaded = true
+            }
           },
       mounted(){
         this.getUserProfile();
@@ -180,6 +187,16 @@
 </script>
 
 <style scoped>
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .fade-enter, .fade-leave-to {
+      opacity: 0;
+      transition: 0s;
+    }
+    .lower-opacity{
+      opacity: 0.1;
+    }
     .section-left-container{
         padding:30px 50px 0 50px;
         background: #4A50D9;
