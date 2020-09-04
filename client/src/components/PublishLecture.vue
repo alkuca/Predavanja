@@ -105,12 +105,14 @@
                       <option>Business</option>
                       <option>Economics</option>
                       <option>Education</option>
+                      <option>Entertainment</option>
+                      <option>Health</option>
                       <option>Informatics</option>
-                      <option>Photography</option>
                       <option>Psychology</option>
                       <option>Music</option>
                       <option>Chemistry</option>
                       <option>Statistics</option>
+                      <option>Other</option>
                     </select>
                 </div>
             </div>

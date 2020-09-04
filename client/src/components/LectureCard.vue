@@ -161,7 +161,7 @@ import firebase from "firebase";
       justify-content: space-between;
   }
   .lecture-text{
-      margin:35px 25px;
+      margin:15px 25px 5px 25px;
       color:white;
       font-weight: bold;
   }
@@ -170,6 +170,8 @@ import firebase from "firebase";
   }
   .lecture-text p{
       font-size:16px;
+      line-height: 21px;
+      font-weight: normal;
   }
   .date-section{
       display: flex;
@@ -225,7 +227,7 @@ import firebase from "firebase";
           font-size: 14px;
       }
       .card-container{
-          height: 320px;
+          height: auto;
           flex: 0 calc(50% - 20px);
           margin: 10px 10px;
       }
@@ -251,9 +253,6 @@ import firebase from "firebase";
           margin-right:10px;
           margin-bottom: 5px;
       }
-      .card-container{
-          height: 300px;
-      }
       .lecturer-info{
           height: 260px;
       }
@@ -277,9 +276,6 @@ import firebase from "firebase";
       }
       .date p{
           font-size: 12px;
-      }
-      .card-container{
-          height: 280px;
       }
       .lecturer-info{
           height: 240px;
@@ -318,9 +314,6 @@ import firebase from "firebase";
       .date-section{
           flex-direction: column;
           align-items: flex-start;
-      }
-      .card-container{
-          height: auto;
       }
       .lecturer-info{
           height: 90%;

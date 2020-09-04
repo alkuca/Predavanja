@@ -26,23 +26,23 @@
             <div class="section-bottom"/>
         </div>
         <div class="section-two">
-            <div class="landing-text" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
+            <div class="landing-text">
                 <h1>Lorem ipsum dolor sit amet,consectetur</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
                     ipsum dolor sit amet consectetur.</p>
             </div>
             <div class="blocks-container">
-                <div class="block" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
+                <div class="block">
                     <img class="block-img" src="../assets/learn.svg" alt="learn image"/>
                     <h1>Learn</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-                <div class="block" data-aos-once="true" data-aos-delay="200" data-aos="fade-up" data-aos-duration="1000">
+                <div class="block">
                     <img class="block-img" src="../assets/teach.svg" alt="teach image"/>
                     <h1>Teach</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-                <div class="block" data-aos-once="true" data-aos-delay="400" data-aos="fade-up" data-aos-duration="1000">
+                <div class="block">
                     <img class="block-img" src="../assets/earn.svg" alt="earn image"/>
                     <h1>Earn</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -52,12 +52,12 @@
         <div class="large-section">
             <div class="section-three">
                 <div class="section-three-left">
-                    <img data-aos="fade-up" data-aos-once="true" data-aos-duration="1000" class="discover-img" src="../assets/discover.png" alt="discover"/>
+                    <img class="discover-img" src="../assets/discover.png" alt="discover"/>
                     <img class="dots3" src="../assets/dots2.png" alt="dots"/>
                 </div>
                 <div class="section-three-right">
-                    <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                    <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                    <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                    <p class="blue-subtitle">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                         Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                     </p>
@@ -65,23 +65,23 @@
             </div>
             <div class="section-five">
                 <div class="section-five-left">
-                    <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                    <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                    <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                    <p class="blue-subtitle">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                         Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                     </p>
                 </div>
-                <div class="section-five-right" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">
+                <div class="section-five-right">
                     <img class="review-image" src="../assets/blog.svg" alt="review"/>
                 </div>
             </div>
             <div class="section-three">
-                <div class="section-three-left" data-aos-once="true" data-aos="fade-up" data-aos-duration="1500">
+                <div class="section-three-left">
                     <img class="discover-img" src="../assets/creativity.svg" alt="discover"/>
                 </div>
                 <div class="section-three-right">
-                    <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                    <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle">
+                    <h1 class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                    <p class="blue-subtitle">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                         Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                     </p>
@@ -108,23 +108,23 @@
         </div>
         <div class="notebook-section">
             <div class="notebook-section-left">
-                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title text-right">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="500" data-aos-duration="1000" class="blue-subtitle text-right">
+                <h1 class="blue-title text-right">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p class="blue-subtitle text-right">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
             </div>
             <div class="notebook-section-right">
-                <img data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class="notebook-image" src="../assets/laptop.png" alt="notebook"/>
+                <img class="notebook-image" src="../assets/laptop.png" alt="notebook"/>
             </div>
         </div>
         <div class="phone-section">
             <div class="phone-section-left">
-                <img data-aos="fade-right" data-aos-once="true" data-aos-duration="1000" class="phone-image" src="../assets/phone.png" alt="phone"/>
+                <img  class="phone-image" src="../assets/phone.png" alt="phone"/>
             </div>
             <div class="phone-section-right">
-                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-subtitle">
+                <h1  class="blue-title">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p  class="blue-subtitle">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
@@ -132,14 +132,14 @@
         </div>
         <div class="tablet-section">
             <div class="tablet-section-left">
-                <h1 data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-title text-right">Lorem ipsum dolor sit amet,consectetur.</h1>
-                <p data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="blue-subtitle text-right">
+                <h1  class="blue-title text-right">Lorem ipsum dolor sit amet,consectetur.</h1>
+                <p  class="blue-subtitle text-right">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sem eu tellus gravida egestas maximus nec felis.
                     Nunc suscipit, eros et finibus placerat, nisl neque interdum dolor, iaculis fermentum nisi urna a neque.
                 </p>
             </div>
             <div class="tablet-section-right">
-                <img data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class="tablet-image" src="../assets/tablet.png" alt="chat"/>
+                <img class="tablet-image" src="../assets/tablet.png" alt="chat"/>
             </div>
         </div>
         <div class="section-four">
@@ -161,10 +161,10 @@
         </div>
         <div class="blockchain-section">
             <div class="content-center">
-                <h1 class="center-title" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">Blockchain lorem ipsum dolor sit amet</h1>
-                <p class="center-text" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
+                <h1 class="center-title">Blockchain lorem ipsum dolor sit amet</h1>
+                <p class="center-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut dolor purus.Lorem
                     ipsum dolor sit amet consectetur.</p>
-                <img class="blockchain" src="../assets/blockchain.svg" alt="blockchain" data-aos-once="true" data-aos="fade-up" data-aos-duration="1000"/>
+                <img class="blockchain" src="../assets/blockchain.svg" alt="blockchain"/>
             </div>
         </div>
     </div>
@@ -341,13 +341,13 @@
         display: flex;
         justify-content: space-around;
         align-content: center;
-        padding: 0 10% 80px 10%;
+        padding: 0 15% 80px 15%;
         margin-top: 5%;
         margin-bottom: 10%;
     }
     .block{
-        width:33%;
-        height: 400px;
+        width:23%;
+        height: 350px;
         background: white;
         border-radius: 5px;
         box-shadow: 0 0 7px rgba(0,0,0,0.22);
@@ -368,10 +368,11 @@
         margin: 50px 0 12px 0;
     }
     .block p{
-        font-size: 16px;
+        font-size: 15px;
         text-align: center;
         color:#8F8F8F;
         margin: 0 50px;
+        font-weight: bold;
     }
     .section-three{
         display: flex;
@@ -401,11 +402,13 @@
     .blue-title{
         color: #4A50D9;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 32px;
     }
     .blue-subtitle{
         margin-top:0;
-        font-size: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        color:#525252;
     }
     .dots3{
         width:50px;
@@ -436,15 +439,16 @@
     }
     .section-four-block h1{
         font-weight: bold;
-        font-size: 18px;
+        font-size: 22px;
         text-align: center;
         color:white;
     }
     .section-four-block p{
         margin-top:0;
-        font-size: 14px;
+        font-size: 15px;
+        font-weight: bold;
         text-align: center;
-        color:#F8F8F8;
+        color: #f8f8f8;
     }
 
     .section-five{
@@ -649,12 +653,11 @@
         }
         .blocks-container{
             margin-top: 4%;
-            padding: 0 3% 80px 3%;
+            padding: 0 7% 80px 7%;
         }
         .block{
-            width:33%;
-            height: 350px;
-            margin:0 30px
+            height: 320px;
+            margin:0 20px
         }
         .dots4{
             right:-30px;
@@ -681,7 +684,8 @@
             margin-top:0;
         }
         .block{
-            height: 280px;
+            width: 25%;
+            height: 240px;
             margin:0 15px
         }
         .block-img {
@@ -842,9 +846,9 @@
             margin-top: 50px;
         }
         .block{
-            width:65%;
+            width:55%;
             margin: 20px 0;
-            height: 350px;
+            height: 320px;
         }
         .block h1{
             font-size: 24px;
@@ -982,9 +986,9 @@
             margin-top:25px;
         }
         .block{
-            width: 85%;
+            width: 72%;
             margin: 15px 0;
-            height: 300px;
+            height: 280px;
         }
         .section-three{
             padding: 50px 0 25px 0;

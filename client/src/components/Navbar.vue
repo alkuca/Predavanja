@@ -11,7 +11,7 @@
             <div class="profile-menu" v-on:click="isOpen = !isOpen">
                 <div class="profile-menu-image-container">
                     <img v-if="profileImage" :src=profileImage alt="profile image"/>
-                    <img v-if="!profileImage" src="../assets/profileImage.png" alt="profile image"/>
+                    <img v-if="!profileImage" src="../assets/profileImage.png" class="lower-opacity" alt="profile image"/>
                     <div v-if="!clearNotifications" class="circle">
                         <span>3</span>
                     </div>
@@ -318,6 +318,9 @@
      .logout img{
        margin-right: 4px;
        margin-top:2px;
+     }
+     .lower-opacity{
+       opacity: 0.3;
      }
 
      @media screen and (max-width: 650px) {

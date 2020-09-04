@@ -58,11 +58,11 @@
                 <div class="step-content">
                     <div class="form-input">
                         <label for="highSchool">High School:</label>
-                        <input id="highSchool" type="text" name="highSchool" v-model="updateProfile.highSchool"/>
+                        <input id="highSchool" type="text" name="highSchool" placeholder="Gymnasium" v-model="updateProfile.highSchool"/>
                     </div>
                     <div class="form-input">
                         <label for="university">University:</label>
-                        <input id="university" type="text" name="university" v-model="updateProfile.university"/>
+                        <input id="university" type="text" name="university" placeholder="Economics" v-model="updateProfile.university"/>
                     </div>
                     <div class="form-input">
                         <label for="achievements">Other Academic Achievements:</label>
@@ -74,7 +74,7 @@
                 <div class="step-content">
                     <div class="form-input">
                         <label for="currentEmployment">Current Employment:</label>
-                        <input id="currentEmployment" type="text" name="currentEmployment" v-model="updateProfile.currentEmployment"/>
+                        <input id="currentEmployment" type="text" name="currentEmployment" placeholder="Full time" v-model="updateProfile.currentEmployment"/>
                     </div>
                     <div class="form-input">
                         <label for="hobbies">Hobbies:</label>

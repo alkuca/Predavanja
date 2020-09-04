@@ -33,7 +33,7 @@
         data() {
             return {
                 checkedTopics: null,
-                allTopics: ["Art", "Business", "Economics", "Education", "Informatics", "Photography", "Psychology", "Music", "Chemistry", "Statistics"],
+                allTopics: ["Art", "Business", "Economics", "Education", "Entertainment", "Health", "Informatics", "Psychology", "Music", "Chemistry", "Statistics"],
                 editToggled: false
             }
         },

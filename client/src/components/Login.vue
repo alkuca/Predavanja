@@ -139,7 +139,7 @@
         height:20px;
         border:0;
         outline:0;
-        border-bottom: 1px solid #ABABAB;
+        border-bottom: 1px solid #dedede;
         text-indent: 4px;
         padding-bottom:5px;
     }

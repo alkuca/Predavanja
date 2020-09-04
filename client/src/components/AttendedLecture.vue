@@ -6,7 +6,7 @@
                 <img class="lecturer-image" src="../assets/teacher.png" alt="lecturer"/>
                 <p class="name">{{ attendedLecture.author }}</p>
             </div>
-            <p class="rating">Rating: {{ attendedLecture.rating }}/5</p>
+            <!-- <p class="rating">Rating: {{ attendedLecture.rating }}/5</p> -->
             <button class="review-button">Add Review</button>
         </div>
     </router-link>

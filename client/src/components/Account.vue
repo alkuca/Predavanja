@@ -195,7 +195,7 @@
       transition: 0s;
     }
     .lower-opacity{
-      opacity: 0.1;
+      opacity: 0.3;
     }
     .section-left-container{
         padding:30px 50px 0 50px;
