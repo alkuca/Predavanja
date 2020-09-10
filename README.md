@@ -1,5 +1,6 @@
 ## how to run
-in the root folder: 
+in the root folder:
+<br/><b>npm install -g truffle</b>
 <br/><b>truffle develop</b>
 <br/><b>migrate --reset</b>
 <br/>
