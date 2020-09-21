@@ -2,7 +2,6 @@
   "contractName": "CollectReward",
   "abi": [
     {
-      "constant": true,
       "inputs": [],
       "name": "storedData",
       "outputs": [
@@ -12,71 +11,69 @@
           "type": "uint256"
         }
       ],
-      "payable": false,
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
-      "constant": false,
       "inputs": [],
       "name": "set",
       "outputs": [],
-      "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"set\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"storedData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Alen/Desktop/Predavanja/contracts/CollectReward.sol\":\"CollectReward\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Alen/Desktop/Predavanja/contracts/CollectReward.sol\":{\"keccak256\":\"0x8145fd3a8ffee8d1cf0c63fb210b4603640146298a015750714feb5b32ed46cf\",\"urls\":[\"bzz-raw://ab236d9b38034c38c88fb5b8e5c30949a629ac76f4f6148fc43f3441cf5a1041\",\"dweb:/ipfs/QmWrcHDDzZWLzabQCarGA1WCkySRNSciYMJcL3JKR88DE6\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b5060a48061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80632a1afcd9146037578063b8e010de146053575b600080fd5b603d605b565b6040518082815260200191505060405180910390f35b60596061565b005b60005481565b60fa6000540160008190555056fea265627a7a72315820f9f85aa56a6100e6f7f1d63497afd3e52ceb63df7f510530a2f1149acd82b4fd64736f6c63430005100032",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80632a1afcd9146037578063b8e010de146053575b600080fd5b603d605b565b6040518082815260200191505060405180910390f35b60596061565b005b60005481565b60fa6000540160008190555056fea265627a7a72315820f9f85aa56a6100e6f7f1d63497afd3e52ceb63df7f510530a2f1149acd82b4fd64736f6c63430005100032",
-  "sourceMap": "36:134:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;36:134:1;;;;;;;",
-  "deployedSourceMap": "36:134:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;36:134:1;;;;;;;;;;;;;;;;;;;;;;;;66:22;;;:::i;:::-;;;;;;;;;;;;;;;;;;;97:70;;;:::i;:::-;;66:22;;;;:::o;97:70::-;156:3;143:10;;:16;130:10;:29;;;;97:70::o",
-  "source": "pragma solidity >=0.4.22 <0.6.0;\r\n\r\ncontract CollectReward {\r\n    uint public storedData;\r\n\r\n    function set() public {\r\n        storedData = storedData + 250;\r\n    }\r\n}\r\n",
-  "sourcePath": "C:/Users/Alen/Desktop/Predavanja/contracts/CollectReward.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.0+commit.26b70077\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"storedData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/ambi/code/projekt/predavanja/contracts/CollectReward.sol\":\"CollectReward\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/ambi/code/projekt/predavanja/contracts/CollectReward.sol\":{\"keccak256\":\"0x8c94d85c91f7c9688e2788361c24efad7144e306ef2f6654fa9d83be89166cfb\",\"urls\":[\"bzz-raw://173149bf497b8a5ab968999a8d950a3940bf9fb755cd966cf8e0ce89203e03e6\",\"dweb:/ipfs/QmSxKr8K9ghfngamF24E4dCnuw5rPdM31U6QMTayc41aFn\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060a58061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80632a1afcd9146037578063b8e010de146053575b600080fd5b603d605b565b6040518082815260200191505060405180910390f35b60596061565b005b60005481565b60fa6000540160008190555056fea2646970667358221220a0d825e46e56d56260daa4a9cdf844b36d3e3979f910392257192c2521e1bb7564736f6c63430006000033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80632a1afcd9146037578063b8e010de146053575b600080fd5b603d605b565b6040518082815260200191505060405180910390f35b60596061565b005b60005481565b60fa6000540160008190555056fea2646970667358221220a0d825e46e56d56260daa4a9cdf844b36d3e3979f910392257192c2521e1bb7564736f6c63430006000033",
+  "sourceMap": "27:134:0:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:134:0;;;;;;;",
+  "deployedSourceMap": "27:134:0:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:134:0;;;;;;;;;;;;;;;;;;;;;;;;57:22;;;:::i;:::-;;;;;;;;;;;;;;;;;;;88:70;;;:::i;:::-;;57:22;;;;:::o;88:70::-;147:3;134:10;;:16;121:10;:29;;;;88:70::o",
+  "source": "pragma solidity ^0.6.0;\r\n\r\ncontract CollectReward {\r\n    uint public storedData;\r\n\r\n    function set() public {\r\n        storedData = storedData + 250;\r\n    }\r\n}\r\n",
+  "sourcePath": "C:/Users/ambi/code/projekt/predavanja/contracts/CollectReward.sol",
   "ast": {
-    "absolutePath": "/C/Users/Alen/Desktop/Predavanja/contracts/CollectReward.sol",
+    "absolutePath": "/C/Users/ambi/code/projekt/predavanja/contracts/CollectReward.sol",
     "exportedSymbols": {
       "CollectReward": [
-        28
+        14
       ]
     },
-    "id": 29,
+    "id": 15,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 15,
+        "id": 1,
         "literals": [
           "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
+          "^",
           "0.6",
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:32:1"
+        "src": "0:23:0"
       },
       {
+        "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 28,
+        "id": 14,
         "linearizedBaseContracts": [
-          28
+          14
         ],
         "name": "CollectReward",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 17,
+            "functionSelector": "2a1afcd9",
+            "id": 3,
             "name": "storedData",
             "nodeType": "VariableDeclaration",
-            "scope": 28,
-            "src": "66:22:1",
+            "overrides": null,
+            "scope": 14,
+            "src": "57:22:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -84,10 +81,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 16,
+              "id": 2,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "66:4:1",
+              "src": "57:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -98,26 +95,26 @@
           },
           {
             "body": {
-              "id": 26,
+              "id": 12,
               "nodeType": "Block",
-              "src": "119:48:1",
+              "src": "110:48:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 24,
+                    "id": 10,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 20,
+                      "id": 6,
                       "name": "storedData",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 17,
-                      "src": "130:10:1",
+                      "referencedDeclaration": 3,
+                      "src": "121:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -131,19 +128,19 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 23,
+                      "id": 9,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 21,
+                        "id": 7,
                         "name": "storedData",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 17,
-                        "src": "143:10:1",
+                        "referencedDeclaration": 3,
+                        "src": "134:10:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -154,14 +151,14 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "323530",
-                        "id": 22,
+                        "id": 8,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "number",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "156:3:1",
+                        "src": "147:3:0",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_rational_250_by_1",
@@ -169,100 +166,102 @@
                         },
                         "value": "250"
                       },
-                      "src": "143:16:1",
+                      "src": "134:16:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "130:29:1",
+                    "src": "121:29:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 25,
+                  "id": 11,
                   "nodeType": "ExpressionStatement",
-                  "src": "130:29:1"
+                  "src": "121:29:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 27,
+            "functionSelector": "b8e010de",
+            "id": 13,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "set",
             "nodeType": "FunctionDefinition",
+            "overrides": null,
             "parameters": {
-              "id": 18,
+              "id": 4,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "109:2:1"
+              "src": "100:2:0"
             },
             "returnParameters": {
-              "id": 19,
+              "id": 5,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "119:0:1"
+              "src": "110:0:0"
             },
-            "scope": 28,
-            "src": "97:70:1",
+            "scope": 14,
+            "src": "88:70:0",
             "stateMutability": "nonpayable",
-            "superFunction": null,
+            "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 29,
-        "src": "36:134:1"
+        "scope": 15,
+        "src": "27:134:0"
       }
     ],
-    "src": "0:172:1"
+    "src": "0:163:0"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/Alen/Desktop/Predavanja/contracts/CollectReward.sol",
+    "absolutePath": "/C/Users/ambi/code/projekt/predavanja/contracts/CollectReward.sol",
     "exportedSymbols": {
       "CollectReward": [
-        28
+        14
       ]
     },
-    "id": 29,
+    "id": 15,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 15,
+        "id": 1,
         "literals": [
           "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
+          "^",
           "0.6",
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:32:1"
+        "src": "0:23:0"
       },
       {
+        "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 28,
+        "id": 14,
         "linearizedBaseContracts": [
-          28
+          14
         ],
         "name": "CollectReward",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 17,
+            "functionSelector": "2a1afcd9",
+            "id": 3,
             "name": "storedData",
             "nodeType": "VariableDeclaration",
-            "scope": 28,
-            "src": "66:22:1",
+            "overrides": null,
+            "scope": 14,
+            "src": "57:22:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -270,10 +269,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 16,
+              "id": 2,
               "name": "uint",
               "nodeType": "ElementaryTypeName",
-              "src": "66:4:1",
+              "src": "57:4:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -284,26 +283,26 @@
           },
           {
             "body": {
-              "id": 26,
+              "id": 12,
               "nodeType": "Block",
-              "src": "119:48:1",
+              "src": "110:48:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 24,
+                    "id": 10,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 20,
+                      "id": 6,
                       "name": "storedData",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 17,
-                      "src": "130:10:1",
+                      "referencedDeclaration": 3,
+                      "src": "121:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -317,19 +316,19 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 23,
+                      "id": 9,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 21,
+                        "id": 7,
                         "name": "storedData",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 17,
-                        "src": "143:10:1",
+                        "referencedDeclaration": 3,
+                        "src": "134:10:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -340,14 +339,14 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "323530",
-                        "id": 22,
+                        "id": 8,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "number",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "156:3:1",
+                        "src": "147:3:0",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_rational_250_by_1",
@@ -355,70 +354,72 @@
                         },
                         "value": "250"
                       },
-                      "src": "143:16:1",
+                      "src": "134:16:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "130:29:1",
+                    "src": "121:29:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 25,
+                  "id": 11,
                   "nodeType": "ExpressionStatement",
-                  "src": "130:29:1"
+                  "src": "121:29:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 27,
+            "functionSelector": "b8e010de",
+            "id": 13,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "set",
             "nodeType": "FunctionDefinition",
+            "overrides": null,
             "parameters": {
-              "id": 18,
+              "id": 4,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "109:2:1"
+              "src": "100:2:0"
             },
             "returnParameters": {
-              "id": 19,
+              "id": 5,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "119:0:1"
+              "src": "110:0:0"
             },
-            "scope": 28,
-            "src": "97:70:1",
+            "scope": 14,
+            "src": "88:70:0",
             "stateMutability": "nonpayable",
-            "superFunction": null,
+            "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 29,
-        "src": "36:134:1"
+        "scope": 15,
+        "src": "27:134:0"
       }
     ],
-    "src": "0:172:1"
+    "src": "0:163:0"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+    "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
   "networks": {
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xF0980721fDb9dDb1e07BdA2d3DdBeB6C0f3B3474",
-      "transactionHash": "0x88813f3389b86249e8e41579190bd5d6d0e3521899b0c9ee3934d37f797932fe"
+      "address": "0x7ED7e8CeD7135089F533aB4F79F347a40b9932d4",
+      "transactionHash": "0xa22ec6aec05f21606ae6c4bebf3293bb95b331fae7a1352218e281395db55ed5"
     }
   },
-  "schemaVersion": "3.2.4",
-  "updatedAt": "2020-09-04T08:53:24.860Z",
+  "schemaVersion": "3.2.5",
+  "updatedAt": "2020-09-21T21:08:45.097Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
